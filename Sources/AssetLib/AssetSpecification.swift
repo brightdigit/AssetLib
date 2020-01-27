@@ -1,18 +1,9 @@
 import Foundation
 
-public enum AppleWatchRole: String, Codable {
-  case notificationCenter, companionSettings, appLauncher, longLook, quickLook
-}
 
-public enum AppleWatchType: String, Codable {
-  case size38 = "38mm", size40 = "40mm", size42 = "42mm", size44 = "44mm"
-}
 
-extension CGFloat {
-  var clean: String {
-    truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : description
-  }
-}
+
+
 
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   public let idiom: ImageIdiom
@@ -111,16 +102,4 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
 
     try container.encode(idiom, forKey: .idiom)
   }
-
-//  public init?(_ item: AssetCatalogItem) {
-//    guard let idiom = ImageIdiom(rawValue: item.idiom) else {
-//      return nil
-//    }
-//    self.idiom = idiom
-//    filename = item.filename
-//    scale = item.scale?.cgFloatValue
-//    size = item.size?.cgSize
-//    role = item.role.flatMap { AppleWatchRole(rawValue: $0) }
-//    subtype = item.subtype.flatMap { AppleWatchType(rawValue: $0) }
-//  }
 }

@@ -23,9 +23,4 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
     try container.encode(images.map(AssetSpecification.init(specifications:)), forKey: .images)
     try container.encode(AssetSpecificationMetadata(info), forKey: .info)
   }
-
-//  public init(fromItems items: [AssetCatalogItem]) {
-//    images = items.compactMap(AssetSpecification.init)
-//    info = AssetSpecificationMetadata()
-//  }
 }
