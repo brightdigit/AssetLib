@@ -8,9 +8,9 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Prepare Build
-      run: pwd && brew bundle
     - uses: actions/checkout@v1
+    - name: Prepare Build
+      run: brew bundle
     - name: Build
       run: swift build -v
     - name: Run tests
