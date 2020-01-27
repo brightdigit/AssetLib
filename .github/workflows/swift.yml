@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: Prepare Build
-      run: brew bundle
+      run: pwd && brew bundle
     - uses: actions/checkout@v1
     - name: Build
       run: swift build -v
