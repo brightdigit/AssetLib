@@ -10,7 +10,8 @@ jobs:
     steps:
     - name: GitHub Action for Homebrew
       uses: artemnovichkov/action-homebrew@0.1.0
-      args: bundle install
+      with:
+        args: bundle install
     - uses: actions/checkout@v1
     - name: Build
       run: swift build -v
