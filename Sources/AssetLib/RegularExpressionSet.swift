@@ -6,10 +6,11 @@ public struct RegularExpressionSet: RegularExpressionSetProtocol {
   }
 
   public let dictionary: [RegularExpressionKey: NSRegularExpression]
-  
-  public static let shared:RegularExpressionSetProtocol = {
+
+  public static let shared: RegularExpressionSetProtocol = {
     regularExpressionBuilder in
-    return try! regularExpressionBuilder.buildRegularExpressions(fromDictionary: [
+    // swiftlint:disable:next force_try
+    try! regularExpressionBuilder.buildRegularExpressions(fromDictionary: [
       .geometry: ("x?(\\d+)", options: [.caseInsensitive]),
       .integer: ("\\d+", options: []),
       .scale: ("(\\d+)x", options: []),

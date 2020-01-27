@@ -5,6 +5,7 @@ public enum ImageIdiom: String, Codable {
     iphone,
     ipad,
     mac,
+    // swiftlint:disable:next identifier_name
     tv,
     watch,
     car,

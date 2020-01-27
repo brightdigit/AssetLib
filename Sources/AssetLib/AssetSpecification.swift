@@ -1,10 +1,5 @@
 import Foundation
 
-
-
-
-
-
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   public let idiom: ImageIdiom
   public let scale: CGFloat?
@@ -21,7 +16,13 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     case role
     case subtype
   }
-  public init(idiom: ImageIdiom, scale: CGFloat? = nil, size: CGSize? = nil, role: AppleWatchRole? = nil, subtype: AppleWatchType? = nil, filename: String? = nil) {
+
+  public init(idiom: ImageIdiom,
+              scale: CGFloat? = nil,
+              size: CGSize? = nil,
+              role: AppleWatchRole? = nil,
+              subtype: AppleWatchType? = nil,
+              filename: String? = nil) {
     self.idiom = idiom
     self.scale = scale
     self.size = size
@@ -57,7 +58,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     }
 
     if let sizeString = try container.decodeIfPresent(String.self, forKey: .size) {
-      guard let sizeValueStrings = sizeString.firstMatchGroups(regex: sizeRegex), let width = Double(sizeValueStrings[1]), let height = Double(sizeValueStrings[2]) else {
+      let sizeArray = sizeString.firstMatchGroups(regex: sizeRegex).flatMap { $0.compactMap(Double.init) }.flatMap { $0.count >= 3 ? $0 : nil }
+      guard let width = sizeArray?[1], let height = sizeArray?[2] else {
         throw DecodingError.dataCorruptedError(forKey: .size, in: container, debugDescription: sizeString)
       }
       size = CGSize(width: width, height: height)

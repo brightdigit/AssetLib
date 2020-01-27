@@ -1,5 +1,3 @@
-
-
 public enum RegularExpressionKey: Int {
   case geometry
   case integer
