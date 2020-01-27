@@ -18,6 +18,6 @@ jobs:
     - name: Prepare Code Coverage 
       run: xcrun llvm-cov export -format="lcov" .build/debug/AssetLibPackageTests.xctest/Contents/MacOS/AssetLibPackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
     - name: Upload to CodeCov.io
-      run: bash <(curl https://codecov.io/bash) -F github -F macos -n $GITHUB_SHA
+      run: bash <(curl https://codecov.io/bash) -F github -F macos -n ${{ github.sha }}
       env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
