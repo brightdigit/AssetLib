@@ -16,12 +16,18 @@ final class AssetSpecificationTests: XCTestCase {
     let contentsJSONUrls = enumerator!.compactMap { $0 as? URL }.filter { $0.pathExtension == "json" }
 
     let decoder = JSONDecoder()
+    let encoder = JSONEncoder()
     let contentsJSONDatas = contentsJSONUrls.compactMap {
       try? Data(contentsOf: $0)
     }
     let documents = contentsJSONDatas.compactMap {
       try? decoder.decode(AssetSpecificationDocument.self, from: $0)
     }
+    XCTAssertEqual(contentsJSONUrls.count, documents.count)
+    let contentsEncodeds = documents.compactMap {
+      try? encoder.encode($0)
+    }
+    XCTAssertEqual(contentsJSONDatas, contentsEncodeds)
   }
 
   static var allTests = [
