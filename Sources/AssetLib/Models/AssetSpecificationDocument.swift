@@ -2,7 +2,7 @@ import Foundation
 
 public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Codable {
   public let info: AssetSpecificationMetadataProtocol
-  public let images: [AssetSpecificationProtocol]
+  public let images: [AssetSpecificationProtocol]?
 
   public enum CodingKeys: String, CodingKey {
     case images
@@ -12,7 +12,7 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     let info = try container.decode(AssetSpecificationMetadata.self, forKey: .info)
-    let images = try container.decode([AssetSpecification].self, forKey: CodingKeys.images)
+    let images = try container.decodeIfPresent([AssetSpecification].self, forKey: CodingKeys.images)
     self.images = images
     self.info = info
   }
@@ -20,7 +20,9 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
-    try container.encode(images.map(AssetSpecification.init(specifications:)), forKey: .images)
+    if let images = self.images {
+      try container.encode(images.map(AssetSpecification.init(specifications:)), forKey: .images)
+    }
     try container.encode(AssetSpecificationMetadata(info), forKey: .info)
   }
 }
