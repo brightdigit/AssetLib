@@ -41,10 +41,8 @@ public extension Data {
     let components1 = string1.components(separatedBy: "\n")
     let components2 = string2.components(separatedBy: "\n")
     let count = components1.count < components2.count ? components1.count : components2.count
-    for index in 0 ..< count {
-      if components1[index] != components2[index] {
-        return index
-      }
+    for index in 0 ..< count where components1[index] != components2[index] {
+      return index
     }
     return nil
   }
@@ -62,14 +60,14 @@ private extension Array where Element == Any {
     guard count > 0 else {
       return
     }
-    for _index in 0 ..< count {
-      let index = count - 1 - _index
-      if self[index] is NSNull {
-        remove(at: index)
-      } else if let array = self[index] as? [Any] {
-        self[index] = array.strippingNulls()
-      } else if let dictionary = self[index] as? [String: Any] {
-        self[index] = dictionary.strippingNulls()
+    for index in 0 ..< count {
+      let translatedIndex = count - 1 - index
+      if self[translatedIndex] is NSNull {
+        remove(at: translatedIndex)
+      } else if let array = self[translatedIndex] as? [Any] {
+        self[translatedIndex] = array.strippingNulls()
+      } else if let dictionary = self[translatedIndex] as? [String: Any] {
+        self[translatedIndex] = dictionary.strippingNulls()
       }
     }
   }
@@ -97,12 +95,6 @@ private extension Dictionary where Key == String, Value == Any {
 
 final class AssetSpecificationTests: XCTestCase {
   func testExample() {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct
-    // results.
-    // XCTAssertEqual(AssetLib().text, "Hello, World!")
-    // print(Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil, localization: nil))
-    // print(#file)
     let hereUrl = URL(fileURLWithPath: #file)
     let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("Data")
     let enumerator = FileManager.default.enumerator(at: dataDirectoryUrl, includingPropertiesForKeys: nil)
@@ -112,13 +104,9 @@ final class AssetSpecificationTests: XCTestCase {
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     encoder.outputFormatting = .prettyPrinted
-    let documents = contentsJSONUrls.compactMap {
-      url -> (URL, AssetSpecificationDocument, Data)? in
+    let documents = contentsJSONUrls.compactMap { url -> (URL, AssetSpecificationDocument, Data)? in
       do {
         let data = try Data(contentsOf: url)
-//        return try String(data: data, encoding: .utf8).map{
-//          try (url, decoder.decode(AssetSpecificationDocument.self, from: data), $0)
-//        }
         return try (url, decoder.decode(AssetSpecificationDocument.self, from: data), data)
       } catch {
         XCTFail("\(url): \(error.localizedDescription)")
@@ -127,22 +115,9 @@ final class AssetSpecificationTests: XCTestCase {
     }
 
     XCTAssertEqual(contentsJSONUrls.count, documents.count)
-//    let documents = contentsJSONDatas.map {
-//      do {
-//        try decoder.decode(AssetSpecificationDocument.self, from: $0)
-//      }
-//      catch let error {
-//
-//      }
-//    }
-//    XCTAssertEqual(contentsJSONUrls.count, documents.count)
-    let contentsEncodeds = documents.compactMap {
-      arg -> (URL, Data)? in
+    let contentsEncodeds = documents.compactMap { arg -> (URL, Data)? in
       do {
         let data = try encoder.encode(arg.1)
-//        return String(data: data, encoding: .utf8).map{
-//          (arg.0, $0)
-//        }
         return (arg.0, data)
       } catch {
         XCTFail("\(arg.0): \(error.localizedDescription)")
@@ -157,7 +132,6 @@ final class AssetSpecificationTests: XCTestCase {
     XCTAssertEqual(expected.count, actual.count)
 
     for (url, data) in actual {
-      // XCTAssertEqual(text, expected[url])
       guard let expectedData = expected[url] else {
         XCTFail("No expected data for \(url)")
         continue
