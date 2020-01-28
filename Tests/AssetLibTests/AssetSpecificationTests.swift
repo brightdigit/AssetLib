@@ -18,16 +18,20 @@ final class AssetSpecificationTests: XCTestCase {
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     let documents = contentsJSONUrls.compactMap {
-      url -> AssetSpecificationDocument? in
+      url -> (URL, AssetSpecificationDocument, String)? in
       do {
         let data = try Data(contentsOf: url)
-        return try decoder.decode(AssetSpecificationDocument.self, from: data)
+        return try String(data: data, encoding: .utf8).map{
+          try (url, decoder.decode(AssetSpecificationDocument.self, from: data), $0)
+        }
       }
       catch let error {
         XCTFail("\(url): \(error.localizedDescription)")
         return nil
       }
     }
+    
+    XCTAssertEqual(contentsJSONUrls.count, documents.count)
 //    let documents = contentsJSONDatas.map {
 //      do {
 //        try decoder.decode(AssetSpecificationDocument.self, from: $0)
@@ -38,8 +42,23 @@ final class AssetSpecificationTests: XCTestCase {
 //    }
 //    XCTAssertEqual(contentsJSONUrls.count, documents.count)
     let contentsEncodeds = documents.compactMap {
-      try? encoder.encode($0)
+      arg -> (URL, String)? in
+      do {
+        let data = try encoder.encode(arg.1)
+        return String(data: data, encoding: .utf8).map{
+          (arg.0, $0)
+        }
+      } catch let error {
+        XCTFail("\(arg.0): \(error.localizedDescription)")
+        return nil
+      }
     }
+    XCTAssertEqual(documents.count, contentsEncodeds.count)
+    
+    let expected = Dictionary(grouping: documents) { $0.0 }.compactMapValues{ $0.first?.2}
+    let actual = Dictionary(grouping: contentsEncodeds) { $0.0 }.compactMapValues{ $0.first?.1 }
+  
+    XCTAssertEqual(expected, actual)
     //XCTAssertEqual(contentsJSONDatas, contentsEncodeds)
   }
 
