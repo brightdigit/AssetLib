@@ -20,8 +20,8 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
-    if let images = self.images{
-    try container.encode(images.map(AssetSpecification.init(specifications:)), forKey: .images)
+    if let images = self.images {
+      try container.encode(images.map(AssetSpecification.init(specifications:)), forKey: .images)
     }
     try container.encode(AssetSpecificationMetadata(info), forKey: .info)
   }

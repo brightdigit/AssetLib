@@ -42,7 +42,6 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
 
   public init(from decoder: Decoder) throws {
     let scaleRegex: NSRegularExpression = RegularExpressionSet.shared.regularExpression(for: .scale)
-    let sizeRegex: NSRegularExpression = RegularExpressionSet.shared.regularExpression(for: .size)
 
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
