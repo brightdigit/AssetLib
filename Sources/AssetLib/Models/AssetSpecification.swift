@@ -58,8 +58,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     }
 
     if let sizeString = try container.decodeIfPresent(String.self, forKey: .size) {
-      let sizeArray = sizeString.firstMatchGroups(regex: sizeRegex).flatMap { $0.compactMap(Double.init) }.flatMap { $0.count >= 3 ? $0 : nil }
-      guard let width = sizeArray?[1], let height = sizeArray?[2] else {
+      let sizeArray = sizeString.split(separator: Character("x")).map(String.init).compactMap(Double.init)
+      guard let width = sizeArray.first, let height = sizeArray.last, sizeArray.count == 2 else {
         throw DecodingError.dataCorruptedError(forKey: .size, in: container, debugDescription: sizeString)
       }
       size = CGSize(width: width, height: height)
