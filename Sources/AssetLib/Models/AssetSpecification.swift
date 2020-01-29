@@ -1,22 +1,18 @@
 import Foundation
 
-extension DecodingError {
-  var keyString: String? {
-    switch self {
-    case let .dataCorrupted(context):
-      return context.codingPath.last?.stringValue
-    default:
-      return nil
-    }
-  }
-}
-
+/// A size or variant of an image or icon.
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
+  /// The device type for the image.
   public let idiom: ImageIdiom
+  /// The targeted display scale for the image or icon.
   public let scale: CGFloat?
+  /// The size of the app icon.
   public let size: CGSize?
+  /// The HEIF, .png, .jpg, or .pdf file for the image.
   public let filename: String?
+  /// The role for an Apple Watch icon
   public let role: AppleWatchRole?
+  /// The type of Apple Watch when there is more than one icon size for a role.
   public let subtype: AppleWatchType?
 
   enum CodingKeys: String, CodingKey {
@@ -28,6 +24,14 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     case subtype
   }
 
+  /// Builds an AssetSpecification
+  /// - Parameters:
+  ///   - idiom: The device type for the image.
+  ///   - scale: The size of the app icon.
+  ///   - size: The size of the app icon.
+  ///   - role: The role for an Apple Watch icon.
+  ///   - subtype: The type of Apple Watch when there is more than one icon size for a role.
+  ///   - filename: The HEIF, .png, .jpg, or .pdf file for the image.
   public init(idiom: ImageIdiom,
               scale: CGFloat? = nil,
               size: CGSize? = nil,
@@ -42,6 +46,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     self.subtype = subtype
   }
 
+  /// Builds an AssetSpecification from an AssetSpecificationProtocol.
+  /// - Parameter specifications: The AssetSpecificationProtocol to copy.
   public init(specifications: AssetSpecificationProtocol) {
     idiom = specifications.idiom
     scale = specifications.scale
@@ -51,15 +57,18 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     role = specifications.role
   }
 
-  // swiftlint:disable:next force_try
-  static let scaleRegex = try! NSRegularExpression(pattern: "(\\d+)x", options: NSRegularExpression.Options())
+  // swiftlint:disable force_try
+  /// Regular Expression for a valid scale value.
+  public static let scaleRegularExpression = try! NSRegularExpression(pattern: "(\\d+)x", options: NSRegularExpression.Options())
+  // swiftlint:enable force_try
+
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     idiom = try container.decode(ImageIdiom.self, forKey: .idiom)
     filename = try container.decodeIfPresent(String.self, forKey: .filename)
     if let scaleString = try container.decodeIfPresent(String.self, forKey: .scale) {
-      guard let scaleValueString = scaleString.firstMatchGroups(regex: Self.scaleRegex)?[1], let scale = Double(scaleValueString) else {
+      guard let scaleValueString = scaleString.firstMatchGroups(regex: Self.scaleRegularExpression)?[1], let scale = Double(scaleValueString) else {
         throw DecodingError.dataCorruptedError(forKey: .scale, in: container, debugDescription: scaleString)
       }
       self.scale = CGFloat(scale)
@@ -81,10 +90,14 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     subtype = try container.decodeIfPresent(AppleWatchType.self, forKey: .subtype)
   }
 
-  static func formatSize(_ size: CGSize) -> String {
+  /// Formats an CGSize for an Asset's size.
+  /// - Parameter size: The dimensions for the image or icon variant.
+  public static func formatSize(_ size: CGSize) -> String {
     "\(size.width.clean)x\(size.height.clean)"
   }
 
+  /// Formats a CGFloat for an Asset's scale.
+  /// - Parameter size: The scale for the image or icon variant.
   static func formatScale(_ scale: CGFloat) -> String {
     let scale = Int(scale.rounded())
     return "\(scale)x"
