@@ -94,7 +94,7 @@ private extension Dictionary where Key == String, Value == Any {
 }
 
 final class AssetSpecificationTests: XCTestCase {
-  func testExample() {
+  func testSuccessful() {
     let hereUrl = URL(fileURLWithPath: #file)
     let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("Data")
     let enumerator = FileManager.default.enumerator(at: dataDirectoryUrl, includingPropertiesForKeys: nil)
@@ -146,15 +146,14 @@ final class AssetSpecificationTests: XCTestCase {
     }
   }
 
-  func testInvalidScale() {
-    let hereUrl = URL(fileURLWithPath: #file)
-    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("InvalidScale")
+  fileprivate func testInvalidJSON(_ dataDirectoryUrl: URL, _ errorKey: String) {
     let enumerator = FileManager.default.enumerator(at: dataDirectoryUrl, includingPropertiesForKeys: nil)
 
     let contentsJSONUrls = enumerator!.compactMap { $0 as? URL }.filter { $0.pathExtension == "json" }
 
     let decoder = JSONDecoder()
-    let documents = contentsJSONUrls.compactMap { url -> (URL, AssetSpecificationDocument, Data)? in
+
+    for url in contentsJSONUrls {
       var errorOpt: Error?
       do {
         let data = try Data(contentsOf: url)
@@ -163,25 +162,35 @@ final class AssetSpecificationTests: XCTestCase {
         }
       } catch {
         XCTFail("\(url): \(error.localizedDescription)")
-        return nil
+        continue
       }
       guard let error = errorOpt else {
         XCTFail("\(url): did not catch error")
-        return nil
+        continue
       }
       guard let decodingError = error as? DecodingError else {
         XCTFail("\(url): \(error.localizedDescription)")
-        return nil
+        continue
       }
-      debugPrint(decodingError)
-
-      dump(decodingError)
-
-      return nil
+      XCTAssertEqual(decodingError.keyString, errorKey)
     }
   }
 
+  func testInvalidScale() {
+    let hereUrl = URL(fileURLWithPath: #file)
+    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("InvalidScale")
+    testInvalidJSON(dataDirectoryUrl, "scale")
+  }
+
+  func testInvalidSize() {
+    let hereUrl = URL(fileURLWithPath: #file)
+    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("InvalidSize")
+    testInvalidJSON(dataDirectoryUrl, "size")
+  }
+
   static var allTests = [
-    ("testExample", testExample)
+    ("testSuccessful", testSuccessful),
+    ("testInvalidScale", testInvalidScale),
+    ("testInvalidSize", testInvalidSize)
   ]
 }

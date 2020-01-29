@@ -1,0 +1,13 @@
+{
+  "images" : [
+    {
+      "scale" : "x",
+      "filename" : "geometry.1x~universal.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "com.brightdigit.Speculid"
+  }
+}
