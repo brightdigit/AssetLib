@@ -81,13 +81,11 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     subtype = try container.decodeIfPresent(AppleWatchType.self, forKey: .subtype)
   }
 
-  #warning("Refactor into method")
-  func formatSize(_ size: CGSize) -> String {
+  static func formatSize(_ size: CGSize) -> String {
     "\(size.width.clean)x\(size.height.clean)"
   }
 
-  #warning("Refactor into method")
-  func formatScale(_ scale: CGFloat) -> String {
+  static func formatScale(_ scale: CGFloat) -> String {
     let scale = Int(scale.rounded())
     return "\(scale)x"
   }
@@ -95,11 +93,11 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     if let size = size {
-      try container.encode(formatSize(size), forKey: .size)
+      try container.encode(AssetSpecification.formatSize(size), forKey: .size)
     }
 
     if let scale = scale {
-      try container.encode(formatScale(scale), forKey: .scale)
+      try container.encode(AssetSpecification.formatScale(scale), forKey: .scale)
     }
 
     if let filename = filename {
