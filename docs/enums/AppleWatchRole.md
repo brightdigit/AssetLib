@@ -10,5 +10,29 @@ public enum AppleWatchRole: String, Codable
 ### `notificationCenter`
 
 ```swift
-case notificationCenter, companionSettings, appLauncher, longLook, quickLook
+case notificationCenter
+```
+
+### `companionSettings`
+
+```swift
+case companionSettings
+```
+
+### `appLauncher`
+
+```swift
+case appLauncher
+```
+
+### `longLook`
+
+```swift
+case longLook
+```
+
+### `quickLook`
+
+```swift
+case quickLook
 ```
