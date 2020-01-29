@@ -1,6 +1,6 @@
 import Foundation
 
-@available(*, deprecated: "Just use scale regex.")
+@available(*, deprecated: 0.0, message: "Just use scale regex.")
 public struct RegularExpressionSet: RegularExpressionSetProtocol {
   public func regularExpression(for key: RegularExpressionKey) -> NSRegularExpression! {
     dictionary[key]
