@@ -6,6 +6,8 @@
 public enum ImageIdiom: String, Codable
 ```
 
+> The device type for the image.
+
 ## Cases
 ### `universal`
 
@@ -13,11 +15,15 @@ public enum ImageIdiom: String, Codable
 case universal
 ```
 
+> The image works on any device and platform.
+
 ### `iphone`
 
 ```swift
 case iphone
 ```
+
+> The image is for iPhone devices.
 
 ### `ipad`
 
@@ -25,11 +31,15 @@ case iphone
 case ipad
 ```
 
+> The image is for iPad devices.
+
 ### `mac`
 
 ```swift
 case mac
 ```
+
+> The image is for Mac computers.
 
 ### `tv`
 
@@ -37,11 +47,15 @@ case mac
 case tv
 ```
 
+> The image is for Apple TV.
+
 ### `watch`
 
 ```swift
 case watch
 ```
+
+> The image is for the Apple Watch devices.
 
 ### `car`
 
@@ -49,14 +63,20 @@ case watch
 case car
 ```
 
+> The image is for CarPlay.
+
 ### `watchMarketing`
 
 ```swift
 case watchMarketing = "watch-marketing"
 ```
 
+> An image for the App Store icon.
+
 ### `iosMarketing`
 
 ```swift
 case iosMarketing = "ios-marketing"
 ```
+
+> An image for the App Store icon
