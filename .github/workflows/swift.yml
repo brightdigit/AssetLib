@@ -27,7 +27,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add docs
-        git commit -m "[github action] Update Docs"
+        git diff-index --quiet HEAD || git commit -m "[github action] Update Docs"
     - name: Push changes
       uses: ad-m/github-push-action@v0.5.0
       with:
