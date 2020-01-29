@@ -6,6 +6,8 @@
 public protocol AssetSpecificationDocumentProtocol: Codable
 ```
 
+> An asset specification document for an app icon or image set.
+
 ## Properties
 ### `info`
 
@@ -13,8 +15,12 @@ public protocol AssetSpecificationDocumentProtocol: Codable
 var info: AssetSpecificationMetadataProtocol
 ```
 
+> Metadata for the author and format version of the asset catalog.
+
 ### `images`
 
 ```swift
 var images: [AssetSpecificationProtocol]?
 ```
+
+> An array of sizes or variants of an image or icon.

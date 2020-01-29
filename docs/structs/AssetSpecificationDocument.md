@@ -6,6 +6,8 @@
 public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Codable
 ```
 
+> An asset specification document for an app icon or image set.
+
 ## Properties
 ### `info`
 
@@ -13,11 +15,15 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
 public let info: AssetSpecificationMetadataProtocol
 ```
 
+> Metadata for the author and format version of the asset catalog.
+
 ### `images`
 
 ```swift
 public let images: [AssetSpecificationProtocol]?
 ```
+
+> An array of sizes or variants of an image or icon.
 
 ## Methods
 ### `init(from:)`

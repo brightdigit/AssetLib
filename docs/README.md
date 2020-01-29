@@ -14,7 +14,6 @@
 
 -   [AppleWatchRole](enums/AppleWatchRole.md)
 -   [AppleWatchType](enums/AppleWatchType.md)
--   [CodingKeys](enums/CodingKeys.md)
 -   [ImageIdiom](enums/ImageIdiom.md)
 
 ## Extensions

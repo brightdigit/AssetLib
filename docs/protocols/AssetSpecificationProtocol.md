@@ -6,6 +6,8 @@
 public protocol AssetSpecificationProtocol
 ```
 
+> A size or variant of an image or icon.
+
 ## Properties
 ### `idiom`
 
@@ -13,11 +15,15 @@ public protocol AssetSpecificationProtocol
 var idiom: ImageIdiom
 ```
 
+> The device type for the image.
+
 ### `scale`
 
 ```swift
 var scale: CGFloat?
 ```
+
+> The targeted display scale for the image or icon.
 
 ### `size`
 
@@ -25,11 +31,15 @@ var scale: CGFloat?
 var size: CGSize?
 ```
 
+> The size of the app icon.
+
 ### `filename`
 
 ```swift
 var filename: String?
 ```
+
+> The HEIF, .png, .jpg, or .pdf file for the image.
 
 ### `role`
 
@@ -37,8 +47,12 @@ var filename: String?
 var role: AppleWatchRole?
 ```
 
+> The role for an Apple Watch icon
+
 ### `subtype`
 
 ```swift
 var subtype: AppleWatchType?
 ```
+
+> The type of Apple Watch when there is more than one icon size for a role.
