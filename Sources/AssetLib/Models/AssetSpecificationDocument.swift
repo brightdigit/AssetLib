@@ -1,10 +1,13 @@
 import Foundation
 
+/// An asset specification document for an app icon or image set.
 public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Codable {
+  /// Metadata for the author and format version of the asset catalog.
   public let info: AssetSpecificationMetadataProtocol
+  /// An array of sizes or variants of an image or icon.
   public let images: [AssetSpecificationProtocol]?
 
-  public enum CodingKeys: String, CodingKey {
+  enum CodingKeys: String, CodingKey {
     case images
     case info
   }
