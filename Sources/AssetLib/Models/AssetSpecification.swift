@@ -1,11 +1,18 @@
 import Foundation
 
+/// A size or variant of an image or icon.
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
+  /// The device type for the image.
   public let idiom: ImageIdiom
+  // The targeted display scale for the image or icon.
   public let scale: CGFloat?
+  /// The size of the app icon.
   public let size: CGSize?
+  /// The HEIF, .png, .jpg, or .pdf file for the image.
   public let filename: String?
+  /// The role for an Apple Watch icon
   public let role: AppleWatchRole?
+  /// The type of Apple Watch when there is more than one icon size for a role.
   public let subtype: AppleWatchType?
 
   enum CodingKeys: String, CodingKey {

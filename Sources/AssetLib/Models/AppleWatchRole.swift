@@ -1,3 +1,4 @@
+/// The role for an Apple Watch icon
 public enum AppleWatchRole: String, Codable {
  /** The icon is used in the notification center. */
   case notificationCenter
