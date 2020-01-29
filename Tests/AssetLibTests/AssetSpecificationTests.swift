@@ -188,9 +188,24 @@ final class AssetSpecificationTests: XCTestCase {
     testInvalidJSON(dataDirectoryUrl, "size")
   }
 
+  func testMetadata() {
+    let author = "test"
+    let version = 2
+
+    XCTAssertEqual(AssetSpecificationMetadata(author: author, version: version).author, author)
+    XCTAssertEqual(AssetSpecificationMetadata(author: author, version: version).version, version)
+
+    XCTAssertEqual(AssetSpecificationMetadata(author: author).author, author)
+    XCTAssertEqual(AssetSpecificationMetadata(author: author).version, AssetSpecificationMetadata.defaultVersion)
+
+    XCTAssertEqual(AssetSpecificationMetadata().author, AssetSpecificationMetadata.xcodeAuthor)
+    XCTAssertEqual(AssetSpecificationMetadata().version, AssetSpecificationMetadata.defaultVersion)
+  }
+
   static var allTests = [
     ("testSuccessful", testSuccessful),
     ("testInvalidScale", testInvalidScale),
-    ("testInvalidSize", testInvalidSize)
+    ("testInvalidSize", testInvalidSize),
+    ("testMetadata", testMetadata)
   ]
 }

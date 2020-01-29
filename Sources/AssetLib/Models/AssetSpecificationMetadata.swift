@@ -1,10 +1,12 @@
 import Foundation
 
 public struct AssetSpecificationMetadata: AssetSpecificationMetadataProtocol {
+  public static let xcodeAuthor = "xcode"
+  public static let defaultVersion = 1
   public let author: String
   public let version: Int
 
-  init(author: String, version: Int = 1) {
+  init(author: String = xcodeAuthor, version: Int = defaultVersion) {
     self.author = author
     self.version = version
   }
