@@ -94,7 +94,7 @@ private extension Dictionary where Key == String, Value == Any {
 }
 
 final class AssetSpecificationTests: XCTestCase {
-  func testExample() {
+  func testSuccessful() {
     let hereUrl = URL(fileURLWithPath: #file)
     let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("Data")
     let enumerator = FileManager.default.enumerator(at: dataDirectoryUrl, includingPropertiesForKeys: nil)
@@ -146,7 +146,91 @@ final class AssetSpecificationTests: XCTestCase {
     }
   }
 
+  fileprivate func testInvalidJSON(_ dataDirectoryUrl: URL, _ errorKey: String) {
+    let enumerator = FileManager.default.enumerator(at: dataDirectoryUrl, includingPropertiesForKeys: nil)
+
+    let contentsJSONUrls = enumerator!.compactMap { $0 as? URL }.filter { $0.pathExtension == "json" }
+
+    let decoder = JSONDecoder()
+
+    for url in contentsJSONUrls {
+      var errorOpt: Error?
+      do {
+        let data = try Data(contentsOf: url)
+        XCTAssertThrowsError(try decoder.decode(AssetSpecificationDocument.self, from: data)) {
+          errorOpt = $0
+        }
+      } catch {
+        XCTFail("\(url): \(error.localizedDescription)")
+        continue
+      }
+      guard let error = errorOpt else {
+        XCTFail("\(url): did not catch error")
+        continue
+      }
+      guard let decodingError = error as? DecodingError else {
+        XCTFail("\(url): \(error.localizedDescription)")
+        continue
+      }
+      XCTAssertEqual(decodingError.keyString, errorKey)
+    }
+  }
+
+  func testInvalidScale() {
+    let hereUrl = URL(fileURLWithPath: #file)
+    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("InvalidScale")
+    testInvalidJSON(dataDirectoryUrl, "scale")
+  }
+
+  func testInvalidSize() {
+    let hereUrl = URL(fileURLWithPath: #file)
+    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("InvalidSize")
+    testInvalidJSON(dataDirectoryUrl, "size")
+  }
+
+  func testMetadata() {
+    let author = "test"
+    let version = 2
+
+    XCTAssertEqual(AssetSpecificationMetadata(author: author, version: version).author, author)
+    XCTAssertEqual(AssetSpecificationMetadata(author: author, version: version).version, version)
+
+    XCTAssertEqual(AssetSpecificationMetadata(author: author).author, author)
+    XCTAssertEqual(AssetSpecificationMetadata(author: author).version, AssetSpecificationMetadata.defaultVersion)
+
+    XCTAssertEqual(AssetSpecificationMetadata().author, AssetSpecificationMetadata.xcodeAuthor)
+    XCTAssertEqual(AssetSpecificationMetadata().version, AssetSpecificationMetadata.defaultVersion)
+  }
+
+  func testSpecifications() {
+    let idiom = ImageIdiom.car
+    let scale = CGFloat.random(in: 1 ... 3)
+    let sizeDimension = CGFloat.random(in: 20 ... 200)
+    let size = CGSize(width: sizeDimension, height: sizeDimension)
+    let role = AppleWatchRole.companionSettings
+    let subtype = AppleWatchType.size40
+    let filename = "test.png"
+
+    let specifications = AssetSpecification(idiom: idiom, scale: scale, size: size, role: role, subtype: subtype, filename: filename)
+
+    XCTAssertEqual(specifications.idiom, idiom)
+    XCTAssertEqual(specifications.scale, scale)
+    XCTAssertEqual(specifications.size, size)
+    XCTAssertEqual(specifications.role, role)
+    XCTAssertEqual(specifications.subtype, subtype)
+    XCTAssertEqual(specifications.filename, filename)
+
+    XCTAssertEqual(AssetSpecification(idiom: idiom).scale, nil)
+    XCTAssertEqual(AssetSpecification(idiom: idiom).size, nil)
+    XCTAssertEqual(AssetSpecification(idiom: idiom).role, nil)
+    XCTAssertEqual(AssetSpecification(idiom: idiom).subtype, nil)
+    XCTAssertEqual(AssetSpecification(idiom: idiom).filename, nil)
+  }
+
   static var allTests = [
-    ("testExample", testExample)
+    ("testSuccessful", testSuccessful),
+    ("testInvalidScale", testInvalidScale),
+    ("testInvalidSize", testInvalidSize),
+    ("testMetadata", testMetadata)
   ]
 }

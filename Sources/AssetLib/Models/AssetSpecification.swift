@@ -1,5 +1,16 @@
 import Foundation
 
+extension DecodingError {
+  var keyString: String? {
+    switch self {
+    case let .dataCorrupted(context):
+      return context.codingPath.last?.stringValue
+    default:
+      return nil
+    }
+  }
+}
+
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   public let idiom: ImageIdiom
   public let scale: CGFloat?
@@ -40,15 +51,15 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     role = specifications.role
   }
 
+  // swiftlint:disable:next force_try
+  static let scaleRegex = try! NSRegularExpression(pattern: "(\\d+)x", options: NSRegularExpression.Options())
   public init(from decoder: Decoder) throws {
-    let scaleRegex: NSRegularExpression = RegularExpressionSet.shared.regularExpression(for: .scale)
-
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     idiom = try container.decode(ImageIdiom.self, forKey: .idiom)
     filename = try container.decodeIfPresent(String.self, forKey: .filename)
     if let scaleString = try container.decodeIfPresent(String.self, forKey: .scale) {
-      guard let scaleValueString = scaleString.firstMatchGroups(regex: scaleRegex)?[1], let scale = Double(scaleValueString) else {
+      guard let scaleValueString = scaleString.firstMatchGroups(regex: Self.scaleRegex)?[1], let scale = Double(scaleValueString) else {
         throw DecodingError.dataCorruptedError(forKey: .scale, in: container, debugDescription: scaleString)
       }
       self.scale = CGFloat(scale)
@@ -70,13 +81,11 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     subtype = try container.decodeIfPresent(AppleWatchType.self, forKey: .subtype)
   }
 
-  #warning("Refactor into method")
-  func formatSize(_ size: CGSize) -> String {
+  static func formatSize(_ size: CGSize) -> String {
     "\(size.width.clean)x\(size.height.clean)"
   }
 
-  #warning("Refactor into method")
-  func formatScale(_ scale: CGFloat) -> String {
+  static func formatScale(_ scale: CGFloat) -> String {
     let scale = Int(scale.rounded())
     return "\(scale)x"
   }
@@ -84,11 +93,11 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     if let size = size {
-      try container.encode(formatSize(size), forKey: .size)
+      try container.encode(AssetSpecification.formatSize(size), forKey: .size)
     }
 
     if let scale = scale {
-      try container.encode(formatScale(scale), forKey: .scale)
+      try container.encode(AssetSpecification.formatScale(scale), forKey: .scale)
     }
 
     if let filename = filename {
