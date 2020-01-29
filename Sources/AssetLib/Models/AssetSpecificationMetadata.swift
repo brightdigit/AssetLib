@@ -1,11 +1,10 @@
 import Foundation
 
 public struct AssetSpecificationMetadata: AssetSpecificationMetadataProtocol {
-  public static let defaultAuthor = "AssetLib"
-  public let author: String // = Application.bundle.bundleIdentifier!
-  public let version: Int // = 1
+  public let author: String
+  public let version: Int
 
-  init(author: String = AssetSpecificationMetadata.defaultAuthor, version: Int = 1) {
+  init(author: String, version: Int = 1) {
     self.author = author
     self.version = version
   }

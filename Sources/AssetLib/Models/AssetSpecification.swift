@@ -51,15 +51,17 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     role = specifications.role
   }
 
+  // swiftlint:disable:next force_try
+  static let scaleRegex = try! NSRegularExpression(pattern: "(\\d+)x", options: NSRegularExpression.Options())
   public init(from decoder: Decoder) throws {
-    let scaleRegex: NSRegularExpression = RegularExpressionSet.shared.regularExpression(for: .scale)
+    
 
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     idiom = try container.decode(ImageIdiom.self, forKey: .idiom)
     filename = try container.decodeIfPresent(String.self, forKey: .filename)
     if let scaleString = try container.decodeIfPresent(String.self, forKey: .scale) {
-      guard let scaleValueString = scaleString.firstMatchGroups(regex: scaleRegex)?[1], let scale = Double(scaleValueString) else {
+      guard let scaleValueString = scaleString.firstMatchGroups(regex: Self.scaleRegex)?[1], let scale = Double(scaleValueString) else {
         throw DecodingError.dataCorruptedError(forKey: .scale, in: container, debugDescription: scaleString)
       }
       self.scale = CGFloat(scale)
