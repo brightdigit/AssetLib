@@ -146,6 +146,41 @@ final class AssetSpecificationTests: XCTestCase {
     }
   }
 
+  func testInvalidScale() {
+    let hereUrl = URL(fileURLWithPath: #file)
+    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("InvalidScale")
+    let enumerator = FileManager.default.enumerator(at: dataDirectoryUrl, includingPropertiesForKeys: nil)
+
+    let contentsJSONUrls = enumerator!.compactMap { $0 as? URL }.filter { $0.pathExtension == "json" }
+
+    let decoder = JSONDecoder()
+    let documents = contentsJSONUrls.compactMap { url -> (URL, AssetSpecificationDocument, Data)? in
+      var errorOpt: Error?
+      do {
+        let data = try Data(contentsOf: url)
+        XCTAssertThrowsError(try decoder.decode(AssetSpecificationDocument.self, from: data)) {
+          errorOpt = $0
+        }
+      } catch {
+        XCTFail("\(url): \(error.localizedDescription)")
+        return nil
+      }
+      guard let error = errorOpt else {
+        XCTFail("\(url): did not catch error")
+        return nil
+      }
+      guard let decodingError = error as? DecodingError else {
+        XCTFail("\(url): \(error.localizedDescription)")
+        return nil
+      }
+      debugPrint(decodingError)
+
+      dump(decodingError)
+
+      return nil
+    }
+  }
+
   static var allTests = [
     ("testExample", testExample)
   ]
