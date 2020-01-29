@@ -202,6 +202,31 @@ final class AssetSpecificationTests: XCTestCase {
     XCTAssertEqual(AssetSpecificationMetadata().version, AssetSpecificationMetadata.defaultVersion)
   }
 
+  func testSpecifications() {
+    let idiom = ImageIdiom.car
+    let scale = CGFloat.random(in: 1 ... 3)
+    let sizeDimension = CGFloat.random(in: 20 ... 200)
+    let size = CGSize(width: sizeDimension, height: sizeDimension)
+    let role = AppleWatchRole.companionSettings
+    let subtype = AppleWatchType.size40
+    let filename = "test.png"
+
+    let specifications = AssetSpecification(idiom: idiom, scale: scale, size: size, role: role, subtype: subtype, filename: filename)
+
+    XCTAssertEqual(specifications.idiom, idiom)
+    XCTAssertEqual(specifications.scale, scale)
+    XCTAssertEqual(specifications.size, size)
+    XCTAssertEqual(specifications.role, role)
+    XCTAssertEqual(specifications.subtype, subtype)
+    XCTAssertEqual(specifications.filename, filename)
+
+    XCTAssertEqual(AssetSpecification(idiom: idiom).scale, nil)
+    XCTAssertEqual(AssetSpecification(idiom: idiom).size, nil)
+    XCTAssertEqual(AssetSpecification(idiom: idiom).role, nil)
+    XCTAssertEqual(AssetSpecification(idiom: idiom).subtype, nil)
+    XCTAssertEqual(AssetSpecification(idiom: idiom).filename, nil)
+  }
+
   static var allTests = [
     ("testSuccessful", testSuccessful),
     ("testInvalidScale", testInvalidScale),
