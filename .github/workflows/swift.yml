@@ -29,6 +29,6 @@ jobs:
         git add docs
         git diff-index --quiet HEAD || git commit -m "[github action] Update Docs"
     - name: Push changes
-      run: git push
+      run: git push HEAD:${GITHUB_REF}
       env:
         remote_repo: https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
