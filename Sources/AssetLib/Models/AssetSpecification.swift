@@ -54,8 +54,6 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   // swiftlint:disable:next force_try
   static let scaleRegex = try! NSRegularExpression(pattern: "(\\d+)x", options: NSRegularExpression.Options())
   public init(from decoder: Decoder) throws {
-    
-
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     idiom = try container.decode(ImageIdiom.self, forKey: .idiom)
