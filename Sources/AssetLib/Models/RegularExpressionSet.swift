@@ -1,5 +1,6 @@
 import Foundation
 
+@available(*, deprecated: "Just use scale regex.")
 public struct RegularExpressionSet: RegularExpressionSetProtocol {
   public func regularExpression(for key: RegularExpressionKey) -> NSRegularExpression! {
     dictionary[key]
@@ -11,11 +12,11 @@ public struct RegularExpressionSet: RegularExpressionSetProtocol {
     regularExpressionBuilder in
     // swiftlint:disable:next force_try
     try! regularExpressionBuilder.buildRegularExpressions(fromDictionary: [
-      .geometry: ("x?(\\d+)", options: [.caseInsensitive]),
-      .integer: ("\\d+", options: []),
-      .scale: ("(\\d+)x", options: []),
-      .size: ("(\\d+\\.?\\d*)x(\\d+\\.?\\d*)", options: []),
-      .number: ("\\d", options: [])
+      // .geometry: ("x?(\\d+)", options: [.caseInsensitive]),
+      // .integer: ("\\d+", options: []),
+      .scale: ("(\\d+)x", options: [])
+      // .size: ("(\\d+\\.?\\d*)x(\\d+\\.?\\d*)", options: []),
+      // .number: ("\\d", options: [])
     ])
   }(RegularExpressionSetBuilder())
 }
