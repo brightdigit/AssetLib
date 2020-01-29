@@ -1,6 +1,5 @@
 import Foundation
 
-
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   public let idiom: ImageIdiom
   public let scale: CGFloat?
