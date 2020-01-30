@@ -22,6 +22,8 @@ jobs:
       run: xcrun llvm-cov export -format="lcov" .build/debug/AssetLibPackageTests.xctest/Contents/MacOS/AssetLibPackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
     - name: Build Documentation
       run: sourcedocs generate --spm-module AssetLib --output-folder docs
+    - name: CocoaPods Action
+      uses: ty0x2333/cocoapods-action@0.2.0
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
