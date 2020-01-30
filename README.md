@@ -9,6 +9,8 @@
 [![Swift Package Manager compatible](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 [![Platform](https://img.shields.io/badge/Platforms-macOS%20|%20iOS%20-lightgrey.svg)](https://github.com/brightdigit/AssetLib)
 [![Twitter](https://img.shields.io/badge/twitter-@brightdigit-blue.svg?style=flat)](http://twitter.com/brightdigit)
+![Cocoapods doc percentage](https://img.shields.io/cocoapods/metrics/doc-percent/AssetLib)
+![Cocoapods](https://img.shields.io/cocoapods/v/AssetLib)
 
 Build and Parse Asset Catalogs in Swift.
 
