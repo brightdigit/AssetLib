@@ -141,3 +141,6 @@ xcuserdata
 # End of https://www.gitignore.io/api/swiftpm,swiftpackagemanager,xcode,swift,macos
 Tests/AssetLibTests/Data/**/*.png
 Tests/AssetLibTests/Data/**/*.pdf
+
+*.xcworkspace
+Pods

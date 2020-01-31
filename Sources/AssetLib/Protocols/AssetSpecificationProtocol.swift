@@ -1,4 +1,5 @@
 //
+import CoreGraphics
 //  ImageSpecificationProtocol.swift
 //  speculid
 //

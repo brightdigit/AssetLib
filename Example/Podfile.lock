@@ -1,0 +1,16 @@
+PODS:
+  - AssetLib (0.0.1)
+
+DEPENDENCIES:
+  - AssetLib (from `../`)
+
+EXTERNAL SOURCES:
+  AssetLib:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AssetLib: ee5a221cea8c5619e297d7e1e0248507974ee8cb
+
+PODFILE CHECKSUM: 7c7ff4755a07e86a5cf6012847bfdac3fb597ae5
+
+COCOAPODS: 1.8.4
