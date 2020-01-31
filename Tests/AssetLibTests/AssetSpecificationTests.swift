@@ -96,7 +96,7 @@ private extension Dictionary where Key == String, Value == Any {
 final class AssetSpecificationTests: XCTestCase {
   func testSuccessful() {
     let hereUrl = URL(fileURLWithPath: #file)
-    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("Data")
+    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("../../Data/Data")
     let enumerator = FileManager.default.enumerator(at: dataDirectoryUrl, includingPropertiesForKeys: nil)
 
     let contentsJSONUrls = enumerator!.compactMap { $0 as? URL }.filter { $0.pathExtension == "json" }
@@ -114,6 +114,7 @@ final class AssetSpecificationTests: XCTestCase {
       }
     }
 
+    XCTAssertGreaterThan(contentsJSONUrls.count, 0)
     XCTAssertEqual(contentsJSONUrls.count, documents.count)
     let contentsEncodeds = documents.compactMap { arg -> (URL, Data)? in
       do {
@@ -152,7 +153,7 @@ final class AssetSpecificationTests: XCTestCase {
     let contentsJSONUrls = enumerator!.compactMap { $0 as? URL }.filter { $0.pathExtension == "json" }
 
     let decoder = JSONDecoder()
-
+    XCTAssertGreaterThan(contentsJSONUrls.count, 0)
     for url in contentsJSONUrls {
       var errorOpt: Error?
       do {
@@ -178,13 +179,13 @@ final class AssetSpecificationTests: XCTestCase {
 
   func testInvalidScale() {
     let hereUrl = URL(fileURLWithPath: #file)
-    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("InvalidScale")
+    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("../../Data/InvalidScale")
     testInvalidJSON(dataDirectoryUrl, "scale")
   }
 
   func testInvalidSize() {
     let hereUrl = URL(fileURLWithPath: #file)
-    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("InvalidSize")
+    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("../../Data/InvalidSize")
     testInvalidJSON(dataDirectoryUrl, "size")
   }
 
