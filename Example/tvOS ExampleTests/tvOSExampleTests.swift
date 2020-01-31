@@ -1,7 +1,7 @@
-@testable import iOS_Example
+@testable import tvOS_Example
 import XCTest
 
-class iOS_ExampleTests: XCTestCase {
+class ExampleTests: XCTestCase {
   override func setUp() {
     // Put setup code here. This method is called before the invocation of each test method in the class.
   }

@@ -8,20 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		B321B59023E4D2000077D6FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B58F23E4D2000077D6FE /* AppDelegate.swift */; };
-		B321B59223E4D2000077D6FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B59123E4D2000077D6FE /* SceneDelegate.swift */; };
 		B321B59423E4D2000077D6FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B59323E4D2000077D6FE /* ViewController.swift */; };
 		B321B59923E4D2000077D6FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B321B59823E4D2000077D6FE /* Assets.xcassets */; };
-		B321B5A723E4D2000077D6FE /* iOS_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5A623E4D2000077D6FE /* iOS_ExampleTests.swift */; };
+		B321B5A723E4D2000077D6FE /* iOSExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5A623E4D2000077D6FE /* iOSExampleTests.swift */; };
 		B321B5B623E4D20D0077D6FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5B523E4D20D0077D6FE /* AppDelegate.swift */; };
 		B321B5B823E4D20D0077D6FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5B723E4D20D0077D6FE /* ViewController.swift */; };
 		B321B5BB23E4D20D0077D6FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B321B5B923E4D20D0077D6FE /* Main.storyboard */; };
 		B321B5BD23E4D20D0077D6FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B321B5BC23E4D20D0077D6FE /* Assets.xcassets */; };
 		B321B5C023E4D20D0077D6FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B321B5BE23E4D20D0077D6FE /* LaunchScreen.storyboard */; };
-		B321B5CB23E4D20D0077D6FE /* tvOS_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5CA23E4D20D0077D6FE /* tvOS_ExampleTests.swift */; };
+		B321B5CB23E4D20D0077D6FE /* tvOSExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5CA23E4D20D0077D6FE /* tvOSExampleTests.swift */; };
 		B321B5DA23E4D21D0077D6FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5D923E4D21D0077D6FE /* AppDelegate.swift */; };
 		B321B5DC23E4D21D0077D6FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5DB23E4D21D0077D6FE /* ViewController.swift */; };
 		B321B5DE23E4D21D0077D6FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B321B5DD23E4D21D0077D6FE /* Assets.xcassets */; };
-		B321B5ED23E4D21D0077D6FE /* macOS_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5EC23E4D21D0077D6FE /* macOS_ExampleTests.swift */; };
+		B321B5ED23E4D21D0077D6FE /* macOSExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5EC23E4D21D0077D6FE /* macOSExampleTests.swift */; };
 		B321B5FB23E4D22D0077D6FE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B321B5F923E4D22D0077D6FE /* Interface.storyboard */; };
 		B321B5FD23E4D22D0077D6FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B321B5FC23E4D22D0077D6FE /* Assets.xcassets */; };
 		B321B60423E4D22D0077D6FE /* watchOS Example Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B321B60323E4D22D0077D6FE /* watchOS Example Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -97,12 +96,11 @@
 /* Begin PBXFileReference section */
 		B321B58D23E4D2000077D6FE /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B321B58F23E4D2000077D6FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B321B59123E4D2000077D6FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B321B59323E4D2000077D6FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B321B59823E4D2000077D6FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B321B59D23E4D2000077D6FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B321B5A223E4D2000077D6FE /* iOS ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B321B5A623E4D2000077D6FE /* iOS_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExampleTests.swift; sourceTree = "<group>"; };
+		B321B5A623E4D2000077D6FE /* iOSExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSExampleTests.swift; sourceTree = "<group>"; };
 		B321B5A823E4D2000077D6FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B321B5B323E4D20D0077D6FE /* tvOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tvOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B321B5B523E4D20D0077D6FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,7 +110,7 @@
 		B321B5BF23E4D20D0077D6FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B321B5C123E4D20D0077D6FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B321B5C623E4D20D0077D6FE /* tvOS ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tvOS ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B321B5CA23E4D20D0077D6FE /* tvOS_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOS_ExampleTests.swift; sourceTree = "<group>"; };
+		B321B5CA23E4D20D0077D6FE /* tvOSExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSExampleTests.swift; sourceTree = "<group>"; };
 		B321B5CC23E4D20D0077D6FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B321B5D723E4D21C0077D6FE /* macOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "macOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B321B5D923E4D21D0077D6FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +119,7 @@
 		B321B5E223E4D21D0077D6FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B321B5E323E4D21D0077D6FE /* macOS_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS_Example.entitlements; sourceTree = "<group>"; };
 		B321B5E823E4D21D0077D6FE /* macOS ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "macOS ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B321B5EC23E4D21D0077D6FE /* macOS_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOS_ExampleTests.swift; sourceTree = "<group>"; };
+		B321B5EC23E4D21D0077D6FE /* macOSExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSExampleTests.swift; sourceTree = "<group>"; };
 		B321B5EE23E4D21D0077D6FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B321B5F723E4D22D0077D6FE /* watchOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "watchOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B321B5FA23E4D22D0077D6FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 			children = (
 				B321B61A23E4D30B0077D6FE /* iOS Example.entitlements */,
 				B321B58F23E4D2000077D6FE /* AppDelegate.swift */,
-				B321B59123E4D2000077D6FE /* SceneDelegate.swift */,
 				B321B59323E4D2000077D6FE /* ViewController.swift */,
 				B321B59823E4D2000077D6FE /* Assets.xcassets */,
 				B321B59D23E4D2000077D6FE /* Info.plist */,
@@ -226,7 +223,7 @@
 		B321B5A523E4D2000077D6FE /* iOS ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				B321B5A623E4D2000077D6FE /* iOS_ExampleTests.swift */,
+				B321B5A623E4D2000077D6FE /* iOSExampleTests.swift */,
 				B321B5A823E4D2000077D6FE /* Info.plist */,
 			);
 			path = "iOS ExampleTests";
@@ -248,7 +245,7 @@
 		B321B5C923E4D20D0077D6FE /* tvOS ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				B321B5CA23E4D20D0077D6FE /* tvOS_ExampleTests.swift */,
+				B321B5CA23E4D20D0077D6FE /* tvOSExampleTests.swift */,
 				B321B5CC23E4D20D0077D6FE /* Info.plist */,
 			);
 			path = "tvOS ExampleTests";
@@ -269,7 +266,7 @@
 		B321B5EB23E4D21D0077D6FE /* macOS ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				B321B5EC23E4D21D0077D6FE /* macOS_ExampleTests.swift */,
+				B321B5EC23E4D21D0077D6FE /* macOSExampleTests.swift */,
 				B321B5EE23E4D21D0077D6FE /* Info.plist */,
 			);
 			path = "macOS ExampleTests";
@@ -577,7 +574,6 @@
 			files = (
 				B321B59423E4D2000077D6FE /* ViewController.swift in Sources */,
 				B321B59023E4D2000077D6FE /* AppDelegate.swift in Sources */,
-				B321B59223E4D2000077D6FE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,7 +581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B321B5A723E4D2000077D6FE /* iOS_ExampleTests.swift in Sources */,
+				B321B5A723E4D2000077D6FE /* iOSExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,7 +598,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B321B5CB23E4D20D0077D6FE /* tvOS_ExampleTests.swift in Sources */,
+				B321B5CB23E4D20D0077D6FE /* tvOSExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B321B5ED23E4D21D0077D6FE /* macOS_ExampleTests.swift in Sources */,
+				B321B5ED23E4D21D0077D6FE /* macOSExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
