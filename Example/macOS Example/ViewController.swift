@@ -1,14 +1,6 @@
-//
-//  ViewController.swift
-//  macOS Example
-//
-//  Created by Leo Dion on 1/31/20.
-//
-
 import Cocoa
 
 class ViewController: NSViewController {
-
   override func viewDidLoad() {
     if #available(OSX 10.10, *) {
       super.viewDidLoad()
@@ -21,10 +13,7 @@ class ViewController: NSViewController {
 
   override var representedObject: Any? {
     didSet {
-    // Update the view, if already loaded.
+      // Update the view, if already loaded.
     }
   }
-
-
 }
-

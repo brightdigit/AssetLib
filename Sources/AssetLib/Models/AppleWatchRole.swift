@@ -1,9 +1,9 @@
 /// The role for an Apple Watch icon
 public enum AppleWatchRole: String, Codable {
- /** The icon is used in the notification center. */
+  /** The icon is used in the notification center. */
   case notificationCenter
   /**
-  The icon is used in settings.
+   The icon is used in settings.
    */
   case companionSettings
   /** The icon is used in the app launcher. */
