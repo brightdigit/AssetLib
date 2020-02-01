@@ -1,0 +1,29 @@
+language: objective-c
+os: osx
+osx_image: xcode11.3
+env:
+  global:
+    - FRAMEWORK_NAME=AssetLib
+before_install:
+  - brew update
+  - brew bundle
+before_script:
+  # bootstrap the dependencies for the project
+  # you can remove if you don't have dependencies
+  - swift package generate-xcodeproj
+before_deploy:
+  - carthage build --no-skip-current
+  - carthage archive $FRAMEWORK_NAME
+script:
+  - pod lib lint
+  - swiftformat --lint . && swiftlint
+  - swift test  --enable-code-coverage
+  - xcrun llvm-cov export -format="lcov" .build/debug/AssetLibPackageTests.xctest/Contents/MacOS/AssetLibPackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
+  - bash <(curl https://codecov.io/bash) -F travis-ci
+  - pod install --project-directory=Example
+  - xcodebuild -workspace Example/Examples.xcworkspace -scheme "iOS Example"  ONLY_ACTIVE_ARCH=NO
+    CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
+  - xcodebuild -workspace Example/Examples.xcworkspace -scheme "tvOS Example"  ONLY_ACTIVE_ARCH=NO
+    CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
+  - xcodebuild -workspace Example/Examples.xcworkspace -scheme "macOS Example"  ONLY_ACTIVE_ARCH=NO
+    CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
