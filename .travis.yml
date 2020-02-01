@@ -21,9 +21,9 @@ script:
   - xcrun llvm-cov export -format="lcov" .build/debug/AssetLibPackageTests.xctest/Contents/MacOS/AssetLibPackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
   - bash <(curl https://codecov.io/bash) -F travis-ci
   - pod install --project-directory=Example
-  - xcodebuild -workspace Example/Examples.xcworkspace -scheme "iOS Example"  ONLY_ACTIVE_ARCH=NO
+  - xcodebuild -workspace Example/Example.xcworkspace -scheme "iOS Example"  ONLY_ACTIVE_ARCH=NO
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
-  - xcodebuild -workspace Example/Examples.xcworkspace -scheme "tvOS Example"  ONLY_ACTIVE_ARCH=NO
+  - xcodebuild -workspace Example/Example.xcworkspace -scheme "tvOS Example"  ONLY_ACTIVE_ARCH=NO
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
-  - xcodebuild -workspace Example/Examples.xcworkspace -scheme "macOS Example"  ONLY_ACTIVE_ARCH=NO
+  - xcodebuild -workspace Example/Example.xcworkspace -scheme "macOS Example"  ONLY_ACTIVE_ARCH=NO
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
