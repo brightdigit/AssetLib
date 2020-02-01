@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
   Build and Parse Asset Catalogs in Swift for use as App Icons or Image Sets.
                    DESC
 
-  spec.homepage     = "https://github.com/brightdigit/AssetLib/tree/feature/cocoapod"
+  spec.homepage     = "https://github.com/brightdigit/AssetLib"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
