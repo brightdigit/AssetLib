@@ -128,7 +128,7 @@ class DocumentsTableViewController: NSViewController, NSTableViewDelegate, NSTab
         attribute: .centerY,
         multiplier: 1,
         constant: 0
-      ))
+    ))
     cell.addConstraint(
       NSLayoutConstraint(
         item: text,
@@ -138,7 +138,7 @@ class DocumentsTableViewController: NSViewController, NSTableViewDelegate, NSTab
         attribute: .left,
         multiplier: 1,
         constant: 13
-      ))
+    ))
     cell.addConstraint(
       NSLayoutConstraint(
         item: text,
@@ -148,7 +148,7 @@ class DocumentsTableViewController: NSViewController, NSTableViewDelegate, NSTab
         attribute: .right,
         multiplier: 1,
         constant: -13
-      ))
+    ))
     return cell
   }
 
