@@ -48,6 +48,7 @@
 		B32E43E223E4EE770070CE3F /* Data in Resources */ = {isa = PBXBuildFile; fileRef = B32E43DF23E4EE770070CE3F /* Data */; };
 		B32E43E323E4EE770070CE3F /* Data in Resources */ = {isa = PBXBuildFile; fileRef = B32E43DF23E4EE770070CE3F /* Data */; };
 		B32E43E523E4F06D0070CE3F /* DocumentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32E43E423E4F06D0070CE3F /* DocumentsTableViewController.swift */; };
+		B3EB9A8323E5EB630060C9A9 /* DocumentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32E43E423E4F06D0070CE3F /* DocumentsTableViewController.swift */; };
 		CD9BB041FC66C0FEC80504DE /* Pods_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A18AD010663D5BD3763A6AF /* Pods_iOS_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -973,6 +974,7 @@
 			files = (
 				B321B65E23E4FE970077D6FE /* OrderedDictionary.swift in Sources */,
 				B321B65F23E4FE970077D6FE /* DocumentMap.swift in Sources */,
+				B3EB9A8323E5EB630060C9A9 /* DocumentsTableViewController.swift in Sources */,
 				B321B5B823E4D20D0077D6FE /* ViewController.swift in Sources */,
 				B321B5B623E4D20D0077D6FE /* AppDelegate.swift in Sources */,
 			);
@@ -1728,7 +1730,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1797,7 +1799,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.brightdigit.macOS-Example";
