@@ -24,7 +24,6 @@
 		B321B5C023E4D20D0077D6FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B321B5BE23E4D20D0077D6FE /* LaunchScreen.storyboard */; };
 		B321B5CB23E4D20D0077D6FE /* tvOSExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5CA23E4D20D0077D6FE /* tvOSExampleTests.swift */; };
 		B321B5DA23E4D21D0077D6FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5D923E4D21D0077D6FE /* AppDelegate.swift */; };
-		B321B5DC23E4D21D0077D6FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5DB23E4D21D0077D6FE /* ViewController.swift */; };
 		B321B5DE23E4D21D0077D6FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B321B5DD23E4D21D0077D6FE /* Assets.xcassets */; };
 		B321B5ED23E4D21D0077D6FE /* macOSExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B5EC23E4D21D0077D6FE /* macOSExampleTests.swift */; };
 		B321B5FB23E4D22D0077D6FE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B321B5F923E4D22D0077D6FE /* Interface.storyboard */; };
@@ -36,6 +35,14 @@
 		B321B61123E4D22E0077D6FE /* watchOS Example.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B321B5F723E4D22D0077D6FE /* watchOS Example.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B321B65B23E4F8C70077D6FE /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B65A23E4F8C70077D6FE /* OrderedDictionary.swift */; };
 		B321B65D23E4F9240077D6FE /* DocumentMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B65C23E4F9240077D6FE /* DocumentMap.swift */; };
+		B321B65E23E4FE970077D6FE /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B65A23E4F8C70077D6FE /* OrderedDictionary.swift */; };
+		B321B65F23E4FE970077D6FE /* DocumentMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B65C23E4F9240077D6FE /* DocumentMap.swift */; };
+		B321B66023E4FE970077D6FE /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B65A23E4F8C70077D6FE /* OrderedDictionary.swift */; };
+		B321B66123E4FE970077D6FE /* DocumentMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B65C23E4F9240077D6FE /* DocumentMap.swift */; };
+		B321B66223E4FE980077D6FE /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B65A23E4F8C70077D6FE /* OrderedDictionary.swift */; };
+		B321B66323E4FE980077D6FE /* DocumentMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B65C23E4F9240077D6FE /* DocumentMap.swift */; };
+		B321B66723E4FFF00077D6FE /* DocumentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B66623E4FFF00077D6FE /* DocumentsTableViewController.swift */; };
+		B321B66923E502C30077D6FE /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B66823E502C30077D6FE /* Application.swift */; };
 		B32E43E023E4EE770070CE3F /* Data in Resources */ = {isa = PBXBuildFile; fileRef = B32E43DF23E4EE770070CE3F /* Data */; };
 		B32E43E123E4EE770070CE3F /* Data in Resources */ = {isa = PBXBuildFile; fileRef = B32E43DF23E4EE770070CE3F /* Data */; };
 		B32E43E223E4EE770070CE3F /* Data in Resources */ = {isa = PBXBuildFile; fileRef = B32E43DF23E4EE770070CE3F /* Data */; };
@@ -144,7 +151,6 @@
 		B321B5CC23E4D20D0077D6FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B321B5D723E4D21C0077D6FE /* macOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "macOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B321B5D923E4D21D0077D6FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B321B5DB23E4D21D0077D6FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B321B5DD23E4D21D0077D6FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B321B5E223E4D21D0077D6FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B321B5E323E4D21D0077D6FE /* macOS_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS_Example.entitlements; sourceTree = "<group>"; };
@@ -163,6 +169,8 @@
 		B321B61A23E4D30B0077D6FE /* iOS Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iOS Example.entitlements"; sourceTree = "<group>"; };
 		B321B65A23E4F8C70077D6FE /* OrderedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		B321B65C23E4F9240077D6FE /* DocumentMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentMap.swift; sourceTree = "<group>"; };
+		B321B66623E4FFF00077D6FE /* DocumentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsTableViewController.swift; sourceTree = "<group>"; };
+		B321B66823E502C30077D6FE /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		B32E43DF23E4EE770070CE3F /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = ../Data/Data; sourceTree = "<group>"; };
 		B32E43E423E4F06D0070CE3F /* DocumentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsTableViewController.swift; sourceTree = "<group>"; };
 		BA75DE5CE82E8887E3F7CD4B /* Pods_tvOS_ExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tvOS_ExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,10 +323,11 @@
 			isa = PBXGroup;
 			children = (
 				B321B5D923E4D21D0077D6FE /* AppDelegate.swift */,
-				B321B5DB23E4D21D0077D6FE /* ViewController.swift */,
 				B321B5DD23E4D21D0077D6FE /* Assets.xcassets */,
 				B321B5E223E4D21D0077D6FE /* Info.plist */,
 				B321B5E323E4D21D0077D6FE /* macOS_Example.entitlements */,
+				B321B66623E4FFF00077D6FE /* DocumentsTableViewController.swift */,
+				B321B66823E502C30077D6FE /* Application.swift */,
 			);
 			path = "macOS Example";
 			sourceTree = "<group>";
@@ -962,6 +971,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B321B65E23E4FE970077D6FE /* OrderedDictionary.swift in Sources */,
+				B321B65F23E4FE970077D6FE /* DocumentMap.swift in Sources */,
 				B321B5B823E4D20D0077D6FE /* ViewController.swift in Sources */,
 				B321B5B623E4D20D0077D6FE /* AppDelegate.swift in Sources */,
 			);
@@ -979,7 +990,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B321B5DC23E4D21D0077D6FE /* ViewController.swift in Sources */,
+				B321B66923E502C30077D6FE /* Application.swift in Sources */,
+				B321B66023E4FE970077D6FE /* OrderedDictionary.swift in Sources */,
+				B321B66123E4FE970077D6FE /* DocumentMap.swift in Sources */,
+				B321B66723E4FFF00077D6FE /* DocumentsTableViewController.swift in Sources */,
 				B321B5DA23E4D21D0077D6FE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -996,6 +1010,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B321B66223E4FE980077D6FE /* OrderedDictionary.swift in Sources */,
+				B321B66323E4FE980077D6FE /* DocumentMap.swift in Sources */,
 				B321B60B23E4D22D0077D6FE /* ExtensionDelegate.swift in Sources */,
 				B321B60923E4D22D0077D6FE /* InterfaceController.swift in Sources */,
 			);
@@ -1712,7 +1728,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1781,7 +1797,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.brightdigit.macOS-Example";
