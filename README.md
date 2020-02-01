@@ -17,6 +17,7 @@
 [![License](https://img.shields.io/cocoapods/l/AssetLib.svg?style=flat)](https://cocoapods.org/pods/AssetLib)
 [![Platform](https://img.shields.io/cocoapods/p/AssetLib.svg?style=flat)](https://cocoapods.org/pods/AssetLib)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 Build and Parse Asset Catalogs in Swift.
 
 [Documentation Here](/docs/README.md)
