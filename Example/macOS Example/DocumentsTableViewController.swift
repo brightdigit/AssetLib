@@ -29,18 +29,42 @@ class DocumentsTableViewController: NSViewController, NSTableViewDelegate, NSTab
     }
   }
 
+  func scrollViewConstraint(
+    withAttribute attribute: NSLayoutConstraint.Attribute,
+    andConstant constant: CGFloat = 0
+  ) -> NSLayoutConstraint {
+    return NSLayoutConstraint(
+      item: scrollView,
+      attribute: attribute,
+      relatedBy: .equal,
+      toItem: view,
+      attribute: attribute,
+      multiplier: 1.0,
+      constant: constant
+    )
+  }
+
   func setupView() {
     view.translatesAutoresizingMaskIntoConstraints = false
-    view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 200))
+    let constraint = NSLayoutConstraint(
+      item: view,
+      attribute: .width,
+      relatedBy: .equal,
+      toItem: nil,
+      attribute: .notAnAttribute,
+      multiplier: 1,
+      constant: 200
+    )
+    view.addConstraint(constraint)
   }
 
   func setupTableView() {
     view.addSubview(scrollView)
     scrollView.translatesAutoresizingMaskIntoConstraints = false
-    view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1.0, constant: 0))
-    view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 23))
-    view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1.0, constant: 0))
-    view.addConstraint(NSLayoutConstraint(item: scrollView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0))
+    view.addConstraint(scrollViewConstraint(withAttribute: .left))
+    view.addConstraint(scrollViewConstraint(withAttribute: .top, andConstant: 23))
+    view.addConstraint(scrollViewConstraint(withAttribute: .right))
+    view.addConstraint(scrollViewConstraint(withAttribute: .bottom))
     tableView.frame = scrollView.bounds
     tableView.delegate = self
     tableView.dataSource = self
@@ -95,9 +119,36 @@ class DocumentsTableViewController: NSViewController, NSTableViewDelegate, NSTab
     text.drawsBackground = false
     text.isBordered = false
     text.translatesAutoresizingMaskIntoConstraints = false
-    cell.addConstraint(NSLayoutConstraint(item: text, attribute: .centerY, relatedBy: .equal, toItem: cell, attribute: .centerY, multiplier: 1, constant: 0))
-    cell.addConstraint(NSLayoutConstraint(item: text, attribute: .left, relatedBy: .equal, toItem: cell, attribute: .left, multiplier: 1, constant: 13))
-    cell.addConstraint(NSLayoutConstraint(item: text, attribute: .right, relatedBy: .equal, toItem: cell, attribute: .right, multiplier: 1, constant: -13))
+    cell.addConstraint(
+      NSLayoutConstraint(
+        item: text,
+        attribute: .centerY,
+        relatedBy: .equal,
+        toItem: cell,
+        attribute: .centerY,
+        multiplier: 1,
+        constant: 0
+      ))
+    cell.addConstraint(
+      NSLayoutConstraint(
+        item: text,
+        attribute: .left,
+        relatedBy: .equal,
+        toItem: cell,
+        attribute: .left,
+        multiplier: 1,
+        constant: 13
+      ))
+    cell.addConstraint(
+      NSLayoutConstraint(
+        item: text,
+        attribute: .right,
+        relatedBy: .equal,
+        toItem: cell,
+        attribute: .right,
+        multiplier: 1,
+        constant: -13
+      ))
     return cell
   }
 

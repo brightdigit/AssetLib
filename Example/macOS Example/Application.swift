@@ -1,11 +1,11 @@
 import Cocoa
 
 public class Application: NSApplication {
-  let appDelegate = AppDelegate()
+  let appDelegateContainer = AppDelegate()
 
   override init() {
     super.init()
-    delegate = appDelegate
+    delegate = appDelegateContainer
   }
 
   required init?(coder _: NSCoder) {
