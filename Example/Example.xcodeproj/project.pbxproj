@@ -34,6 +34,8 @@
 		B321B60B23E4D22D0077D6FE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B60A23E4D22D0077D6FE /* ExtensionDelegate.swift */; };
 		B321B60D23E4D22E0077D6FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B321B60C23E4D22E0077D6FE /* Assets.xcassets */; };
 		B321B61123E4D22E0077D6FE /* watchOS Example.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B321B5F723E4D22D0077D6FE /* watchOS Example.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B321B65B23E4F8C70077D6FE /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B65A23E4F8C70077D6FE /* OrderedDictionary.swift */; };
+		B321B65D23E4F9240077D6FE /* DocumentMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = B321B65C23E4F9240077D6FE /* DocumentMap.swift */; };
 		B32E43E023E4EE770070CE3F /* Data in Resources */ = {isa = PBXBuildFile; fileRef = B32E43DF23E4EE770070CE3F /* Data */; };
 		B32E43E123E4EE770070CE3F /* Data in Resources */ = {isa = PBXBuildFile; fileRef = B32E43DF23E4EE770070CE3F /* Data */; };
 		B32E43E223E4EE770070CE3F /* Data in Resources */ = {isa = PBXBuildFile; fileRef = B32E43DF23E4EE770070CE3F /* Data */; };
@@ -159,6 +161,8 @@
 		B321B60C23E4D22E0077D6FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B321B60E23E4D22E0077D6FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B321B61A23E4D30B0077D6FE /* iOS Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iOS Example.entitlements"; sourceTree = "<group>"; };
+		B321B65A23E4F8C70077D6FE /* OrderedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
+		B321B65C23E4F9240077D6FE /* DocumentMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentMap.swift; sourceTree = "<group>"; };
 		B32E43DF23E4EE770070CE3F /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = ../Data/Data; sourceTree = "<group>"; };
 		B32E43E423E4F06D0070CE3F /* DocumentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsTableViewController.swift; sourceTree = "<group>"; };
 		BA75DE5CE82E8887E3F7CD4B /* Pods_tvOS_ExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tvOS_ExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,6 +245,7 @@
 		B321B55B23E4D1990077D6FE = {
 			isa = PBXGroup;
 			children = (
+				B321B65923E4F88A0077D6FE /* Shared */,
 				B32E43DF23E4EE770070CE3F /* Data */,
 				B321B58D23E4D2000077D6FE /* iOS Example.app */,
 				B321B58E23E4D2000077D6FE /* iOS Example */,
@@ -346,6 +351,15 @@
 				B321B60E23E4D22E0077D6FE /* Info.plist */,
 			);
 			path = "watchOS Example Extension";
+			sourceTree = "<group>";
+		};
+		B321B65923E4F88A0077D6FE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B321B65A23E4F8C70077D6FE /* OrderedDictionary.swift */,
+				B321B65C23E4F9240077D6FE /* DocumentMap.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		BA60651C170BE2B1C17A37EB /* Frameworks */ = {
@@ -929,6 +943,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B321B65B23E4F8C70077D6FE /* OrderedDictionary.swift in Sources */,
+				B321B65D23E4F9240077D6FE /* DocumentMap.swift in Sources */,
 				B32E43E523E4F06D0070CE3F /* DocumentsTableViewController.swift in Sources */,
 				B321B59023E4D2000077D6FE /* AppDelegate.swift in Sources */,
 			);

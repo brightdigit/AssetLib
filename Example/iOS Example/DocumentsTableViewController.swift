@@ -1,20 +1,6 @@
 import AssetLib
 import UIKit
 
-struct OrderedDictionary<Key: Hashable, Value> {
-  let dictionary: [Key: Value]
-  let keys: [Key]
-
-  init(dictionary: [Key: Value]) {
-    self.dictionary = dictionary
-    keys = [Key](dictionary.keys)
-  }
-
-  var count: Int {
-    return keys.count
-  }
-}
-
 class DocumentsTableViewController: UITableViewController {
   var documentMap: OrderedDictionary<URL, AssetSpecificationDocumentProtocol>? {
     didSet {
