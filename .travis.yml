@@ -3,27 +3,34 @@ os: osx
 osx_image: xcode11.3
 env:
   global:
-    - FRAMEWORK_NAME=AssetLib
+  - FRAMEWORK_NAME=AssetLib
 before_install:
-  - brew update
-  - brew bundle
+- brew update
+- brew bundle
 before_script:
-  # bootstrap the dependencies for the project
-  # you can remove if you don't have dependencies
-  - swift package generate-xcodeproj
+- swift package generate-xcodeproj
 before_deploy:
-  - carthage build --no-skip-current
-  - carthage archive $FRAMEWORK_NAME
+- carthage build --no-skip-current
+- carthage archive $FRAMEWORK_NAME
 script:
-  - pod lib lint
-  - swiftformat --lint . && swiftlint
-  - swift test  --enable-code-coverage
-  - xcrun llvm-cov export -format="lcov" .build/debug/AssetLibPackageTests.xctest/Contents/MacOS/AssetLibPackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
-  - bash <(curl https://codecov.io/bash) -F travis-ci
-  - pod install --project-directory=Example
-  - xcodebuild -workspace Example/Example.xcworkspace -scheme "iOS Example"  ONLY_ACTIVE_ARCH=NO
-    CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
-  - xcodebuild -workspace Example/Example.xcworkspace -scheme "tvOS Example"  ONLY_ACTIVE_ARCH=NO
-    CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
-  - xcodebuild -workspace Example/Example.xcworkspace -scheme "macOS Example"  ONLY_ACTIVE_ARCH=NO
-    CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
+- pod lib lint
+- swiftformat --lint . && swiftlint
+- swift test  --enable-code-coverage
+- xcrun llvm-cov export -format="lcov" .build/debug/AssetLibPackageTests.xctest/Contents/MacOS/AssetLibPackageTests
+  -instr-profile .build/debug/codecov/default.profdata > info.lcov
+- bash <(curl https://codecov.io/bash) -F travis-ci
+- pod install --project-directory=Example
+- xcodebuild -workspace Example/Example.xcworkspace -scheme "iOS Example"  ONLY_ACTIVE_ARCH=NO
+  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
+- xcodebuild -workspace Example/Example.xcworkspace -scheme "tvOS Example"  ONLY_ACTIVE_ARCH=NO
+  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
+- xcodebuild -workspace Example/Example.xcworkspace -scheme "macOS Example"  ONLY_ACTIVE_ARCH=NO
+  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  CODE_SIGNING_ALLOWED=NO
+deploy:
+  provider: releases
+  api_key:
+    secure: tdph2YBxTBQx6IXKcwA7D5ABcFFaB9UpaipTeIzr41lxSlnANkxlsGAZWqLwnmca6VKD+BbWXjg8samuyQRITposdhNf/nCLvqcpR1En/RlPFrVb57UBxrGmJJ9M1i9xUrMPq01JKerkC2rYcNoIqJuelWuTi71wR0HCvIouOiOS7xPaW9vyBL+Zdpsk/552sW8HsabH+wnOf15p/SJ3FVxNmH7uFT1rbxCsYtztf8RI8LpI22dA/pIhkmy4yB9MM/A2lgaAPzq24mcWWAQmbI1qtfx9oIM/5E3x1d0UPGW0/uGvgud09027G271OOOYEyXrEjcJMfWptRSfWb8IhTAozt2X/J6nomZcIIYwoRUvxjwfvxxNjyEHKkuJ7qXWBrWeDNvHcnmd/JvyDMOboKpx9c8P6VAq4GX1muyMuocBzLxoYx0fhPF6I+U1hPxOo9+1Y4M79fKLoc4hSVqLMe+Se5STGaDA9dVw3GtP2ahGNH+c6fQQXd256fYCUP6SorTdd0PjrRHwV4dPU4ltekxeW39E5aMBcREdsANtLNQ/+1B5eyRi/+0dwWZ4bbHR/jdFZT08CeyrrIkmFBV3r6+czL+MwQB+eFB5AiaTxMtg41LNQc3Q+b+neCiBwsO4jBprP/ttHZxaPyfYsa5S0SNNfeQnlimztuyRNR5TvKs=
+  file: "$FRAMEWORK_NAME.framework.zip"
+  on:
+    repo: brightdigit/AssetLib
+    tags: true
