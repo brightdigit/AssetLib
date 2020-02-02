@@ -144,3 +144,4 @@ Tests/AssetLibTests/Data/**/*.pdf
 
 *.xcworkspace
 Pods
+*.lcov
