@@ -36,7 +36,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git status
         git add docs
         git diff-index --quiet HEAD || git commit -m "[github action] Update Docs"
-    - name: Push changes
-      run: git push
+        git push
