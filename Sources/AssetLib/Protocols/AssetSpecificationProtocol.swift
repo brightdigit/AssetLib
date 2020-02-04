@@ -1,11 +1,8 @@
-//
-//  ImageSpecificationProtocol.swift
-//  speculid
-//
-//  Created by Leo Dion on 9/26/16.
-//
-//
 import Foundation
+
+#if canImport(CoreGraphics)
+  import CoreGraphics
+#endif
 
 /// A size or variant of an image or icon.
 public protocol AssetSpecificationProtocol {

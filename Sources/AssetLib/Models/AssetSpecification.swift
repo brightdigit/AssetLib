@@ -1,5 +1,9 @@
 import Foundation
 
+#if canImport(CoreGraphics)
+  import CoreGraphics
+#endif
+
 /// A size or variant of an image or icon.
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   /// The device type for the image.
