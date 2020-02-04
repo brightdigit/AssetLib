@@ -1,4 +1,3 @@
-import CoreGraphics
 import Foundation
 
 /// A size or variant of an image or icon.

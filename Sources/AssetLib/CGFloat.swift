@@ -1,4 +1,4 @@
-import CoreGraphics
+import Foundation
 
 extension CGFloat {
   var clean: String {
