@@ -5,6 +5,7 @@
 ### macOS ###
 # General
 .DS_Store
+*.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -40,6 +41,9 @@ build/
 DerivedData/
 
 ## Various settings
+# Xcode
+#
+build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -53,6 +57,7 @@ xcuserdata/
 ## Other
 *.moved-aside
 *.xccheckout
+*.xcuserstate
 *.xcscmblueprint
 
 ## Obj-C/Swift specific
@@ -71,16 +76,21 @@ playground.xcworkspace
 # Package.pins
 # Package.resolved
 .build/
-# Add this line if you want to avoid checking in Xcode SPM integration.
-# .swiftpm/xcode
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
 
 # CocoaPods
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-# Pods/
-# Add this line if you want to avoid checking in source code from the Xcode workspace
-# *.xcworkspace
+#
+Example/Pods/
+Example/*.xcworkspace
 
 # Carthage
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
@@ -106,13 +116,16 @@ fastlane/test_output
 # Code Injection
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
+VCS.swift
 
 iOSInjectionProject/
+Products
 
 ### SwiftPackageManager ###
 Packages
 xcuserdata
 /*.xcodeproj
+.tmp
 
 
 ### SwiftPM ###
@@ -130,6 +143,7 @@ xcuserdata
 
 ## Xcode Patch
 /*.xcodeproj/*
+.swiftpm
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata

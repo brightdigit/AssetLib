@@ -1,4 +1,8 @@
-import CoreGraphics
+import Foundation
+
+#if canImport(CoreGraphics)
+  import CoreGraphics
+#endif
 
 extension CGFloat {
   var clean: String {
