@@ -1,10 +1,14 @@
 #!/bin/bash
 
+SWIFT_VER="5.1.3"
+
 if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
   swiftformat --lint . && swiftlint
 elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
   # What to do in Ubunutu
-  export PATH="${PWD}/swift-5.1.3-RELEASE-ubuntu18.04/usr/bin:$PATH"
+  RELEASE_DOT=$(lsb_release -r)
+  RELEASE_NUM=$(cut -f2 <<< "$RELEASE_DOT")
+  export PATH="${PWD}/swift-${SWIFT_VER}-RELEASE-ubuntu${RELEASE_DOT}/usr/bin:$PATH"
 fi
 
 swift build
