@@ -2,7 +2,7 @@
 
 if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
   swiftformat --lint . && swiftlint
-else
+elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
   # What to do in Ubunutu
   export PATH="${PWD}/swift-5.1.3-RELEASE-ubuntu18.04/usr/bin:$PATH"
 fi
