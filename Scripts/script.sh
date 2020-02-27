@@ -4,7 +4,7 @@ SWIFT_VER="5.1.3"
 
 if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
   swiftformat --lint . && swiftlint
-else
+elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
   # What to do in Ubunutu
   RELEASE_DOT=$(lsb_release -r)
   RELEASE_NUM=$(cut -f2 <<< "$RELEASE_DOT")
