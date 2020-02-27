@@ -10,5 +10,4 @@ elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
   RELEASE_NUM=$(cut -f2 <<< "$RELEASE_DOT")
   wget https://swift.org/builds/swift-$SWIFT_VER-release/ubuntu$RELEASE_NUM/swift-$SWIFT_VER-RELEASE/swift-$SWIFT_VER-RELEASE-ubuntu$RELEASE_DOT.tar.gz
   tar xzf swift-$SWIFT_VER-RELEASE-ubuntu$RELEASE_DOT.tar.gz
-  export PATH="${PWD}/swift-$SWIFT_VER-RELEASE-ubuntu$RELEASE_DOT/usr/bin:$PATH"
 fi
