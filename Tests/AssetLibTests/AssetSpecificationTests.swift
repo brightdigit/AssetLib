@@ -1,7 +1,58 @@
 @testable import AssetLib
 import XCTest
+@objc class SortedDictionary: NSDictionary {
+  let _values: NSMutableArray = []
+  let _keys: NSMutableOrderedSet = []
 
-@available(OSX 10.13, iOS 11, *)
+  override var count: Int {
+    return _keys.count
+  }
+
+  override func keyEnumerator() -> NSEnumerator {
+    return _keys.objectEnumerator()
+  }
+
+  override func object(forKey aKey: Any) -> Any? {
+    let index = _keys.index(of: aKey)
+    if index != NSNotFound {
+      return _values[index]
+    }
+    return nil
+  }
+
+  private func setObject(_ anObject: Any, forKey aKey: String) {
+    let index = _keys.index(of: aKey)
+    if index != NSNotFound {
+      _values[index] = convertObject(anObject)
+    } else {
+      _keys.add(aKey)
+      _values.add(convertObject(anObject))
+    }
+  }
+
+  private func convertObject(_ object: Any) -> Any {
+    if let dict = object as? [String: Any] {
+      return SortedDictionary(dict)
+    } else if let array = object as? [Any] {
+      return array.map {
+        convertObject($0)
+      }
+    } else {
+      return object
+    }
+  }
+
+  @objc convenience init(_ dictionary: [String: Any]) {
+    self.init()
+    dictionary.sorted {
+      $0.0.compare($1.0, options: [.caseInsensitive, .forcedOrdering]) == .orderedAscending
+    }
+    .forEach {
+      self.setObject($0.value, forKey: $0.key)
+    }
+  }
+}
+
 public extension Data {
   func jsonSerialized() -> Data? {
     guard let json = try? JSONSerialization.jsonObject(with: self) else {
@@ -16,10 +67,23 @@ public extension Data {
         return json
       }
     }()
-    guard let data = try? JSONSerialization.data(withJSONObject: object, options: [.sortedKeys, .prettyPrinted]) else {
-      return nil
+    if #available(OSX 10.13, *) {
+      if let data = try? JSONSerialization.data(withJSONObject: object, options: [.sortedKeys, .prettyPrinted]) {
+        return data
+      }
+    } else {
+      // force ordering
+
+      // let orderedJson = SortedDictionary(object)
+
+      // write pretty printed
+//      _ = JSONSerialization.writeJSONObject(orderedJson, to: outputJSON, options: [.prettyPrinted], error: nil)
+
+      if let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]) {
+        return data
+      }
     }
-    return data
+    return nil
   }
 
   static func jsonMismatch(lhs: Data, rhs: Data, alreadySerialized: Bool = false) -> Int? {
@@ -137,13 +201,7 @@ final class AssetSpecificationTests: XCTestCase {
         XCTFail("No expected data for \(url)")
         continue
       }
-      if #available(OSX 10.13, iOS 11, *) {
-        XCTAssertNil(Data.jsonMismatch(lhs: data, rhs: expectedData), "Mismatch at \(url)")
-      } else {
-        // Fallback on earlier versions
-        #warning("support other OSes")
-        XCTFail("unsupported OS")
-      }
+      XCTAssertNil(Data.jsonMismatch(lhs: data, rhs: expectedData), "Mismatch at \(url)")
     }
   }
 
@@ -228,10 +286,8 @@ final class AssetSpecificationTests: XCTestCase {
     XCTAssertEqual(AssetSpecification(idiom: idiom).filename, nil)
   }
 
-  static var allTests = [
-    ("testSuccessful", testSuccessful),
-    ("testInvalidScale", testInvalidScale),
-    ("testInvalidSize", testInvalidSize),
-    ("testMetadata", testMetadata)
-  ]
+  func testDecodingError() {
+    let error = DecodingError.valueNotFound(String.self, DecodingError.Context(codingPath: [CodingKey](), debugDescription: ""))
+    XCTAssertNil(error.keyString)
+  }
 }

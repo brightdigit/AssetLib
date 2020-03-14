@@ -6,6 +6,7 @@
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__AssetSpecificationTests = [
+      ("testDecodingError", testDecodingError),
       ("testInvalidScale", testInvalidScale),
       ("testInvalidSize", testInvalidSize),
       ("testMetadata", testMetadata),
