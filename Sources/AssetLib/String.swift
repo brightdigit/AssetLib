@@ -7,11 +7,7 @@ extension String {
     guard let result = regex.firstMatch(in: self, options: [], range: range) else {
       return nil
     }
-    return (0 ..< result.numberOfRanges).compactMap { (index) -> String? in
-      guard let range = Range(result.range(at: index), in: self) else {
-        return nil
-      }
-      return String(self[range])
-    }
+    
+    return (0 ..< result.numberOfRanges).map(result.range(at:)).compactMap{Range($0, in: self)}.map{String(self[$0])}
   }
 }
