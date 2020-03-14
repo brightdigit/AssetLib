@@ -1,32 +1,32 @@
 @testable import AssetLib
 import XCTest
 @objc class SortedDictionary: NSDictionary {
-  let _values: NSMutableArray = []
-  let _keys: NSMutableOrderedSet = []
+  let values: NSMutableArray = []
+  let keys: NSMutableOrderedSet = []
 
   override var count: Int {
-    return _keys.count
+    return keys.count
   }
 
   override func keyEnumerator() -> NSEnumerator {
-    return _keys.objectEnumerator()
+    return keys.objectEnumerator()
   }
 
   override func object(forKey aKey: Any) -> Any? {
-    let index = _keys.index(of: aKey)
+    let index = keys.index(of: aKey)
     if index != NSNotFound {
-      return _values[index]
+      return values[index]
     }
     return nil
   }
 
   private func setObject(_ anObject: Any, forKey aKey: String) {
-    let index = _keys.index(of: aKey)
+    let index = keys.index(of: aKey)
     if index != NSNotFound {
-      _values[index] = convertObject(anObject)
+      values[index] = convertObject(anObject)
     } else {
-      _keys.add(aKey)
-      _values.add(convertObject(anObject))
+      keys.add(aKey)
+      values.add(convertObject(anObject))
     }
   }
 
