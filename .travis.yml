@@ -9,9 +9,9 @@ env:
   global:
   - FRAMEWORK_NAME=AssetLib
 before_install:
-  - ./Scripts/before_install.sh
+  - bash -e ./Scripts/before_install.sh
 script:
-  - ./Scripts/script.sh
+  - bash -e ./Scripts/script.sh
 #deploy:
 #  provider: releases
 #  api_key:
