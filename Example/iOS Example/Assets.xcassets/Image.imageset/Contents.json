@@ -1,0 +1,173 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "1x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "1x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "1x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "2x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "ipad",
+      "subtype" : "mac-catalyst",
+      "scale" : "1x"
+    },
+    {
+      "locale" : "en",
+      "idiom" : "ipad",
+      "subtype" : "mac-catalyst",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "subtype" : "mac-catalyst",
+      "scale" : "2x"
+    },
+    {
+      "locale" : "en",
+      "idiom" : "ipad",
+      "subtype" : "mac-catalyst",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "car",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "car",
+      "scale" : "2x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "car",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "car",
+      "scale" : "3x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "watch",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "scale" : "2x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "tv",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "tv",
+      "scale" : "1x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "tv",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "tv",
+      "scale" : "2x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "mac",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "mac",
+      "scale" : "1x",
+      "locale" : "en"
+    },
+    {
+      "idiom" : "mac",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "mac",
+      "scale" : "2x",
+      "locale" : "en"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "auto-scaling" : "auto",
+    "on-demand-resource-tags" : [
+      "test",
+      "test2"
+    ],
+    "localizable" : true
+  }
+}
