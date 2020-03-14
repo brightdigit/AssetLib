@@ -67,19 +67,14 @@ public extension Data {
         return json
       }
     }()
-    if #available(OSX 10.13, *) {
+    if #available(iOS 11.0, macOS 10.13, tvOS 11.0, watchOS 4.0, *) {
       if let data = try? JSONSerialization.data(withJSONObject: object, options: [.sortedKeys, .prettyPrinted]) {
         return data
       }
-    } else {
-      // force ordering
+    } else if let dictionary = object as? [String: Any] {
+      let orderedJson = SortedDictionary(dictionary)
 
-      // let orderedJson = SortedDictionary(object)
-
-      // write pretty printed
-//      _ = JSONSerialization.writeJSONObject(orderedJson, to: outputJSON, options: [.prettyPrinted], error: nil)
-
-      if let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]) {
+      if let data = try? JSONSerialization.data(withJSONObject: orderedJson, options: [.prettyPrinted]) {
         return data
       }
     }
