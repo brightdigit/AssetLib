@@ -2,6 +2,6 @@
 
 struct AppIconTemplateConfiguration {
   let devices: Set<ImageIdiom>
-  let gamut: Void
+  let specifyGamut: Bool
   let prerendered: Bool
 }

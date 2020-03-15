@@ -6,17 +6,17 @@ struct ImageSetTemplateConfiguration {
   let compression: CompressionType
   let preserveVectorData: Bool
   let devices: Set<ImageIdiom>
-  let appearance: Set<Appearance<Luminosity>>
+  let appearances: Set<AnyAppearance>
   let highContrast: Bool
-  let scale: TemplateScaling
+  let scaling: TemplateScaling?
   let specifyGamut: Bool
   let direction: Set<LanguageDirection>
-  let widthClass: SizeClass?
-  let heightClass: SizeClass?
-  let memory: Set<Memory>
-  let graphicFS: Set<GraphicFeatureSet>
-  let specifyAppleWatchScreenWidth: Set<AppleWatchScreenWidth>
+  let specifiedWidthClass: SizeClass?
+  let specifiedHeightClass: SizeClass?
+  let memorySet: Set<Memory>
+  let graphicFSSet: Set<GraphicFeatureSet>
+  let specifyAWWidth: Set<AppleWatchScreenWidth>
   let autoScaling: Bool
-  let locale: Locale
-  let resourceTags: [String]
+  let locale: Locale?
+  let resourceTags: Set<String>
 }
