@@ -41,3 +41,9 @@ public struct ValueAppearance<ValueType: AppearanceValue>: Appearance {
     appearanceValue = value
   }
 }
+
+extension Appearance {
+  func eraseToAny() -> AnyAppearance {
+    return AnyAppearance(appearance: appearance, value: value)
+  }
+}

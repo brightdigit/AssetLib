@@ -1,1 +1,4 @@
-enum SizeClass: Hashable {}
+enum SizeClass: Hashable {
+  case compact
+  case regular
+}

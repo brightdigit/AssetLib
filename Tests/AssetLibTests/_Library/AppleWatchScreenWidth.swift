@@ -1,1 +1,0 @@
-enum AppleWatchScreenWidth: Hashable {}

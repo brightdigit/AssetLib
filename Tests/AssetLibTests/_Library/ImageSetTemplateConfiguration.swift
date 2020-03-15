@@ -15,7 +15,7 @@ struct ImageSetTemplateConfiguration {
   let specifiedHeightClass: SizeClass?
   let memorySet: Set<Memory>
   let graphicFSSet: Set<GraphicFeatureSet>
-  let specifyAWWidth: Set<AppleWatchScreenWidth>
+  let specifyAWWidth: Bool
   let autoScaling: Bool
   let locale: Locale?
   let resourceTags: Set<String>

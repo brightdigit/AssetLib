@@ -1,7 +1,7 @@
 /**
  The type of compression
  */
-enum CompressionType {
+enum CompressionType: String {
   /**
    The image uses an automatic lossy compression.
    */
