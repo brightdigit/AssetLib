@@ -22,5 +22,6 @@ struct AssetTemplateBuilder {
     )
     /* global renderAs, compress, preserveVectorData, autoScaling, locale */
     /* appearances, specifyGamut, direction, specified*Class, memorySet, graphicFSSet, specifyAWWidth, locale */
+    fatalError()
   }
 }

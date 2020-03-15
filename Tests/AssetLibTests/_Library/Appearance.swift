@@ -10,13 +10,13 @@ public protocol Appearance: Hashable {
 
 public enum Contrast: String, AppearanceValue {
   case high
-  
+
   public static var appearanceKey: String {
-    retunr "contrast"
+    return "contrast"
   }
-  
+
   public var appearanceValue: String {
-    return self.rawValue
+    return rawValue
   }
 }
 
