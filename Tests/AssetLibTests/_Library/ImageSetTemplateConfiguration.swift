@@ -7,7 +7,6 @@ struct ImageSetTemplateConfiguration {
   let preserveVectorData: Bool
   let devices: Set<ImageIdiom>
   let appearances: Set<AnyAppearance>
-  let highContrast: Bool
   let scaling: TemplateScaling?
   let specifyGamut: Bool
   let direction: Set<LanguageDirection>

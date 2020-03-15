@@ -2,13 +2,12 @@
 
 struct AssetTemplateBuilder {
   func document(fromTemplate _: AssetTemplate) -> AssetSpecificationDocumentProtocol {
-    _ = ImageSetTemplateConfiguration(
+    let configuration = ImageSetTemplateConfiguration(
       renderAs: nil,
       compression: .automatic,
       preserveVectorData: false,
       devices: [.mac],
       appearances: [ValueAppearance(value: Luminosity.dark).eraseToAny()],
-      highContrast: false,
       scaling: .single,
       specifyGamut: false,
       direction: [.leftToRight],
@@ -21,6 +20,7 @@ struct AssetTemplateBuilder {
       locale: nil,
       resourceTags: ["tag", "otherTag"]
     )
-    fatalError()
+    /* global renderAs, compress, preserveVectorData, autoScaling, locale */
+    /* appearances, specifyGamut, direction, specified*Class, memorySet, graphicFSSet, specifyAWWidth, locale */
   }
 }

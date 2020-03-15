@@ -8,6 +8,18 @@ public protocol Appearance: Hashable {
   var value: String { get }
 }
 
+public enum Contrast: String, AppearanceValue {
+  case high
+  
+  public static var appearanceKey: String {
+    retunr "contrast"
+  }
+  
+  public var appearanceValue: String {
+    return self.rawValue
+  }
+}
+
 public enum Luminosity: String, AppearanceValue {
   public var appearanceValue: String {
     return rawValue
