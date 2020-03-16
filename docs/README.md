@@ -13,7 +13,7 @@
 ## Enums
 
 -   [AppleWatchRole](enums/AppleWatchRole.md)
--   [AppleWatchType](enums/AppleWatchType.md)
+-   [DeviceSubType](enums/DeviceSubType.md)
 -   [ImageIdiom](enums/ImageIdiom.md)
 
 ## Extensions

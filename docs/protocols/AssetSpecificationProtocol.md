@@ -52,7 +52,7 @@ var role: AppleWatchRole?
 ### `subtype`
 
 ```swift
-var subtype: AppleWatchType?
+var subtype: DeviceSubType?
 ```
 
 > The type of Apple Watch when there is more than one icon size for a role.

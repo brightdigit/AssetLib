@@ -52,7 +52,7 @@ public let role: AppleWatchRole?
 ### `subtype`
 
 ```swift
-public let subtype: AppleWatchType?
+public let subtype: DeviceSubType?
 ```
 
 > The type of Apple Watch when there is more than one icon size for a role.
@@ -65,7 +65,7 @@ public init(idiom: ImageIdiom,
             scale: CGFloat? = nil,
             size: CGSize? = nil,
             role: AppleWatchRole? = nil,
-            subtype: AppleWatchType? = nil,
+            subtype: DeviceSubType? = nil,
             filename: String? = nil)
 ```
 
