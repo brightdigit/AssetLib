@@ -10,7 +10,7 @@ protocol ImageIdiomScaleProvider {
 }
 
 protocol ImageIdiomDependencyProvider {
-  func idioms(requiredForIdiom idiom: ImageIdiom) -> [ImageIdiom]
+  func idioms(forDevice device: ImageSetDevice) -> [(ImageIdiom, DeviceSubType?)]
 }
 
 struct AssetTemplateBuilder {
@@ -39,9 +39,19 @@ struct AssetTemplateBuilder {
     /* global renderAs, compress, preserveVectorData, autoScaling, locale */
 
     /* appearances, specifyGamut, direction, specified*Class, memorySet, graphicFSSet, specifyAWWidth, locale */
-    var assets = [AssetSpecification]()
-    let allDevices = Set(configuration.devices.flatMap(dependencyProvider.idioms(requiredForIdiom:)))
-    configuration.devices.flatMap(scaleProvider.scales(forIdiom:))
+
+    let idioms = configuration.devices.flatMap(dependencyProvider.idioms(forDevice:))
+
+    let scales = idioms.map { scaleProvider.scales(forIdiom: $0.0) }
+    var specs = zip(idioms, scales).flatMap { args in
+      args.1.map { scale in
+        AssetSpecification(idiom: args.0.0, scale: scale, subtype: args.0.1)
+      }
+    }
+    [String: [AnyAppearance]].init(grouping: [AnyAppearance](configuration.appearances)) {
+      $0.appearance
+    }
+
     fatalError()
   }
 }

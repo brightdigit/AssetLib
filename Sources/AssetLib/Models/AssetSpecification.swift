@@ -17,7 +17,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   /// The role for an Apple Watch icon
   public let role: AppleWatchRole?
   /// The type of Apple Watch when there is more than one icon size for a role.
-  public let subtype: AppleWatchType?
+  public let subtype: DeviceSubType?
 
   enum CodingKeys: String, CodingKey {
     case idiom
@@ -40,7 +40,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
               scale: CGFloat? = nil,
               size: CGSize? = nil,
               role: AppleWatchRole? = nil,
-              subtype: AppleWatchType? = nil,
+              subtype: DeviceSubType? = nil,
               filename: String? = nil) {
     self.idiom = idiom
     self.scale = scale
@@ -91,7 +91,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     }
 
     role = try container.decodeIfPresent(AppleWatchRole.self, forKey: .role)
-    subtype = try container.decodeIfPresent(AppleWatchType.self, forKey: .subtype)
+    subtype = try container.decodeIfPresent(DeviceSubType.self, forKey: .subtype)
   }
 
   /// Formats an CGSize for an Asset's size.

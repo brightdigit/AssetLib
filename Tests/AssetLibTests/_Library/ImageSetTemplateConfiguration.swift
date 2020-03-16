@@ -5,7 +5,7 @@ struct ImageSetTemplateConfiguration {
   let renderAs: RenderingIntent?
   let compression: CompressionType
   let preserveVectorData: Bool
-  let devices: Set<ImageIdiom>
+  let devices: Set<ImageSetDevice>
   let appearances: Set<AnyAppearance>
   let scaling: TemplateScaling?
   let specifyGamut: Bool

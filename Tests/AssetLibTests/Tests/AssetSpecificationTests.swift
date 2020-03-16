@@ -111,7 +111,7 @@ final class AssetSpecificationTests: XCTestCase {
     let sizeDimension = CGFloat.random(in: 20 ... 200)
     let size = CGSize(width: sizeDimension, height: sizeDimension)
     let role = AppleWatchRole.companionSettings
-    let subtype = AppleWatchType.size40
+    let subtype = DeviceSubType.size40
     let filename = "test.png"
 
     let specifications = AssetSpecification(idiom: idiom, scale: scale, size: size, role: role, subtype: subtype, filename: filename)

@@ -1,5 +1,5 @@
 /// The type of Apple Watch when there is more than one icon size for a role.
-public enum AppleWatchType: String, Codable {
+public enum DeviceSubType: String, Codable {
   /** The icon is for a 38mm Apple Watch. */
   case size38 = "38mm"
   /** The icon is for a 40mm Apple Watch. */
@@ -8,4 +8,6 @@ public enum AppleWatchType: String, Codable {
   case size42 = "42mm"
   /** The icon is for a 44mm Apple Watch. */
   case size44 = "44mm"
+
+  case macCatalyst
 }

@@ -17,5 +17,5 @@ public protocol AssetSpecificationProtocol {
   /// The role for an Apple Watch icon
   var role: AppleWatchRole? { get }
   /// The type of Apple Watch when there is more than one icon size for a role.
-  var subtype: AppleWatchType? { get }
+  var subtype: DeviceSubType? { get }
 }
