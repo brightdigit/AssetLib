@@ -24,4 +24,11 @@ public protocol AssetSpecificationProtocol {
   var displayGamut: DisplayGamut? { get }
 
   var languageDirection: LanguageDirection? { get }
+
+  var screenWidth: AppleWatchScreenWidth? { get }
+  var heightClass: SizeClass? { get }
+  var widthClass: SizeClass? { get }
+  var memory: Memory? { get }
+  var graphicsFeatureSet: GraphicsFeatureSet? { get }
+  var locale: Locale? { get }
 }

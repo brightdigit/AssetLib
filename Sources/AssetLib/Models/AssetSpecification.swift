@@ -6,6 +6,13 @@ import Foundation
 
 /// A size or variant of an image or icon.
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
+  public let screenWidth: AppleWatchScreenWidth?
+  public let heightClass: SizeClass?
+  public let widthClass: SizeClass?
+  public let memory: Memory?
+  public let graphicsFeatureSet: GraphicsFeatureSet?
+  public let locale: Locale?
+
   /// The device type for the image.
   public let idiom: ImageIdiom
   /// The targeted display scale for the image or icon.
@@ -33,6 +40,12 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     case appearances
     case displayGamut
     case languageDirection
+    case screenWidth
+    case heightClass
+    case widthClass
+    case memory
+    case graphicsFeatureSet
+    case locale
   }
 
   /// Builds an AssetSpecification
@@ -51,7 +64,13 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
               filename: String? = nil,
               appearances: [AnyAppearance] = [AnyAppearance](),
               displayGamut: DisplayGamut? = nil,
-              languageDirection: LanguageDirection? = nil) {
+              languageDirection: LanguageDirection? = nil,
+              screenWidth: AppleWatchScreenWidth? = nil,
+              heightClass: SizeClass? = nil,
+              widthClass: SizeClass? = nil,
+              memory: Memory? = nil,
+              graphicsFeatureSet: GraphicsFeatureSet? = nil,
+              locale: Locale? = nil) {
     self.idiom = idiom
     self.scale = scale
     self.size = size
@@ -61,6 +80,12 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     self.appearances = appearances
     self.displayGamut = displayGamut
     self.languageDirection = languageDirection
+    self.screenWidth = screenWidth
+    self.heightClass = heightClass
+    self.widthClass = widthClass
+    self.memory = memory
+    self.graphicsFeatureSet = graphicsFeatureSet
+    self.locale = locale
   }
 
   /// Builds an AssetSpecification from an AssetSpecificationProtocol.
@@ -75,6 +100,12 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     appearances = specifications.appearances
     displayGamut = specifications.displayGamut
     languageDirection = specifications.languageDirection
+    screenWidth = specifications.screenWidth
+    heightClass = specifications.heightClass
+    widthClass = specifications.widthClass
+    memory = specifications.memory
+    graphicsFeatureSet = specifications.graphicsFeatureSet
+    locale = specifications.locale
   }
 
   // swiftlint:disable force_try
@@ -111,6 +142,15 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     appearances = try container.decodeIfPresent([AnyAppearance].self, forKey: .appearances) ?? [AnyAppearance]()
     displayGamut = try container.decodeIfPresent(DisplayGamut.self, forKey: .displayGamut)
     languageDirection = try container.decodeIfPresent(LanguageDirection.self, forKey: .languageDirection)
+    screenWidth = try container.decodeIfPresent(AppleWatchScreenWidth.self, forKey: .screenWidth)
+    heightClass = try container.decodeIfPresent(SizeClass.self, forKey: .heightClass)
+    widthClass = try container.decodeIfPresent(SizeClass.self, forKey: .widthClass)
+    memory = try container.decodeIfPresent(Memory.self, forKey: .memory)
+    graphicsFeatureSet = try container.decodeIfPresent(GraphicsFeatureSet.self, forKey: .graphicsFeatureSet)
+
+    let localeString = try container.decodeIfPresent(String.self, forKey: .locale)
+
+    locale = localeString.map(Locale.init(identifier:))
   }
 
   /// Formats an CGSize for an Asset's size.

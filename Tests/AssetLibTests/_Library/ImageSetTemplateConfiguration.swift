@@ -13,9 +13,9 @@ struct ImageSetTemplateConfiguration {
   let specifiedWidthClass: SizeClass?
   let specifiedHeightClass: SizeClass?
   let memorySet: Set<Memory>
-  let graphicFSSet: Set<GraphicFeatureSet>
+  let graphicFSSet: Set<GraphicsFeatureSet>
   let specifyAWWidth: Bool
   let autoScaling: Bool
-  let locale: Locale?
+  let locales: [Locale]
   let resourceTags: Set<String>
 }

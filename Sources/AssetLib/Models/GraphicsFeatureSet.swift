@@ -1,4 +1,4 @@
-enum GraphicFeatureSet: String {
+public enum GraphicsFeatureSet: String, Codable {
   /**
    The item requires features in MTLFeatureSet_iOS_GPUFamily1_v2.
    */

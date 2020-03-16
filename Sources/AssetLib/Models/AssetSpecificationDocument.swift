@@ -12,6 +12,11 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
     case info
   }
 
+  public init(info: AssetSpecificationMetadataProtocol, images: [AssetSpecificationProtocol]?) {
+    self.info = info
+    self.images = images
+  }
+
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     let info = try container.decode(AssetSpecificationMetadata.self, forKey: .info)

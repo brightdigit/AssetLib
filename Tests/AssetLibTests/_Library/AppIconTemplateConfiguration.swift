@@ -1,6 +1,6 @@
 @testable import AssetLib
 
-struct AppIconTemplateConfiguration {
+struct AppIconTemplateConfiguration: AssetTemplateConfiguration {
   let devices: Set<ImageIdiom>
   let specifyGamut: Bool
   let prerendered: Bool

@@ -5,6 +5,34 @@ import Foundation
   import CoreGraphics
 #endif
 
+func multiply<Multiplier, Element>(
+  sequence: [Element],
+  by other: [Multiplier],
+  andAppend shouldAppend: Bool = false,
+  onlyIf test: Bool = true,
+  using closure: (Element, Multiplier) -> Element
+) -> [Element] {
+  guard test else {
+    return sequence
+  }
+
+  guard !other.isEmpty else {
+    return sequence
+  }
+
+  var newSequence = other.flatMap { value in
+    sequence.map { element in
+      closure(element, value)
+    }
+  }
+
+  if shouldAppend {
+    newSequence.append(contentsOf: sequence)
+  }
+
+  return newSequence
+}
+
 protocol ImageIdiomScaleProvider {
   func scales(forIdiom idiom: ImageIdiom) -> [CGFloat]
 }
@@ -14,6 +42,18 @@ protocol ImageIdiomDependencyProvider {
 }
 
 struct AssetSpecificationBuilder: AssetSpecificationProtocol {
+  var screenWidth: AppleWatchScreenWidth?
+
+  var heightClass: SizeClass?
+
+  var widthClass: SizeClass?
+
+  var memory: Memory?
+
+  var graphicsFeatureSet: GraphicsFeatureSet?
+
+  var locale: Locale?
+
   var languageDirection: LanguageDirection?
 
   public var displayGamut: DisplayGamut?
@@ -40,6 +80,12 @@ struct AssetSpecificationBuilder: AssetSpecificationProtocol {
     subtype = specifications.subtype
     role = specifications.role
     appearances = specifications.appearances
+    screenWidth = specifications.screenWidth
+    heightClass = specifications.heightClass
+    widthClass = specifications.widthClass
+    memory = specifications.memory
+    graphicsFeatureSet = specifications.graphicsFeatureSet
+    locale = specifications.locale
   }
 
   func assetSpec() -> AssetSpecificationProtocol {
@@ -50,6 +96,7 @@ struct AssetSpecificationBuilder: AssetSpecificationProtocol {
 struct AssetTemplateBuilder {
   let scaleProvider: ImageIdiomScaleProvider!
   let dependencyProvider: ImageIdiomDependencyProvider!
+
   func document(fromTemplate _: AssetTemplate) -> AssetSpecificationDocumentProtocol {
     let configuration = ImageSetTemplateConfiguration(
       renderAs: nil,
@@ -66,7 +113,7 @@ struct AssetTemplateBuilder {
       graphicFSSet: [.metal4v1],
       specifyAWWidth: true,
       autoScaling: true,
-      locale: nil,
+      locales: [],
       resourceTags: ["tag", "otherTag"]
     )
 
@@ -97,8 +144,7 @@ struct AssetTemplateBuilder {
       $0.appearance
     }
     for (_, values) in appearances {
-      specs.append(contentsOf: specs.flatMap {
-        spec in
+      specs.append(contentsOf: specs.flatMap { spec in
         values.map { appearance in
           var newSpec = AssetSpecificationBuilder(specifications: spec)
 
@@ -119,16 +165,62 @@ struct AssetTemplateBuilder {
     }
 
     if configuration.direction.count > 0 {
-      specs = configuration.direction.flatMap {
-        direction in
-        specs.map {
-          spec in
+      specs = configuration.direction.flatMap { direction in
+        specs.map { spec in
           var specBuilder = AssetSpecificationBuilder(specifications: spec)
           specBuilder.languageDirection = direction
           return specBuilder.assetSpec()
         }
       }
     }
-    fatalError()
+
+    if let heightClass = configuration.specifiedHeightClass {
+      specs = multiply(sequence: specs, by: [heightClass], andAppend: true, using: { spec, sizeClass in
+        var builder = AssetSpecificationBuilder(specifications: spec)
+        builder.heightClass = sizeClass
+        return builder.assetSpec()
+      })
+    }
+
+    if let widthClass = configuration.specifiedWidthClass {
+      specs = multiply(sequence: specs, by: [widthClass], andAppend: true, using: { spec, sizeClass in
+        var builder = AssetSpecificationBuilder(specifications: spec)
+        builder.widthClass = sizeClass
+        return builder.assetSpec()
+      })
+    }
+
+    specs = multiply(sequence: specs, by: [Memory](configuration.memorySet)) { spec, memory in
+      var builder = AssetSpecificationBuilder(specifications: spec)
+      builder.memory = memory
+      return builder.assetSpec()
+    }
+
+    specs = multiply(sequence: specs, by: [GraphicsFeatureSet](configuration.graphicFSSet)) { spec, graphicsFeatureSet in
+      var builder = AssetSpecificationBuilder(specifications: spec)
+      builder.graphicsFeatureSet = graphicsFeatureSet
+      return builder.assetSpec()
+    }
+
+    if configuration.specifyAWWidth {
+      specs = specs.flatMap { (spec) -> [AssetSpecificationProtocol] in
+        guard spec.idiom == .watch else {
+          return [spec]
+        }
+        return AppleWatchScreenWidth.allCases.map { width in
+          var builder = AssetSpecificationBuilder(specifications: spec)
+          builder.screenWidth = width
+          return builder.assetSpec()
+        }
+      }
+    }
+
+    specs = multiply(sequence: specs, by: configuration.locales, andAppend: true, using: { spec, locale in
+      var builder = AssetSpecificationBuilder(specifications: spec)
+      builder.locale = locale
+      return builder.assetSpec()
+    })
+
+    return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs)
   }
 }
