@@ -56,3 +56,9 @@ var subtype: DeviceSubType?
 ```
 
 > The type of Apple Watch when there is more than one icon size for a role.
+
+### `appearances`
+
+```swift
+var appearances: [AnyAppearance]
+```
