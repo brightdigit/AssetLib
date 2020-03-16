@@ -20,6 +20,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   public let subtype: DeviceSubType?
 
   public let appearances: [AnyAppearance]
+  public var displayGamut: DisplayGamut?
 
   enum CodingKeys: String, CodingKey {
     case idiom

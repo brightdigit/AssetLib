@@ -20,4 +20,6 @@ public protocol AssetSpecificationProtocol {
   var subtype: DeviceSubType? { get }
 
   var appearances: [AnyAppearance] { get }
+
+  var displayGamut: DisplayGamut? { get }
 }

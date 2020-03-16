@@ -14,6 +14,8 @@ protocol ImageIdiomDependencyProvider {
 }
 
 struct AssetSpecificationBuilder: AssetSpecificationProtocol {
+  public var displayGamut: DisplayGamut?
+
   /// The device type for the image.
   public var idiom: ImageIdiom
   /// The targeted display scale for the image or icon.
@@ -104,6 +106,16 @@ struct AssetTemplateBuilder {
         }
       })
     }
+    if configuration.specifyGamut {
+      specs = DisplayGamut.allCases.flatMap { displayGamut in
+        specs.map { spec in
+          var specBuilder = AssetSpecificationBuilder(specifications: spec)
+          specBuilder.displayGamut = displayGamut
+          return specBuilder.assetSpec()
+        }
+      }
+    }
+
     fatalError()
   }
 }
