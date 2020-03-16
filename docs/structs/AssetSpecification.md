@@ -63,6 +63,12 @@ public let subtype: DeviceSubType?
 public let appearances: [AnyAppearance]
 ```
 
+### `displayGamut`
+
+```swift
+public var displayGamut: DisplayGamut?
+```
+
 ## Methods
 ### `init(idiom:scale:size:role:subtype:filename:appearances:)`
 

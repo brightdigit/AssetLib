@@ -19,6 +19,7 @@
 -   [AppleWatchRole](enums/AppleWatchRole.md)
 -   [Contrast](enums/Contrast.md)
 -   [DeviceSubType](enums/DeviceSubType.md)
+-   [DisplayGamut](enums/DisplayGamut.md)
 -   [ImageIdiom](enums/ImageIdiom.md)
 -   [Luminosity](enums/Luminosity.md)
 
