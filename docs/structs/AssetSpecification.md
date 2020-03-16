@@ -66,11 +66,17 @@ public let appearances: [AnyAppearance]
 ### `displayGamut`
 
 ```swift
-public var displayGamut: DisplayGamut?
+public let displayGamut: DisplayGamut?
+```
+
+### `languageDirection`
+
+```swift
+public let languageDirection: LanguageDirection?
 ```
 
 ## Methods
-### `init(idiom:scale:size:role:subtype:filename:appearances:)`
+### `init(idiom:scale:size:role:subtype:filename:appearances:displayGamut:languageDirection:)`
 
 ```swift
 public init(idiom: ImageIdiom,
@@ -79,7 +85,9 @@ public init(idiom: ImageIdiom,
             role: AppleWatchRole? = nil,
             subtype: DeviceSubType? = nil,
             filename: String? = nil,
-            appearances: [AnyAppearance] = [AnyAppearance]())
+            appearances: [AnyAppearance] = [AnyAppearance](),
+            displayGamut: DisplayGamut? = nil,
+            languageDirection: LanguageDirection? = nil)
 ```
 
 > Builds an AssetSpecification

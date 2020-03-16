@@ -21,6 +21,7 @@
 -   [DeviceSubType](enums/DeviceSubType.md)
 -   [DisplayGamut](enums/DisplayGamut.md)
 -   [ImageIdiom](enums/ImageIdiom.md)
+-   [LanguageDirection](enums/LanguageDirection.md)
 -   [Luminosity](enums/Luminosity.md)
 
 ## Extensions

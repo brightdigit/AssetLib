@@ -68,3 +68,9 @@ var appearances: [AnyAppearance]
 ```swift
 var displayGamut: DisplayGamut?
 ```
+
+### `languageDirection`
+
+```swift
+var languageDirection: LanguageDirection?
+```
