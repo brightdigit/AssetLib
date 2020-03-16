@@ -57,8 +57,14 @@ public let subtype: DeviceSubType?
 
 > The type of Apple Watch when there is more than one icon size for a role.
 
+### `appearances`
+
+```swift
+public let appearances: [AnyAppearance]
+```
+
 ## Methods
-### `init(idiom:scale:size:role:subtype:filename:)`
+### `init(idiom:scale:size:role:subtype:filename:appearances:)`
 
 ```swift
 public init(idiom: ImageIdiom,
@@ -66,7 +72,8 @@ public init(idiom: ImageIdiom,
             size: CGSize? = nil,
             role: AppleWatchRole? = nil,
             subtype: DeviceSubType? = nil,
-            filename: String? = nil)
+            filename: String? = nil,
+            appearances: [AnyAppearance] = [AnyAppearance]())
 ```
 
 > Builds an AssetSpecification
