@@ -62,3 +62,9 @@ var subtype: DeviceSubType?
 ```swift
 var appearances: [AnyAppearance]
 ```
+
+### `displayGamut`
+
+```swift
+var displayGamut: DisplayGamut?
+```
