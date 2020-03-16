@@ -22,4 +22,6 @@ public protocol AssetSpecificationProtocol {
   var appearances: [AnyAppearance] { get }
 
   var displayGamut: DisplayGamut? { get }
+
+  var languageDirection: LanguageDirection? { get }
 }

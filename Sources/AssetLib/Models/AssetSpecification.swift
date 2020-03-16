@@ -20,7 +20,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   public let subtype: DeviceSubType?
 
   public let appearances: [AnyAppearance]
-  public var displayGamut: DisplayGamut?
+  public let displayGamut: DisplayGamut?
+  public let languageDirection: LanguageDirection?
 
   enum CodingKeys: String, CodingKey {
     case idiom
@@ -30,6 +31,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     case role
     case subtype
     case appearances
+    case displayGamut
+    case languageDirection
   }
 
   /// Builds an AssetSpecification
@@ -46,7 +49,9 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
               role: AppleWatchRole? = nil,
               subtype: DeviceSubType? = nil,
               filename: String? = nil,
-              appearances: [AnyAppearance] = [AnyAppearance]()) {
+              appearances: [AnyAppearance] = [AnyAppearance](),
+              displayGamut: DisplayGamut? = nil,
+              languageDirection: LanguageDirection? = nil) {
     self.idiom = idiom
     self.scale = scale
     self.size = size
@@ -54,6 +59,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     self.role = role
     self.subtype = subtype
     self.appearances = appearances
+    self.displayGamut = displayGamut
+    self.languageDirection = languageDirection
   }
 
   /// Builds an AssetSpecification from an AssetSpecificationProtocol.
@@ -66,6 +73,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     subtype = specifications.subtype
     role = specifications.role
     appearances = specifications.appearances
+    displayGamut = specifications.displayGamut
+    languageDirection = specifications.languageDirection
   }
 
   // swiftlint:disable force_try
@@ -100,6 +109,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     role = try container.decodeIfPresent(AppleWatchRole.self, forKey: .role)
     subtype = try container.decodeIfPresent(DeviceSubType.self, forKey: .subtype)
     appearances = try container.decodeIfPresent([AnyAppearance].self, forKey: .appearances) ?? [AnyAppearance]()
+    displayGamut = try container.decodeIfPresent(DisplayGamut.self, forKey: .displayGamut)
+    languageDirection = try container.decodeIfPresent(LanguageDirection.self, forKey: .languageDirection)
   }
 
   /// Formats an CGSize for an Asset's size.

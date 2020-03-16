@@ -14,6 +14,8 @@ protocol ImageIdiomDependencyProvider {
 }
 
 struct AssetSpecificationBuilder: AssetSpecificationProtocol {
+  var languageDirection: LanguageDirection?
+
   public var displayGamut: DisplayGamut?
 
   /// The device type for the image.
@@ -116,6 +118,17 @@ struct AssetTemplateBuilder {
       }
     }
 
+    if configuration.direction.count > 0 {
+      specs = configuration.direction.flatMap {
+        direction in
+        specs.map {
+          spec in
+          var specBuilder = AssetSpecificationBuilder(specifications: spec)
+          specBuilder.languageDirection = direction
+          return specBuilder.assetSpec()
+        }
+      }
+    }
     fatalError()
   }
 }
