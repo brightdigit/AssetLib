@@ -19,6 +19,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   /// The type of Apple Watch when there is more than one icon size for a role.
   public let subtype: DeviceSubType?
 
+  public let appearances: [AnyAppearance]
+
   enum CodingKeys: String, CodingKey {
     case idiom
     case scale
@@ -26,6 +28,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     case filename
     case role
     case subtype
+    case appearances
   }
 
   /// Builds an AssetSpecification
@@ -41,13 +44,15 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
               size: CGSize? = nil,
               role: AppleWatchRole? = nil,
               subtype: DeviceSubType? = nil,
-              filename: String? = nil) {
+              filename: String? = nil,
+              appearances: [AnyAppearance] = [AnyAppearance]()) {
     self.idiom = idiom
     self.scale = scale
     self.size = size
     self.filename = filename
     self.role = role
     self.subtype = subtype
+    self.appearances = appearances
   }
 
   /// Builds an AssetSpecification from an AssetSpecificationProtocol.
@@ -59,6 +64,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     filename = specifications.filename
     subtype = specifications.subtype
     role = specifications.role
+    appearances = specifications.appearances
   }
 
   // swiftlint:disable force_try
@@ -92,6 +98,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
 
     role = try container.decodeIfPresent(AppleWatchRole.self, forKey: .role)
     subtype = try container.decodeIfPresent(DeviceSubType.self, forKey: .subtype)
+    appearances = try container.decodeIfPresent([AnyAppearance].self, forKey: .appearances) ?? [AnyAppearance]()
   }
 
   /// Formats an CGSize for an Asset's size.

@@ -33,7 +33,7 @@ public enum Luminosity: String, AppearanceValue {
   }
 }
 
-struct AnyAppearance: Appearance, Codable {
+public struct AnyAppearance: Appearance, Codable {
   public let appearance: String
   public let value: String
 }

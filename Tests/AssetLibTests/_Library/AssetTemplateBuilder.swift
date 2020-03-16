@@ -6,11 +6,41 @@ import Foundation
 #endif
 
 protocol ImageIdiomScaleProvider {
-  func scales(forIdiom idiom: ImageIdiom) -> Set<CGFloat>
+  func scales(forIdiom idiom: ImageIdiom) -> [CGFloat]
 }
 
 protocol ImageIdiomDependencyProvider {
   func idioms(forDevice device: ImageSetDevice) -> [(ImageIdiom, DeviceSubType?)]
+}
+
+struct AssetSpecificationBuilder: AssetSpecificationProtocol {
+  /// The device type for the image.
+  public var idiom: ImageIdiom
+  /// The targeted display scale for the image or icon.
+  public var scale: CGFloat?
+  /// The size of the app icon.
+  public var size: CGSize?
+  /// The HEIF, .png, .jpg, or .pdf file for the image.
+  public var filename: String?
+  /// The role for an Apple Watch icon
+  public var role: AppleWatchRole?
+  /// The type of Apple Watch when there is more than one icon size for a role.
+  public var subtype: DeviceSubType?
+
+  public var appearances: [AnyAppearance]
+  init(specifications: AssetSpecificationProtocol) {
+    idiom = specifications.idiom
+    scale = specifications.scale
+    size = specifications.size
+    filename = specifications.filename
+    subtype = specifications.subtype
+    role = specifications.role
+    appearances = specifications.appearances
+  }
+
+  func assetSpec() -> AssetSpecificationProtocol {
+    return AssetSpecification(specifications: self)
+  }
 }
 
 struct AssetTemplateBuilder {
@@ -42,16 +72,38 @@ struct AssetTemplateBuilder {
 
     let idioms = configuration.devices.flatMap(dependencyProvider.idioms(forDevice:))
 
-    let scales = idioms.map { scaleProvider.scales(forIdiom: $0.0) }
-    var specs = zip(idioms, scales).flatMap { args in
+//    let scales = idioms.map {
+//      scaleProvider.scales(forIdiom: $0.0) }
+    let scales: [[CGFloat?]] = idioms.map { (args) -> [CGFloat?] in
+      if configuration.scaling == .some(.single) {
+        return [nil]
+      }
+      var scales: [CGFloat?] = scaleProvider.scales(forIdiom: args.0)
+      if configuration.scaling == nil {
+        scales.append(nil)
+      }
+      return scales
+    }
+    var specs: [AssetSpecificationProtocol] = zip(idioms, scales).flatMap { args in
       args.1.map { scale in
         AssetSpecification(idiom: args.0.0, scale: scale, subtype: args.0.1)
       }
     }
-    [String: [AnyAppearance]].init(grouping: [AnyAppearance](configuration.appearances)) {
+    let appearances = [String: [AnyAppearance]].init(grouping: [AnyAppearance](configuration.appearances)) {
       $0.appearance
     }
+    for (_, values) in appearances {
+      specs.append(contentsOf: specs.flatMap {
+        spec in
+        values.map { appearance in
+          var newSpec = AssetSpecificationBuilder(specifications: spec)
 
+          newSpec.appearances.append(appearance)
+
+          return newSpec.assetSpec()
+        }
+      })
+    }
     fatalError()
   }
 }
