@@ -1,7 +1,7 @@
 /**
  The type of compression
  */
-enum CompressionType: String {
+public enum CompressionType: String, Codable {
   /**
    The image uses an automatic lossy compression.
    */
