@@ -17,12 +17,16 @@
 ## Enums
 
 -   [AppleWatchRole](enums/AppleWatchRole.md)
+-   [AppleWatchScreenWidth](enums/AppleWatchScreenWidth.md)
 -   [Contrast](enums/Contrast.md)
 -   [DeviceSubType](enums/DeviceSubType.md)
 -   [DisplayGamut](enums/DisplayGamut.md)
+-   [GraphicsFeatureSet](enums/GraphicsFeatureSet.md)
 -   [ImageIdiom](enums/ImageIdiom.md)
 -   [LanguageDirection](enums/LanguageDirection.md)
 -   [Luminosity](enums/Luminosity.md)
+-   [Memory](enums/Memory.md)
+-   [SizeClass](enums/SizeClass.md)
 
 ## Extensions
 

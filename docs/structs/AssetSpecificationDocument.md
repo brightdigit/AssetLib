@@ -26,6 +26,12 @@ public let images: [AssetSpecificationProtocol]?
 > An array of sizes or variants of an image or icon.
 
 ## Methods
+### `init(info:images:)`
+
+```swift
+public init(info: AssetSpecificationMetadataProtocol, images: [AssetSpecificationProtocol]?)
+```
+
 ### `init(from:)`
 
 ```swift

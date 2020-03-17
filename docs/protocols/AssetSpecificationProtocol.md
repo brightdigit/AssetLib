@@ -74,3 +74,39 @@ var displayGamut: DisplayGamut?
 ```swift
 var languageDirection: LanguageDirection?
 ```
+
+### `screenWidth`
+
+```swift
+var screenWidth: AppleWatchScreenWidth?
+```
+
+### `heightClass`
+
+```swift
+var heightClass: SizeClass?
+```
+
+### `widthClass`
+
+```swift
+var widthClass: SizeClass?
+```
+
+### `memory`
+
+```swift
+var memory: Memory?
+```
+
+### `graphicsFeatureSet`
+
+```swift
+var graphicsFeatureSet: GraphicsFeatureSet?
+```
+
+### `locale`
+
+```swift
+var locale: Locale?
+```
