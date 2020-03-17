@@ -18,27 +18,3 @@ func product<Multiplier, Factor, Product>(
 ) -> [Product] {
   product(sequence, other).map(closure)
 }
-
-func multiply<Multiplier, Factor>(
-  sequence: [Factor],
-  by other: [Multiplier],
-  andAppend shouldAppend: Bool = false,
-  onlyIf test: Bool = true,
-  using closure: (Factor, Multiplier) -> Factor
-) -> [Factor] {
-  guard test else {
-    return sequence
-  }
-
-  guard !other.isEmpty else {
-    return sequence
-  }
-
-  var newSequence = product(sequence, other, using: closure)
-
-  if shouldAppend {
-    newSequence.append(contentsOf: sequence)
-  }
-
-  return newSequence
-}

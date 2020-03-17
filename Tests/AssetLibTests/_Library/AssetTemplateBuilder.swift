@@ -34,14 +34,17 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       }
       return scales
     }
+
     var specs: [AssetSpecificationProtocol] = zip(idioms, scales).flatMap { args in
       args.1.map { scale in
         AssetSpecification(idiom: args.0.0, scale: scale, subtype: args.0.1)
       }
     }
+
     let appearances = [String: [AnyAppearance]].init(grouping: [AnyAppearance](configuration.appearances)) {
       $0.appearance
     }
+
     for (_, values) in appearances {
       specs.append(contentsOf: specs.flatMap { spec in
         values.map { appearance in
@@ -74,19 +77,19 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
 
     if let heightClass = configuration.specifiedHeightClass {
-      specs = multiply(sequence: specs, by: [heightClass], andAppend: true, using: { spec, sizeClass in
+      specs.append(contentsOf: product(specs, [heightClass], using: { spec, sizeClass in
         var builder = AssetSpecificationBuilder(specifications: spec)
         builder.heightClass = sizeClass
         return builder.assetSpec()
-          })
+      }))
     }
 
     if let widthClass = configuration.specifiedWidthClass {
-      specs = multiply(sequence: specs, by: [widthClass], andAppend: true, using: { spec, sizeClass in
+      specs.append(contentsOf: product(specs, [widthClass], using: { spec, sizeClass in
         var builder = AssetSpecificationBuilder(specifications: spec)
         builder.widthClass = sizeClass
         return builder.assetSpec()
-          })
+      }))
     }
 
     specs = product(specs, [Memory](configuration.memorySet)) { spec, memory in
@@ -114,11 +117,11 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       }
     }
 
-    specs = multiply(sequence: specs, by: configuration.locales, andAppend: true, using: { spec, locale in
+    specs.append(contentsOf: product(specs, configuration.locales, using: { spec, locale in
       var builder = AssetSpecificationBuilder(specifications: spec)
       builder.locale = locale
       return builder.assetSpec()
-        })
+         }))
 
     return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs)
   }
