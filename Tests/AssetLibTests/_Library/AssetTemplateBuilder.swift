@@ -37,6 +37,28 @@ protocol ImageIdiomScaleProvider {
   func scales(forIdiom idiom: ImageIdiom) -> [CGFloat]
 }
 
+public struct ScaleListProvider: ImageIdiomScaleProvider {
+  let dictionary: [ImageIdiom: [CGFloat]]
+
+  static let defaultDictionary: [ImageIdiom: [CGFloat]] = [
+    .universal: [1.0, 2.0, 3.0],
+    .iphone: [1.0, 2.0, 3.0],
+    .ipad: [1.0, 2.0],
+    .mac: [1.0, 2.0],
+    .tv: [1.0, 2.0],
+    .watch: [2.0],
+    .car: [2.0, 3.0]
+  ]
+
+  init(dictionary: [ImageIdiom: [CGFloat]]? = nil) {
+    self.dictionary = dictionary ?? Self.defaultDictionary
+  }
+
+  func scales(forIdiom idiom: ImageIdiom) -> [CGFloat] {
+    return dictionary[idiom] ?? [CGFloat]()
+  }
+}
+
 protocol ImageIdiomDependencyProvider {
   func idioms(forDevice device: ImageSetDevice) -> [(ImageIdiom, DeviceSubType?)]
 }
@@ -94,8 +116,8 @@ struct AssetSpecificationBuilder: AssetSpecificationProtocol {
 }
 
 struct AssetTemplateBuilder {
-  let scaleProvider: ImageIdiomScaleProvider!
-  let dependencyProvider: ImageIdiomDependencyProvider!
+  let scaleProvider: ImageIdiomScaleProvider
+  let dependencyProvider: ImageIdiomDependencyProvider
 
   func document(fromTemplate _: AssetTemplate) -> AssetSpecificationDocumentProtocol {
     let configuration = ImageSetTemplateConfiguration(
