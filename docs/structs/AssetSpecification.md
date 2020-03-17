@@ -56,7 +56,7 @@ public let idiom: ImageIdiom
 ### `scale`
 
 ```swift
-public let scale: CGFloat?
+public let scale: Float?
 ```
 
 > The targeted display scale for the image or icon.
@@ -64,7 +64,7 @@ public let scale: CGFloat?
 ### `size`
 
 ```swift
-public let size: CGSize?
+public let size: Size?
 ```
 
 > The size of the app icon.
@@ -116,8 +116,8 @@ public let languageDirection: LanguageDirection?
 
 ```swift
 public init(idiom: ImageIdiom,
-            scale: CGFloat? = nil,
-            size: CGSize? = nil,
+            scale: Float? = nil,
+            size: Size? = nil,
             role: AppleWatchRole? = nil,
             subtype: DeviceSubType? = nil,
             filename: String? = nil,
@@ -182,10 +182,10 @@ public init(from decoder: Decoder) throws
 ### `formatSize(_:)`
 
 ```swift
-public static func formatSize(_ size: CGSize) -> String
+public static func formatSize(_ size: Size) -> String
 ```
 
-> Formats an CGSize for an Asset's size.
+> Formats an Size for an Asset's size.
 > - Parameter size: The dimensions for the image or icon variant.
 
 #### Parameters

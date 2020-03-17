@@ -20,7 +20,7 @@ var idiom: ImageIdiom
 ### `scale`
 
 ```swift
-var scale: CGFloat?
+var scale: Float?
 ```
 
 > The targeted display scale for the image or icon.
@@ -28,7 +28,7 @@ var scale: CGFloat?
 ### `size`
 
 ```swift
-var size: CGSize?
+var size: Size?
 ```
 
 > The size of the app icon.
