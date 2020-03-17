@@ -9,6 +9,42 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable
 > A size or variant of an image or icon.
 
 ## Properties
+### `screenWidth`
+
+```swift
+public let screenWidth: AppleWatchScreenWidth?
+```
+
+### `heightClass`
+
+```swift
+public let heightClass: SizeClass?
+```
+
+### `widthClass`
+
+```swift
+public let widthClass: SizeClass?
+```
+
+### `memory`
+
+```swift
+public let memory: Memory?
+```
+
+### `graphicsFeatureSet`
+
+```swift
+public let graphicsFeatureSet: GraphicsFeatureSet?
+```
+
+### `locale`
+
+```swift
+public let locale: Locale?
+```
+
 ### `idiom`
 
 ```swift
@@ -76,7 +112,7 @@ public let languageDirection: LanguageDirection?
 ```
 
 ## Methods
-### `init(idiom:scale:size:role:subtype:filename:appearances:displayGamut:languageDirection:)`
+### `init(idiom:scale:size:role:subtype:filename:appearances:displayGamut:languageDirection:screenWidth:heightClass:widthClass:memory:graphicsFeatureSet:locale:)`
 
 ```swift
 public init(idiom: ImageIdiom,
@@ -87,7 +123,13 @@ public init(idiom: ImageIdiom,
             filename: String? = nil,
             appearances: [AnyAppearance] = [AnyAppearance](),
             displayGamut: DisplayGamut? = nil,
-            languageDirection: LanguageDirection? = nil)
+            languageDirection: LanguageDirection? = nil,
+            screenWidth: AppleWatchScreenWidth? = nil,
+            heightClass: SizeClass? = nil,
+            widthClass: SizeClass? = nil,
+            memory: Memory? = nil,
+            graphicsFeatureSet: GraphicsFeatureSet? = nil,
+            locale: Locale? = nil)
 ```
 
 > Builds an AssetSpecification
