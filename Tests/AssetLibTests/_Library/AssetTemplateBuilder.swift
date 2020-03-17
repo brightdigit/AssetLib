@@ -59,8 +59,41 @@ public struct ScaleListProvider: ImageIdiomScaleProvider {
   }
 }
 
+public struct ImageSetDeviceIdiomProvider: ImageIdiomDependencyProvider {
+  let dictionary: [ImageSetDevice: (ImageIdiom, DeviceSubType?)]
+
+  static let defaultDictionray: [ImageSetDevice: (ImageIdiom, DeviceSubType?)] = [
+    .universal: (.universal, nil),
+    .iphone: (.iphone, nil),
+    .ipad: (.ipad, nil),
+    .mac: (.mac, nil),
+    .tv: (.tv, nil),
+    .watch: (.watch, nil),
+    .car: (.car, nil),
+    .macCatalyst: (.ipad, .macCatalyst)
+  ]
+
+  public init() {
+    dictionary = Self.defaultDictionray
+  }
+
+  public init?(dictionary: [ImageSetDevice: (ImageIdiom, DeviceSubType?)]) {
+    guard Set(dictionary.keys) == Set(ImageSetDevice.allCases) else {
+      return nil
+    }
+    self.dictionary = dictionary
+  }
+
+  func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?) {
+    guard let result = dictionary[device] else {
+      preconditionFailure()
+    }
+    return result
+  }
+}
+
 protocol ImageIdiomDependencyProvider {
-  func idioms(forDevice device: ImageSetDevice) -> [(ImageIdiom, DeviceSubType?)]
+  func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?)
 }
 
 struct AssetSpecificationBuilder: AssetSpecificationProtocol {
@@ -119,23 +152,28 @@ struct AssetTemplateBuilder {
   let scaleProvider: ImageIdiomScaleProvider
   let dependencyProvider: ImageIdiomDependencyProvider
 
+  public init() {
+    scaleProvider = ScaleListProvider()
+    dependencyProvider = ImageSetDeviceIdiomProvider()
+  }
+
   func document(fromTemplate _: AssetTemplate) -> AssetSpecificationDocumentProtocol {
     let configuration = ImageSetTemplateConfiguration(
       renderAs: nil,
       compression: .automatic,
       preserveVectorData: false,
-      devices: [.mac],
+      devices: Set(ImageSetDevice.allCases),
       appearances: [ValueAppearance(value: Luminosity.dark).eraseToAny()],
-      scaling: .single,
-      specifyGamut: false,
-      direction: [.leftToRight],
+      scaling: nil,
+      specifyGamut: true,
+      direction: [.leftToRight, .rightToLeft],
       specifiedWidthClass: .regular,
       specifiedHeightClass: .compact,
       memorySet: [.requires1GB, .requires4GB],
       graphicFSSet: [.metal4v1],
       specifyAWWidth: true,
       autoScaling: true,
-      locales: [],
+      locales: [Locale(identifier: "en"), Locale(identifier: "fr")],
       resourceTags: ["tag", "otherTag"]
     )
 
@@ -143,7 +181,7 @@ struct AssetTemplateBuilder {
 
     /* appearances, specifyGamut, direction, specified*Class, memorySet, graphicFSSet, specifyAWWidth, locale */
 
-    let idioms = configuration.devices.flatMap(dependencyProvider.idioms(forDevice:))
+    let idioms = configuration.devices.map(dependencyProvider.idioms(forDevice:))
 
 //    let scales = idioms.map {
 //      scaleProvider.scales(forIdiom: $0.0) }

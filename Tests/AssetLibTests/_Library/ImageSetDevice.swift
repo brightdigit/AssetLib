@@ -1,7 +1,7 @@
 import Foundation
 
 /// The device type for the image.
-public enum ImageSetDevice {
+public enum ImageSetDevice: CaseIterable {
   ///  The image works on any device and platform.
   case universal
   ///  The image is for iPhone devices.
