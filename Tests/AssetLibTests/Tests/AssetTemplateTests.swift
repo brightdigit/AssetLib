@@ -3,9 +3,26 @@ import XCTest
 
 final class AssetTemplateTests: XCTestCase {
   func testTemplate() {
-    let template = AssetTemplate(configuration: AppIconTemplateConfiguration(devices: Set<ImageIdiom>(), specifyGamut: false, prerendered: true))
+    let template = ImageSetTemplate(
+      renderAs: nil,
+      compression: .automatic,
+      preserveVectorData: false,
+      devices: Set(ImageSetDevice.allCases),
+      appearances: [ValueAppearance(value: Luminosity.dark).eraseToAny()],
+      scaling: nil,
+      specifyGamut: true,
+      direction: [.leftToRight, .rightToLeft],
+      specifiedWidthClass: .regular,
+      specifiedHeightClass: .compact,
+      memorySet: [.requires1GB, .requires4GB],
+      graphicFSSet: [.metal4v1],
+      specifyAWWidth: true,
+      autoScaling: true,
+      locales: [Locale(identifier: "en"), Locale(identifier: "fr")],
+      resourceTags: ["tag", "otherTag"]
+    )
 
-    let builder = AssetTemplateBuilder()
+    let builder = ImageSetTemplateBuilder()
 
     let document = builder.document(fromTemplate: template)
     XCTAssertNotNil(document.images)

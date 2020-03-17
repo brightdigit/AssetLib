@@ -1,17 +1,13 @@
 import Foundation
 
-#if canImport(CoreGraphics)
-  import CoreGraphics
-#endif
-
 /// A size or variant of an image or icon.
 public protocol AssetSpecificationProtocol {
   /// The device type for the image.
   var idiom: ImageIdiom { get }
   /// The targeted display scale for the image or icon.
-  var scale: CGFloat? { get }
+  var scale: Float? { get }
   /// The size of the app icon.
-  var size: CGSize? { get }
+  var size: Size? { get }
   /// The HEIF, .png, .jpg, or .pdf file for the image.
   var filename: String? { get }
   /// The role for an Apple Watch icon

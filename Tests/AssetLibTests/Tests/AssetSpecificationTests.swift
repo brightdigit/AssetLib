@@ -107,9 +107,9 @@ final class AssetSpecificationTests: XCTestCase {
 
   func testSpecifications() {
     let idiom = ImageIdiom.car
-    let scale = CGFloat.random(in: 1 ... 3)
-    let sizeDimension = CGFloat.random(in: 20 ... 200)
-    let size = CGSize(width: sizeDimension, height: sizeDimension)
+    let scale = Float.random(in: 1 ... 3)
+    let sizeDimension = Float.random(in: 20 ... 200)
+    let size = Size(width: sizeDimension, height: sizeDimension)
     let role = AppleWatchRole.companionSettings
     let subtype = DeviceSubType.size40
     let filename = "test.png"

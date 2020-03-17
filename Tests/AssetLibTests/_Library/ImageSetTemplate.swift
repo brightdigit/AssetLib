@@ -1,7 +1,7 @@
 @testable import AssetLib
 import Foundation
 
-struct ImageSetTemplateConfiguration {
+struct ImageSetTemplate {
   let renderAs: RenderingIntent?
   let compression: CompressionType
   let preserveVectorData: Bool

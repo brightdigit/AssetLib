@@ -1,9 +1,5 @@
 import Foundation
 
-#if canImport(CoreGraphics)
-  import CoreGraphics
-#endif
-
 /// A size or variant of an image or icon.
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   public let screenWidth: AppleWatchScreenWidth?
@@ -16,9 +12,9 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   /// The device type for the image.
   public let idiom: ImageIdiom
   /// The targeted display scale for the image or icon.
-  public let scale: CGFloat?
+  public let scale: Float?
   /// The size of the app icon.
-  public let size: CGSize?
+  public let size: Size?
   /// The HEIF, .png, .jpg, or .pdf file for the image.
   public let filename: String?
   /// The role for an Apple Watch icon
@@ -57,8 +53,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   ///   - subtype: The type of Apple Watch when there is more than one icon size for a role.
   ///   - filename: The HEIF, .png, .jpg, or .pdf file for the image.
   public init(idiom: ImageIdiom,
-              scale: CGFloat? = nil,
-              size: CGSize? = nil,
+              scale: Float? = nil,
+              size: Size? = nil,
               role: AppleWatchRole? = nil,
               subtype: DeviceSubType? = nil,
               filename: String? = nil,
@@ -122,17 +118,17 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
       guard let scaleValueString = scaleString.firstMatchGroups(regex: Self.scaleRegularExpression)?[1], let scale = Double(scaleValueString) else {
         throw DecodingError.dataCorruptedError(forKey: .scale, in: container, debugDescription: scaleString)
       }
-      self.scale = CGFloat(scale)
+      self.scale = Float(scale)
     } else {
       scale = nil
     }
 
     if let sizeString = try container.decodeIfPresent(String.self, forKey: .size) {
-      let sizeArray = sizeString.split(separator: Character("x")).map(String.init).compactMap(Double.init)
+      let sizeArray = sizeString.split(separator: Character("x")).map(String.init).compactMap(Float.init)
       guard let width = sizeArray.first, let height = sizeArray.last, sizeArray.count == 2 else {
         throw DecodingError.dataCorruptedError(forKey: .size, in: container, debugDescription: sizeString)
       }
-      size = CGSize(width: width, height: height)
+      size = Size(width: width, height: height)
     } else {
       size = nil
     }
@@ -153,15 +149,15 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     locale = localeString.map(Locale.init(identifier:))
   }
 
-  /// Formats an CGSize for an Asset's size.
+  /// Formats an Size for an Asset's size.
   /// - Parameter size: The dimensions for the image or icon variant.
-  public static func formatSize(_ size: CGSize) -> String {
+  public static func formatSize(_ size: Size) -> String {
     "\(size.width.clean)x\(size.height.clean)"
   }
 
-  /// Formats a CGFloat for an Asset's scale.
+  /// Formats a Float for an Asset's scale.
   /// - Parameter size: The scale for the image or icon variant.
-  static func formatScale(_ scale: CGFloat) -> String {
+  static func formatScale(_ scale: Float) -> String {
     let scale = Int(scale.rounded())
     return "\(scale)x"
   }

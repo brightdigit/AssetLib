@@ -1,154 +1,12 @@
 @testable import AssetLib
 import Foundation
 
-#if canImport(CoreGraphics)
-  import CoreGraphics
-#endif
-
-func multiply<Multiplier, Element>(
-  sequence: [Element],
-  by other: [Multiplier],
-  andAppend shouldAppend: Bool = false,
-  onlyIf test: Bool = true,
-  using closure: (Element, Multiplier) -> Element
-) -> [Element] {
-  guard test else {
-    return sequence
-  }
-
-  guard !other.isEmpty else {
-    return sequence
-  }
-
-  var newSequence = other.flatMap { value in
-    sequence.map { element in
-      closure(element, value)
-    }
-  }
-
-  if shouldAppend {
-    newSequence.append(contentsOf: sequence)
-  }
-
-  return newSequence
+protocol AssetTemplateBuilder {
+  associatedtype Template
+  func document(fromTemplate template: Template) -> AssetSpecificationDocumentProtocol
 }
 
-protocol ImageIdiomScaleProvider {
-  func scales(forIdiom idiom: ImageIdiom) -> [CGFloat]
-}
-
-public struct ScaleListProvider: ImageIdiomScaleProvider {
-  let dictionary: [ImageIdiom: [CGFloat]]
-
-  static let defaultDictionary: [ImageIdiom: [CGFloat]] = [
-    .universal: [1.0, 2.0, 3.0],
-    .iphone: [1.0, 2.0, 3.0],
-    .ipad: [1.0, 2.0],
-    .mac: [1.0, 2.0],
-    .tv: [1.0, 2.0],
-    .watch: [2.0],
-    .car: [2.0, 3.0]
-  ]
-
-  init(dictionary: [ImageIdiom: [CGFloat]]? = nil) {
-    self.dictionary = dictionary ?? Self.defaultDictionary
-  }
-
-  func scales(forIdiom idiom: ImageIdiom) -> [CGFloat] {
-    return dictionary[idiom] ?? [CGFloat]()
-  }
-}
-
-public struct ImageSetDeviceIdiomProvider: ImageIdiomDependencyProvider {
-  let dictionary: [ImageSetDevice: (ImageIdiom, DeviceSubType?)]
-
-  static let defaultDictionray: [ImageSetDevice: (ImageIdiom, DeviceSubType?)] = [
-    .universal: (.universal, nil),
-    .iphone: (.iphone, nil),
-    .ipad: (.ipad, nil),
-    .mac: (.mac, nil),
-    .tv: (.tv, nil),
-    .watch: (.watch, nil),
-    .car: (.car, nil),
-    .macCatalyst: (.ipad, .macCatalyst)
-  ]
-
-  public init() {
-    dictionary = Self.defaultDictionray
-  }
-
-  public init?(dictionary: [ImageSetDevice: (ImageIdiom, DeviceSubType?)]) {
-    guard Set(dictionary.keys) == Set(ImageSetDevice.allCases) else {
-      return nil
-    }
-    self.dictionary = dictionary
-  }
-
-  func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?) {
-    guard let result = dictionary[device] else {
-      preconditionFailure()
-    }
-    return result
-  }
-}
-
-protocol ImageIdiomDependencyProvider {
-  func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?)
-}
-
-struct AssetSpecificationBuilder: AssetSpecificationProtocol {
-  var screenWidth: AppleWatchScreenWidth?
-
-  var heightClass: SizeClass?
-
-  var widthClass: SizeClass?
-
-  var memory: Memory?
-
-  var graphicsFeatureSet: GraphicsFeatureSet?
-
-  var locale: Locale?
-
-  var languageDirection: LanguageDirection?
-
-  public var displayGamut: DisplayGamut?
-
-  /// The device type for the image.
-  public var idiom: ImageIdiom
-  /// The targeted display scale for the image or icon.
-  public var scale: CGFloat?
-  /// The size of the app icon.
-  public var size: CGSize?
-  /// The HEIF, .png, .jpg, or .pdf file for the image.
-  public var filename: String?
-  /// The role for an Apple Watch icon
-  public var role: AppleWatchRole?
-  /// The type of Apple Watch when there is more than one icon size for a role.
-  public var subtype: DeviceSubType?
-
-  public var appearances: [AnyAppearance]
-  init(specifications: AssetSpecificationProtocol) {
-    idiom = specifications.idiom
-    scale = specifications.scale
-    size = specifications.size
-    filename = specifications.filename
-    subtype = specifications.subtype
-    role = specifications.role
-    appearances = specifications.appearances
-    screenWidth = specifications.screenWidth
-    heightClass = specifications.heightClass
-    widthClass = specifications.widthClass
-    memory = specifications.memory
-    graphicsFeatureSet = specifications.graphicsFeatureSet
-    locale = specifications.locale
-  }
-
-  func assetSpec() -> AssetSpecificationProtocol {
-    return AssetSpecification(specifications: self)
-  }
-}
-
-struct AssetTemplateBuilder {
+struct ImageSetTemplateBuilder: AssetTemplateBuilder {
   let scaleProvider: ImageIdiomScaleProvider
   let dependencyProvider: ImageIdiomDependencyProvider
 
@@ -157,39 +15,20 @@ struct AssetTemplateBuilder {
     dependencyProvider = ImageSetDeviceIdiomProvider()
   }
 
-  func document(fromTemplate _: AssetTemplate) -> AssetSpecificationDocumentProtocol {
-    let configuration = ImageSetTemplateConfiguration(
-      renderAs: nil,
-      compression: .automatic,
-      preserveVectorData: false,
-      devices: Set(ImageSetDevice.allCases),
-      appearances: [ValueAppearance(value: Luminosity.dark).eraseToAny()],
-      scaling: nil,
-      specifyGamut: true,
-      direction: [.leftToRight, .rightToLeft],
-      specifiedWidthClass: .regular,
-      specifiedHeightClass: .compact,
-      memorySet: [.requires1GB, .requires4GB],
-      graphicFSSet: [.metal4v1],
-      specifyAWWidth: true,
-      autoScaling: true,
-      locales: [Locale(identifier: "en"), Locale(identifier: "fr")],
-      resourceTags: ["tag", "otherTag"]
-    )
+  typealias Template = ImageSetTemplate
 
+  func document(fromTemplate configuration: ImageSetTemplate) -> AssetSpecificationDocumentProtocol {
     /* global renderAs, compress, preserveVectorData, autoScaling, locale */
 
     /* appearances, specifyGamut, direction, specified*Class, memorySet, graphicFSSet, specifyAWWidth, locale */
 
     let idioms = configuration.devices.map(dependencyProvider.idioms(forDevice:))
 
-//    let scales = idioms.map {
-//      scaleProvider.scales(forIdiom: $0.0) }
-    let scales: [[CGFloat?]] = idioms.map { (args) -> [CGFloat?] in
+    let scales: [[Float?]] = idioms.map { (args) -> [Float?] in
       if configuration.scaling == .some(.single) {
         return [nil]
       }
-      var scales: [CGFloat?] = scaleProvider.scales(forIdiom: args.0)
+      var scales: [Float?] = scaleProvider.scales(forIdiom: args.0)
       if configuration.scaling == nil {
         scales.append(nil)
       }
@@ -212,7 +51,7 @@ struct AssetTemplateBuilder {
 
           return newSpec.assetSpec()
         }
-      })
+          })
     }
     if configuration.specifyGamut {
       specs = DisplayGamut.allCases.flatMap { displayGamut in
@@ -239,7 +78,7 @@ struct AssetTemplateBuilder {
         var builder = AssetSpecificationBuilder(specifications: spec)
         builder.heightClass = sizeClass
         return builder.assetSpec()
-      })
+          })
     }
 
     if let widthClass = configuration.specifiedWidthClass {
@@ -247,16 +86,16 @@ struct AssetTemplateBuilder {
         var builder = AssetSpecificationBuilder(specifications: spec)
         builder.widthClass = sizeClass
         return builder.assetSpec()
-      })
+          })
     }
 
-    specs = multiply(sequence: specs, by: [Memory](configuration.memorySet)) { spec, memory in
+    specs = product(specs, [Memory](configuration.memorySet)) { spec, memory in
       var builder = AssetSpecificationBuilder(specifications: spec)
       builder.memory = memory
       return builder.assetSpec()
     }
 
-    specs = multiply(sequence: specs, by: [GraphicsFeatureSet](configuration.graphicFSSet)) { spec, graphicsFeatureSet in
+    specs = product(specs, [GraphicsFeatureSet](configuration.graphicFSSet)) { spec, graphicsFeatureSet in
       var builder = AssetSpecificationBuilder(specifications: spec)
       builder.graphicsFeatureSet = graphicsFeatureSet
       return builder.assetSpec()
@@ -279,7 +118,7 @@ struct AssetTemplateBuilder {
       var builder = AssetSpecificationBuilder(specifications: spec)
       builder.locale = locale
       return builder.assetSpec()
-    })
+        })
 
     return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs)
   }
