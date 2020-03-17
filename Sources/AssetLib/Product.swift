@@ -1,5 +1,3 @@
-import Foundation
-
 func product<Multiplier, Factor>(
   _ sequence: [Factor],
   _ other: [Multiplier]
