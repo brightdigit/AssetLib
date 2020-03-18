@@ -4,6 +4,7 @@
 -   [AppearanceValue](protocols/AppearanceValue.md)
 -   [AssetSpecificationDocumentProtocol](protocols/AssetSpecificationDocumentProtocol.md)
 -   [AssetSpecificationMetadataProtocol](protocols/AssetSpecificationMetadataProtocol.md)
+-   [AssetSpecificationPropertiesProtocol](protocols/AssetSpecificationPropertiesProtocol.md)
 -   [AssetSpecificationProtocol](protocols/AssetSpecificationProtocol.md)
 -   [ImageIdiomDependencyProvider](protocols/ImageIdiomDependencyProvider.md)
 -   [ImageIdiomScaleProvider](protocols/ImageIdiomScaleProvider.md)
@@ -14,6 +15,7 @@
 -   [AssetSpecification](structs/AssetSpecification.md)
 -   [AssetSpecificationDocument](structs/AssetSpecificationDocument.md)
 -   [AssetSpecificationMetadata](structs/AssetSpecificationMetadata.md)
+-   [AssetSpecificationProperties](structs/AssetSpecificationProperties.md)
 -   [ImageSetDeviceIdiomProvider](structs/ImageSetDeviceIdiomProvider.md)
 -   [ScaleListProvider](structs/ScaleListProvider.md)
 -   [Size](structs/Size.md)
@@ -22,8 +24,10 @@
 ## Enums
 
 -   [AppIconDevice](enums/AppIconDevice.md)
+-   [AppleWatchAutoScaingMethod](enums/AppleWatchAutoScaingMethod.md)
 -   [AppleWatchRole](enums/AppleWatchRole.md)
 -   [AppleWatchScreenWidth](enums/AppleWatchScreenWidth.md)
+-   [CompressionType](enums/CompressionType.md)
 -   [Contrast](enums/Contrast.md)
 -   [DeviceSubType](enums/DeviceSubType.md)
 -   [DisplayGamut](enums/DisplayGamut.md)
@@ -33,6 +37,7 @@
 -   [LanguageDirection](enums/LanguageDirection.md)
 -   [Luminosity](enums/Luminosity.md)
 -   [Memory](enums/Memory.md)
+-   [RenderingIntent](enums/RenderingIntent.md)
 -   [SizeClass](enums/SizeClass.md)
 
 ## Extensions
