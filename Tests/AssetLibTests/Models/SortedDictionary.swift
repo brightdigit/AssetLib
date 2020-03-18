@@ -1,6 +1,43 @@
 import Foundation
 
-@objc class SortedDictionary: NSDictionary {
+@objc class SortedDictionary: NSDictionary, Comparable {
+  static func < (lhs: SortedDictionary, rhs: SortedDictionary) -> Bool {
+    if lhs.count == rhs.count {
+      let lhe = lhs.keyEnumerator()
+      let rhe = rhs.keyEnumerator()
+      let enumerations = zip(lhe, rhe)
+      for args in enumerations {
+        guard let lhk = args.0 as? String else {
+          return true
+        }
+        guard let rhk = args.1 as? String else {
+          return false
+        }
+
+        let result = lhk.compare(rhk)
+
+        if result == .orderedSame {
+          guard let lhv = lhs[lhk] as? String else {
+            return true
+          }
+          guard let rhv = rhs[rhk] as? String else {
+            return false
+          }
+          if lhv == rhv {
+            continue
+          } else {
+            return lhv.compare(rhv) == .orderedAscending
+          }
+        } else {
+          return result == .orderedAscending
+        }
+      }
+      return true
+    } else {
+      return lhs.count < rhs.count
+    }
+  }
+
   let values: NSMutableArray = []
   let keys: NSMutableOrderedSet = []
 
@@ -36,6 +73,14 @@ import Foundation
     } else if let array = object as? [Any] {
       return array.map {
         convertObject($0)
+      }.sorted { (lhs, rhs) -> Bool in
+        guard let lhd = lhs as? SortedDictionary else {
+          return false
+        }
+        guard let rhd = rhs as? SortedDictionary else {
+          return true
+        }
+        return lhd < rhd
       }
     } else {
       return object

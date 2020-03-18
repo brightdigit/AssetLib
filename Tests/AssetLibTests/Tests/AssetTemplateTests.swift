@@ -1,6 +1,16 @@
 @testable import AssetLib
 import XCTest
 
+func tryAndFail<T>(_ closure: () throws -> T) -> T? {
+  var result: T?
+  do {
+    result = try closure()
+  } catch {
+    XCTFail(error.localizedDescription)
+  }
+  return result
+}
+
 final class AssetTemplateTests: XCTestCase {
   fileprivate func assertImageSet(_ imageSetName: String, _ template: ImageSetTemplate) {
     let hereUrl = URL(fileURLWithPath: #file)
@@ -10,16 +20,34 @@ final class AssetTemplateTests: XCTestCase {
 
     let builder = ImageSetTemplateBuilder()
 
-    let actual = builder.document(fromTemplate: template) as! AssetSpecificationDocument
+    guard let actual = builder.document(fromTemplate: template) as? AssetSpecificationDocument else {
+      XCTFail("Not Actual Document")
+      return
+    }
     XCTAssertNotNil(actual.images)
 
-    let expectedData = try! Data(contentsOf: bigImageSetUrl)
+    let expectedData: Data
+    do {
+      expectedData = try Data(contentsOf: bigImageSetUrl)
+    } catch {
+      XCTFail(error.localizedDescription)
+      return
+    }
     let encoder = JSONEncoder()
     encoder.outputFormatting = .prettyPrinted
 
-    let actualData = try! encoder.encode(actual)
+    let actualData: Data
+    do {
+      actualData = try encoder.encode(actual)
+    } catch {
+      XCTFail(error.localizedDescription)
+      return
+    }
+
     let decoder = JSONDecoder()
-    let expected = try! decoder.decode(AssetSpecificationDocument.self, from: expectedData)
+    guard let expected = tryAndFail({ try decoder.decode(AssetSpecificationDocument.self, from: expectedData) }) else {
+      return
+    }
 
     XCTAssertEqual(expected.images?.count, actual.images?.count)
     let mismatch = Data.jsonMismatch(lhs: actualData, rhs: expectedData)
