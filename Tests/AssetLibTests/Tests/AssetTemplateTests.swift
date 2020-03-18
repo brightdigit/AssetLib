@@ -16,45 +16,40 @@ final class AssetTemplateTests: XCTestCase {
     let hereUrl = URL(fileURLWithPath: #file)
     let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("../../../Data/Data")
 
-    let bigImageSetUrl = dataDirectoryUrl.appendingPathComponent(imageSetName).appendingPathComponent("Contents.json")
+    let imageSetURL = dataDirectoryUrl.appendingPathComponent(imageSetName).appendingPathComponent("Contents.json")
 
+    let jsonEncoder = JSONEncoder()
+    jsonEncoder.outputFormatting = .prettyPrinted
+    let jsonDecoder = JSONDecoder()
     let builder = ImageSetTemplateBuilder()
-
-    guard let actual = builder.document(fromTemplate: template) as? AssetSpecificationDocument else {
+    guard let actualDocument = builder.document(fromTemplate: template) as? AssetSpecificationDocument else {
       XCTFail("Not Actual Document")
       return
     }
-    XCTAssertNotNil(actual.images)
 
-    let expectedData: Data
-    do {
-      expectedData = try Data(contentsOf: bigImageSetUrl)
-    } catch {
-      XCTFail(error.localizedDescription)
-      return
-    }
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = .prettyPrinted
-
-    let actualData: Data
-    do {
-      actualData = try encoder.encode(actual)
-    } catch {
-      XCTFail(error.localizedDescription)
+    guard let actualData = tryAndFail({ try jsonEncoder.encode(actualDocument) }) else {
       return
     }
 
-    let decoder = JSONDecoder()
-    guard let expected = tryAndFail({ try decoder.decode(AssetSpecificationDocument.self, from: expectedData) }) else {
+    guard let expectedDataRead = tryAndFail({ try Data(contentsOf: imageSetURL) }) else {
       return
     }
 
-    XCTAssertEqual(expected.images?.count, actual.images?.count)
-    let mismatch = Data.jsonMismatch(lhs: actualData, rhs: expectedData)
-    XCTAssert(mismatch.isEmpty)
+    guard let expectedDocument = tryAndFail({ try jsonDecoder.decode(AssetSpecificationDocument.self, from: expectedDataRead) }) else {
+      return
+    }
 
-    if !mismatch.isEmpty {
-      try? actualData.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.json"))
+    guard let expectedData = tryAndFail({ try jsonEncoder.encode(expectedDocument) }) else {
+      return
+    }
+
+    let mismatches = Data.jsonMismatch(lhs: actualData, rhs: expectedData)
+
+    if mismatches.count > 0 {
+      try? expectedData.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.expected.json"))
+
+      try? actualData.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"))
+      XCTFail(mismatches.debugDescription)
     }
   }
 

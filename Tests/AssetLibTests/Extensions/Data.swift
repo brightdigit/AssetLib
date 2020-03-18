@@ -20,6 +20,7 @@ public extension Data {
         return data
       }
     } else if let dictionary = object as? [String: Any] {
+      debugPrint("***Fallback SORTED***")
       let orderedJson = SortedDictionary(dictionary)
 
       if let data = try? JSONSerialization.data(withJSONObject: orderedJson, options: [.prettyPrinted]) {
