@@ -26,8 +26,7 @@ final class ProductTests: XCTestCase {
       let bCount = Int.random(in: minCount ... maxCount)
       let lhs = (0 ..< aCount).map { _ in UUID() }
       let rhs = (0 ..< bCount).map { _ in UUID() }
-      let expected = lhs.flatMap {
-        lhs in
+      let expected = lhs.flatMap { lhs in
         rhs.map { rhs in
           ResultData(lhs: lhs, rhs: rhs)
         }

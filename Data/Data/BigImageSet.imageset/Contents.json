@@ -20061,7 +20061,6 @@
     "template-rendering-intent" : "template",
     "auto-scaling" : "auto",
     "compression-type" : "gpu-optimized-best",
-    "preserves-vector-representation" : true,
-    "localizable" : true
+    "preserves-vector-representation" : true
   }
 }

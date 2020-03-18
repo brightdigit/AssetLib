@@ -34,13 +34,13 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     case role
     case subtype
     case appearances
-    case displayGamut
-    case languageDirection
-    case screenWidth
-    case heightClass
-    case widthClass
+    case displayGamut = "display-gamut"
+    case languageDirection = "language-direction"
+    case screenWidth = "screen-width"
+    case heightClass = "height-class"
+    case widthClass = "width-class"
     case memory
-    case graphicsFeatureSet
+    case graphicsFeatureSet = "graphics-feature-set"
     case locale
   }
 
@@ -164,8 +164,9 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
+
     if let size = size {
-      try container.encode(AssetSpecification.formatSize(size), forKey: .size)
+      try container.encodeIfPresent(AssetSpecification.formatSize(size), forKey: .size)
     }
 
     if let scale = scale {
@@ -185,40 +186,25 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     }
 
     try container.encode(idiom, forKey: .idiom)
-    
+
     if appearances.count > 0 {
       try container.encode(appearances, forKey: .appearances)
     }
-    
-    if let displayGamut = self.displayGamut {
-      try container.encode(displayGamut, forKey: .displayGamut)
-    }
-    
-    if let languageDirection = self.languageDirection {
-      try container.encode(languageDirection, forKey: .languageDirection)
-    }
-    
-    if let screenWidth = self.screenWidth {
-      try container.encode(screenWidth, forKey: .screenWidth)
-    }
-    
-    if let heightClass = self.heightClass {
-      try container.encode(heightClass, forKey: .heightClass)
-    }
-    
-    if let widthClass = self.widthClass {
-      try container.encode(widthClass, forKey: .widthClass)
-    }
-    
-    if let memory = self.memory {
-      try container.encode(memory, forKey: .memory)
-    }
-    
-    if let graphicsFeatureSet = self.graphicsFeatureSet {
-      try container.encode(graphicsFeatureSet, forKey: .graphicsFeatureSet)
-    }
-    
-    if let localeIdentifier = self.locale.map({$0.identifier}) {
+
+    try container.encodeIfPresent(displayGamut, forKey: .displayGamut)
+
+    try container.encodeIfPresent(languageDirection, forKey: .languageDirection)
+
+    try container.encodeIfPresent(screenWidth, forKey: .screenWidth)
+
+    try container.encodeIfPresent(heightClass, forKey: .heightClass)
+
+    try container.encodeIfPresent(widthClass, forKey: .widthClass)
+    try container.encodeIfPresent(memory, forKey: .memory)
+
+    try container.encodeIfPresent(graphicsFeatureSet, forKey: .graphicsFeatureSet)
+
+    if let localeIdentifier = locale.map({ $0.identifier }) {
       try container.encode(localeIdentifier, forKey: .locale)
     }
   }

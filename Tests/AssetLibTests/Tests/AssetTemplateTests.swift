@@ -3,7 +3,7 @@ import XCTest
 
 final class AssetTemplateTests: XCTestCase {
   func testTemplate() {
-    let template = ImageSetTemplate(
+    _ = ImageSetTemplate(
       renderAs: .template,
       compression: .gpuOptimizedBest,
       preserveVectorData: true,
@@ -21,26 +21,52 @@ final class AssetTemplateTests: XCTestCase {
       locales: [],
       resourceTags: []
     )
-    
-    
+    let template = ImageSetTemplate(
+      renderAs: .template,
+      compression: .gpuOptimizedBest,
+      preserveVectorData: true,
+      devices: Set([.universal]),
+      appearances: [ValueAppearance(value: Luminosity.dark).eraseToAny(), ValueAppearance(value: Luminosity.light).eraseToAny()],
+      scaling: .single,
+      specifyGamut: true,
+      direction: [],
+      specifiedWidthClass: nil,
+      specifiedHeightClass: nil,
+      memorySet: [],
+      graphicFSSet: [],
+      specifyAWWidth: false,
+      autoScaling: false,
+      locales: [],
+      resourceTags: []
+    )
     let hereUrl = URL(fileURLWithPath: #file)
     let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("../../../Data/Data")
-    
-    let bigImageSet = dataDirectoryUrl.appendingPathComponent("BigImageSet.imageset").appendingPathComponent("Contents.json")
-    
-    
-    
+
+    let bigImageSetUrl = dataDirectoryUrl.appendingPathComponent("SingleImage.imageset").appendingPathComponent("Contents.json")
 
     let builder = ImageSetTemplateBuilder()
 
-    let document = builder.document(fromTemplate: template)
-    XCTAssertNotNil(document.images)
+    let actual = builder.document(fromTemplate: template) as! AssetSpecificationDocument
+    XCTAssertNotNil(actual.images)
 
-    guard let count = document.images?.count else {
+    let expectedData = try! Data(contentsOf: bigImageSetUrl)
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = .prettyPrinted
+
+    let actualData = try! encoder.encode(actual)
+    let decoder = JSONDecoder()
+    let expected = try! decoder.decode(AssetSpecificationDocument.self, from: expectedData)
+
+    guard let count = actual.images?.count else {
       XCTFail("Missing images")
       return
     }
-    debugPrint(count)
-    XCTAssertGreaterThan(count, 10)
+    XCTAssertEqual(expected.images?.count, actual.images?.count)
+    let mismatch = Data.jsonMismatch(lhs: actualData, rhs: expectedData)
+    XCTAssert(mismatch.isEmpty)
+
+    if !mismatch.isEmpty {
+      try? actualData.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.json"))
+    }
   }
 }

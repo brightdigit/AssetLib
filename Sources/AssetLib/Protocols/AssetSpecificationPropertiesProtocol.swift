@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol AssetSpecificationPropertiesProtocol {
+public protocol AssetSpecificationPropertiesProtocol: Codable {
   var templateRenderingIntent: RenderingIntent? { get }
 
   var autoScaling: AppleWatchAutoScaingMethod? { get }

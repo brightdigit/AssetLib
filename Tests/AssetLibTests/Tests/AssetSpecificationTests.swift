@@ -45,11 +45,11 @@ final class AssetSpecificationTests: XCTestCase {
         XCTFail("No expected data for \(url)")
         continue
       }
-      
-      if let mismatch = Data.jsonMismatch(lhs: data, rhs: expectedData) {
-        XCTAssertNil(mismatch, "Mismatch at \(url)")
-        
-        try! data.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.json"))
+      let mismatches = Data.jsonMismatch(lhs: data, rhs: expectedData)
+
+      XCTAssert(mismatches.isEmpty)
+      if !mismatches.isEmpty {
+        try? data.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.json"))
       }
     }
   }

@@ -9,12 +9,12 @@ public enum CompressionType: String, Codable {
   /**
    The image uses a lossy GPU compression format optimized for quality.
    */
-  case gpuOptimizedBest
+  case gpuOptimizedBest = "gpu-optimized-best"
   /**
 
    The image uses a lossy GPU compression format optimized for memory size.
    */
-  case gpuOptimizedSmallest
+  case gpuOptimizedSmallest = "gpu-optimized-smallest"
   /**
 
    The image uses lossless compression.

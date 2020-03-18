@@ -92,17 +92,17 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       }))
     }
 
-    specs = product(specs, [Memory](configuration.memorySet)) { spec, memory in
+    specs.append(contentsOf: product(specs, [Memory](configuration.memorySet)) { spec, memory in
       var builder = AssetSpecificationBuilder(specifications: spec)
       builder.memory = memory
       return builder.assetSpec()
-    }
+    })
 
-    specs = product(specs, [GraphicsFeatureSet](configuration.graphicFSSet)) { spec, graphicsFeatureSet in
+    specs.append(contentsOf: product(specs, [GraphicsFeatureSet](configuration.graphicFSSet)) { spec, graphicsFeatureSet in
       var builder = AssetSpecificationBuilder(specifications: spec)
       builder.graphicsFeatureSet = graphicsFeatureSet
       return builder.assetSpec()
-    }
+    })
 
     if configuration.specifyAWWidth {
       specs = specs.flatMap { (spec) -> [AssetSpecificationProtocol] in
@@ -122,8 +122,14 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       builder.locale = locale
       return builder.assetSpec()
          }))
-    
-    let properties = AssetSpecificationProperties(templateRenderingIntent: configuration.renderAs, autoScaling: configuration.autoScaling ? .automatic : nil, compressionType: configuration.compression, preservesVectorRepresentation: configuration.preserveVectorData, localizable: configuration.locales.count > 0)
+
+    let properties = AssetSpecificationProperties(
+      templateRenderingIntent: configuration.renderAs,
+      autoScaling: configuration.autoScaling ? .automatic : nil,
+      compressionType: configuration.compression,
+      preservesVectorRepresentation: configuration.preserveVectorData,
+      localizable: configuration.locales.count > 0
+    )
 
     return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs, properties: properties)
   }

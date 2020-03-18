@@ -33,6 +33,6 @@ public enum GraphicsFeatureSet: String, Codable {
    The item requires features in iOS_GPUFamily4_v1.
    */
   case metal4v1
-  
+
   case apple6
 }
