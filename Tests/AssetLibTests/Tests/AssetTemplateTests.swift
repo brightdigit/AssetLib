@@ -4,23 +4,32 @@ import XCTest
 final class AssetTemplateTests: XCTestCase {
   func testTemplate() {
     let template = ImageSetTemplate(
-      renderAs: nil,
-      compression: .automatic,
-      preserveVectorData: false,
-      devices: Set(ImageSetDevice.allCases),
-      appearances: [ValueAppearance(value: Luminosity.dark).eraseToAny()],
-      scaling: nil,
+      renderAs: .template,
+      compression: .gpuOptimizedBest,
+      preserveVectorData: true,
+      devices: Set([.universal, .iphone, .ipad, .macCatalyst, .watch]),
+      appearances: [ValueAppearance(value: Luminosity.dark).eraseToAny(), ValueAppearance(value: Luminosity.light).eraseToAny()],
+      scaling: .individual,
       specifyGamut: true,
-      direction: [.leftToRight, .rightToLeft],
-      specifiedWidthClass: .regular,
-      specifiedHeightClass: .compact,
-      memorySet: [.requires1GB, .requires4GB],
-      graphicFSSet: [.metal4v1],
+      direction: [],
+      specifiedWidthClass: nil,
+      specifiedHeightClass: nil,
+      memorySet: [.requires1GB, .requires2GB, .requires4GB],
+      graphicFSSet: [.metal3v1, .metal4v1, .apple6],
       specifyAWWidth: true,
       autoScaling: true,
-      locales: [Locale(identifier: "en"), Locale(identifier: "fr")],
-      resourceTags: ["tag", "otherTag"]
+      locales: [],
+      resourceTags: []
     )
+    
+    
+    let hereUrl = URL(fileURLWithPath: #file)
+    let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("../../../Data/Data")
+    
+    let bigImageSet = dataDirectoryUrl.appendingPathComponent("BigImageSet.imageset").appendingPathComponent("Contents.json")
+    
+    
+    
 
     let builder = ImageSetTemplateBuilder()
 

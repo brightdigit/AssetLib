@@ -7,6 +7,20 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
   public let preservesVectorRepresentation: Bool?
   public let localizable: Bool?
 
+  public init(
+    templateRenderingIntent: RenderingIntent?,
+autoScaling: AppleWatchAutoScaingMethod?,
+compressionType: CompressionType?,
+preservesVectorRepresentation: Bool?,
+localizable: Bool?
+  ) {
+    self.templateRenderingIntent = templateRenderingIntent
+    self.autoScaling = autoScaling
+    self.compressionType = compressionType
+    self.preservesVectorRepresentation = preservesVectorRepresentation
+    self.localizable = localizable
+  }
+  
   public init(properties: AssetSpecificationPropertiesProtocol) {
     templateRenderingIntent = properties.templateRenderingIntent
     autoScaling = properties.autoScaling
@@ -14,4 +28,5 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     preservesVectorRepresentation = properties.preservesVectorRepresentation
     localizable = properties.localizable
   }
+
 }

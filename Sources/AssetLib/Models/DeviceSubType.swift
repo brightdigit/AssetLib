@@ -9,5 +9,5 @@ public enum DeviceSubType: String, Codable {
   /** The icon is for a 44mm Apple Watch. */
   case size44 = "44mm"
 
-  case macCatalyst
+  case macCatalyst = "mac-catalyst"
 }

@@ -185,5 +185,41 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     }
 
     try container.encode(idiom, forKey: .idiom)
+    
+    if appearances.count > 0 {
+      try container.encode(appearances, forKey: .appearances)
+    }
+    
+    if let displayGamut = self.displayGamut {
+      try container.encode(displayGamut, forKey: .displayGamut)
+    }
+    
+    if let languageDirection = self.languageDirection {
+      try container.encode(languageDirection, forKey: .languageDirection)
+    }
+    
+    if let screenWidth = self.screenWidth {
+      try container.encode(screenWidth, forKey: .screenWidth)
+    }
+    
+    if let heightClass = self.heightClass {
+      try container.encode(heightClass, forKey: .heightClass)
+    }
+    
+    if let widthClass = self.widthClass {
+      try container.encode(widthClass, forKey: .widthClass)
+    }
+    
+    if let memory = self.memory {
+      try container.encode(memory, forKey: .memory)
+    }
+    
+    if let graphicsFeatureSet = self.graphicsFeatureSet {
+      try container.encode(graphicsFeatureSet, forKey: .graphicsFeatureSet)
+    }
+    
+    if let localeIdentifier = self.locale.map({$0.identifier}) {
+      try container.encode(localeIdentifier, forKey: .locale)
+    }
   }
 }

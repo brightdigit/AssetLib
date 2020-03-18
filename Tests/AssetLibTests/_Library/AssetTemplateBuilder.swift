@@ -122,7 +122,9 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       builder.locale = locale
       return builder.assetSpec()
          }))
+    
+    let properties = AssetSpecificationProperties(templateRenderingIntent: configuration.renderAs, autoScaling: configuration.autoScaling ? .automatic : nil, compressionType: configuration.compression, preservesVectorRepresentation: configuration.preserveVectorData, localizable: configuration.locales.count > 0)
 
-    return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs)
+    return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs, properties: properties)
   }
 }
