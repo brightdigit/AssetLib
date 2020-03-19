@@ -10,11 +10,11 @@ public enum LanguageDirection: String, Codable
 ### `leftToRight`
 
 ```swift
-case leftToRight
+case leftToRight = "left-to-right"
 ```
 
 ### `rightToLeft`
 
 ```swift
-case rightToLeft
+case rightToLeft = "right-to-left"
 ```

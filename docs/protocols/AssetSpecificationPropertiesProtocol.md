@@ -22,17 +22,23 @@ var autoScaling: AppleWatchAutoScaingMethod?
 ### `compressionType`
 
 ```swift
-var compressionType: CompressionType?
+var compressionType: CompressionType
 ```
 
 ### `preservesVectorRepresentation`
 
 ```swift
-var preservesVectorRepresentation: Bool?
+var preservesVectorRepresentation: Bool
 ```
 
 ### `localizable`
 
 ```swift
 var localizable: Bool?
+```
+
+### `onDemandResourceTags`
+
+```swift
+var onDemandResourceTags: [String]
 ```

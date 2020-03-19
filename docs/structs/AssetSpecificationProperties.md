@@ -22,13 +22,13 @@ public let autoScaling: AppleWatchAutoScaingMethod?
 ### `compressionType`
 
 ```swift
-public let compressionType: CompressionType?
+public let compressionType: CompressionType
 ```
 
 ### `preservesVectorRepresentation`
 
 ```swift
-public let preservesVectorRepresentation: Bool?
+public let preservesVectorRepresentation: Bool
 ```
 
 ### `localizable`
@@ -37,16 +37,23 @@ public let preservesVectorRepresentation: Bool?
 public let localizable: Bool?
 ```
 
+### `onDemandResourceTags`
+
+```swift
+public let onDemandResourceTags: [String]
+```
+
 ## Methods
-### `init(templateRenderingIntent:autoScaling:compressionType:preservesVectorRepresentation:localizable:)`
+### `init(templateRenderingIntent:autoScaling:compressionType:preservesVectorRepresentation:localizable:onDemandResourceTags:)`
 
 ```swift
 public init(
   templateRenderingIntent: RenderingIntent?,
   autoScaling: AppleWatchAutoScaingMethod?,
-  compressionType: CompressionType?,
-  preservesVectorRepresentation: Bool?,
-  localizable: Bool?
+  compressionType: CompressionType = .automatic,
+  preservesVectorRepresentation: Bool = false,
+  localizable: Bool?,
+  onDemandResourceTags: [String]
 )
 ```
 

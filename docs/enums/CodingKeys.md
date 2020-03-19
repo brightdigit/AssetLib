@@ -36,3 +36,9 @@ case preservesVectorRepresentation = "preserves-vector-representation"
 ```swift
 case localizable
 ```
+
+### `onDemandResourceTags`
+
+```swift
+case onDemandResourceTags = "on-demand-resource-tags"
+```
