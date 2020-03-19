@@ -60,20 +60,21 @@ final class AssetTemplateTests: XCTestCase {
     XCTAssertEqual(expectedDocument.properties?.compressionType, actualDocument.properties?.compressionType)
     XCTAssertEqual(expectedDocument.properties?.preservesVectorRepresentation, actualDocument.properties?.preservesVectorRepresentation)
     XCTAssertEqual(expectedDocument.properties?.localizable, actualDocument.properties?.localizable)
-    
 
 //    XCTAssertEqual(actualString, expectedString)
 //
 //
 //
 //    if actualString != expectedString {
-      try? actualString.write(
-    to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"),
-    atomically: false, encoding: .utf8)
+    try? actualString.write(
+      to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"),
+      atomically: false, encoding: .utf8
+    )
 
-      try? expectedString.write(
-    to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.expected.json"),
-    atomically: false, encoding: .utf8)
+    try? expectedString.write(
+      to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.expected.json"),
+      atomically: false, encoding: .utf8
+    )
 //    }
 //
 //    XCTAssertEqual(Data.jsonMismatch(lhs: actualData, rhs: expectedData).count, 0)

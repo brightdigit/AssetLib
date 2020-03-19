@@ -1,4 +1,3 @@
-@testable import AssetLib
 import Foundation
 
 struct ImageSetTemplate {

@@ -6,7 +6,7 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
   public let compressionType: CompressionType
   public let preservesVectorRepresentation: Bool
   public let localizable: Bool?
-  public let onDemandResourceTags : [String]
+  public let onDemandResourceTags: [String]
 
   public enum CodingKeys: String, CodingKey {
     case templateRenderingIntent = "template-rendering-intent"
@@ -23,7 +23,7 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     compressionType: CompressionType = .automatic,
     preservesVectorRepresentation: Bool = false,
     localizable: Bool?,
-    onDemandResourceTags : [String]
+    onDemandResourceTags: [String]
   ) {
     self.templateRenderingIntent = templateRenderingIntent
     self.autoScaling = autoScaling
@@ -57,16 +57,16 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     try container.encodeIfPresent(templateRenderingIntent, forKey: .templateRenderingIntent)
     try container.encodeIfPresent(autoScaling, forKey: .autoScaling)
     if compressionType != .automatic {
-    try container.encodeIfPresent(compressionType, forKey: .compressionType)
+      try container.encodeIfPresent(compressionType, forKey: .compressionType)
     }
     if preservesVectorRepresentation == true {
-    try container.encodeIfPresent(preservesVectorRepresentation, forKey: .preservesVectorRepresentation)
+      try container.encodeIfPresent(preservesVectorRepresentation, forKey: .preservesVectorRepresentation)
     }
     if localizable == true {
       try container.encodeIfPresent(localizable, forKey: .localizable)
     }
     if onDemandResourceTags.count > 0 {
-      try container.encode(self.onDemandResourceTags, forKey: .onDemandResourceTags)
+      try container.encode(onDemandResourceTags, forKey: .onDemandResourceTags)
     }
   }
 }
