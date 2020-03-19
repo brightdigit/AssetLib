@@ -3,8 +3,8 @@ import Foundation
 public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol {
   public let templateRenderingIntent: RenderingIntent?
   public let autoScaling: AppleWatchAutoScaingMethod?
-  public let compressionType: CompressionType?
-  public let preservesVectorRepresentation: Bool?
+  public let compressionType: CompressionType
+  public let preservesVectorRepresentation: Bool
   public let localizable: Bool?
   public let onDemandResourceTags : [String]
 
@@ -20,8 +20,8 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
   public init(
     templateRenderingIntent: RenderingIntent?,
     autoScaling: AppleWatchAutoScaingMethod?,
-    compressionType: CompressionType?,
-    preservesVectorRepresentation: Bool?,
+    compressionType: CompressionType = .automatic,
+    preservesVectorRepresentation: Bool = false,
     localizable: Bool?,
     onDemandResourceTags : [String]
   ) {
@@ -46,8 +46,8 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     let container = try decoder.container(keyedBy: CodingKeys.self)
     templateRenderingIntent = try container.decodeIfPresent(RenderingIntent.self, forKey: .templateRenderingIntent)
     autoScaling = try container.decodeIfPresent(AppleWatchAutoScaingMethod.self, forKey: .autoScaling)
-    compressionType = try container.decodeIfPresent(CompressionType.self, forKey: .compressionType)
-    preservesVectorRepresentation = try container.decodeIfPresent(Bool.self, forKey: .preservesVectorRepresentation)
+    compressionType = try container.decodeIfPresent(CompressionType.self, forKey: .compressionType) ?? .automatic
+    preservesVectorRepresentation = try container.decodeIfPresent(Bool.self, forKey: .preservesVectorRepresentation) ?? false
     localizable = try container.decodeIfPresent(Bool.self, forKey: .localizable)
     onDemandResourceTags = try container.decodeIfPresent([String].self, forKey: .onDemandResourceTags) ?? [String]()
   }
@@ -68,14 +68,5 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     if onDemandResourceTags.count > 0 {
       try container.encode(self.onDemandResourceTags, forKey: .onDemandResourceTags)
     }
-//
-//    if let images = self.images {
-//      try container.encode(images.map(AssetSpecification.init(specifications:)), forKey: .images)
-//    }
-//
-//    if let properties = self.properties {
-//      try container.encode(AssetSpecificationProperties(properties: properties), forKey: .properties)
-//    }
-//    try container.encode(AssetSpecificationMetadata(info), forKey: .info)
   }
 }

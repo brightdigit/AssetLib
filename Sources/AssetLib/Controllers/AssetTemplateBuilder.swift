@@ -1,5 +1,4 @@
-@testable import AssetLib
-import Foundation
+
 
 protocol AssetTemplateBuilder {
   associatedtype Template
@@ -77,7 +76,7 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
 
     if let heightClass = configuration.specifiedHeightClass {
-      specs.append(contentsOf: product(specs, [heightClass], using: { spec, sizeClass in
+      specs.append(contentsOf: product(specs.filter{ $0.idiom == .universal }, [heightClass], using: { spec, sizeClass in
         var builder = AssetSpecificationBuilder(specifications: spec)
         builder.heightClass = sizeClass
         return builder.assetSpec()
@@ -85,24 +84,31 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
 
     if let widthClass = configuration.specifiedWidthClass {
-      specs.append(contentsOf: product(specs, [widthClass], using: { spec, sizeClass in
+      specs.append(contentsOf: product(specs.filter{ $0.idiom == .universal }, [widthClass], using: { spec, sizeClass in
         var builder = AssetSpecificationBuilder(specifications: spec)
         builder.widthClass = sizeClass
         return builder.assetSpec()
       }))
     }
+    
+    let tempSpecs = specs
 
-    specs.append(contentsOf: product(specs, [Memory](configuration.memorySet)) { spec, memory in
-      var builder = AssetSpecificationBuilder(specifications: spec)
-      builder.memory = memory
-      return builder.assetSpec()
-    })
+    if configuration.memorySet.count > 0 {
+      specs.append(contentsOf: product(tempSpecs.filter{ $0.idiom == .universal }, [Memory](configuration.memorySet)) { spec, memory in
+        var builder = AssetSpecificationBuilder(specifications: spec)
+        builder.memory = memory
+        return builder.assetSpec()
+      })
+    }
 
-    specs.append(contentsOf: product(specs, [GraphicsFeatureSet](configuration.graphicFSSet)) { spec, graphicsFeatureSet in
-      var builder = AssetSpecificationBuilder(specifications: spec)
-      builder.graphicsFeatureSet = graphicsFeatureSet
-      return builder.assetSpec()
-    })
+    
+    if configuration.graphicFSSet.count > 0 {
+      specs.append(contentsOf: product(tempSpecs.filter{ $0.idiom != .universal }, [GraphicsFeatureSet](configuration.graphicFSSet)) { spec, graphicsFeatureSet in
+        var builder = AssetSpecificationBuilder(specifications: spec)
+        builder.graphicsFeatureSet = graphicsFeatureSet
+        return builder.assetSpec()
+      })
+    }
 
     if configuration.specifyAWWidth {
       specs = specs.flatMap { (spec) -> [AssetSpecificationProtocol] in
