@@ -1,5 +1,3 @@
-
-
 public enum Luminosity: String, AppearanceValue {
   public var appearanceValue: String {
     return rawValue

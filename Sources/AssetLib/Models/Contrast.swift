@@ -1,5 +1,3 @@
-
-
 public enum Contrast: String, AppearanceValue {
   case high
 

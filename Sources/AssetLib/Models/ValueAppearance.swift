@@ -1,5 +1,3 @@
-
-
 public struct ValueAppearance<ValueType: AppearanceValue>: Appearance {
   public var value: String {
     appearanceValue.appearanceValue
