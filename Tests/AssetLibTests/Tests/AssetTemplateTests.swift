@@ -117,5 +117,23 @@ final class AssetTemplateTests: XCTestCase {
       locales: [],
       resourceTags: ["taga", "tagb"]
     ))
+    assertImageSet("Localized.imageset", ImageSetTemplate(
+      renderAs: nil,
+      compression: .automatic,
+      preserveVectorData: false,
+      devices: Set([.universal]),
+      appearances: [],
+      scaling: .single,
+      specifyGamut: false,
+      direction: [],
+      specifiedWidthClass: nil,
+      specifiedHeightClass: nil,
+      memorySet: [],
+      graphicFSSet: [],
+      specifyAWWidth: false,
+      autoScaling: false,
+      locales: ["es-419", "en", "fr"].map(Locale.init(identifier:)),
+      resourceTags: []
+    ))
   }
 }
