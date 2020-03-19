@@ -128,7 +128,7 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       autoScaling: configuration.autoScaling ? .automatic : nil,
       compressionType: configuration.compression,
       preservesVectorRepresentation: configuration.preserveVectorData,
-      localizable: configuration.locales.count > 0
+      localizable: configuration.locales.count > 0 ? true : nil
     )
 
     return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs, properties: properties)
