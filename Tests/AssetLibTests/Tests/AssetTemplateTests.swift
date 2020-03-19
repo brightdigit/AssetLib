@@ -79,7 +79,7 @@ final class AssetTemplateTests: XCTestCase {
 //    XCTAssertEqual(Data.jsonMismatch(lhs: actualData, rhs: expectedData).count, 0)
   }
 
-  func testTemplate() {
+  func testTemplateBuilding() {
     let template = ImageSetTemplate(
       renderAs: .template,
       compression: .gpuOptimizedBest,
