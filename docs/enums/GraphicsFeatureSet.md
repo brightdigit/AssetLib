@@ -62,3 +62,9 @@ case metal4v1
 ```
 
 > The item requires features in iOS_GPUFamily4_v1.
+
+### `apple6`
+
+```swift
+case apple6
+```

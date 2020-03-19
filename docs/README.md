@@ -27,6 +27,7 @@
 -   [AppleWatchAutoScaingMethod](enums/AppleWatchAutoScaingMethod.md)
 -   [AppleWatchRole](enums/AppleWatchRole.md)
 -   [AppleWatchScreenWidth](enums/AppleWatchScreenWidth.md)
+-   [CodingKeys](enums/CodingKeys.md)
 -   [CompressionType](enums/CompressionType.md)
 -   [Contrast](enums/Contrast.md)
 -   [DeviceSubType](enums/DeviceSubType.md)

@@ -20,7 +20,7 @@ case automatic
 ### `gpuOptimizedBest`
 
 ```swift
-case gpuOptimizedBest
+case gpuOptimizedBest = "gpu-optimized-best"
 ```
 
 > The image uses a lossy GPU compression format optimized for quality.
@@ -28,7 +28,7 @@ case gpuOptimizedBest
 ### `gpuOptimizedSmallest`
 
 ```swift
-case gpuOptimizedSmallest
+case gpuOptimizedSmallest = "gpu-optimized-smallest"
 ```
 
 > The image uses a lossy GPU compression format optimized for memory size.

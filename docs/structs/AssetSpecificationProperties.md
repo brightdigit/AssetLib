@@ -3,7 +3,7 @@
 # `AssetSpecificationProperties`
 
 ```swift
-public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol, Codable
+public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
 ```
 
 ## Properties
@@ -38,8 +38,44 @@ public let localizable: Bool?
 ```
 
 ## Methods
+### `init(templateRenderingIntent:autoScaling:compressionType:preservesVectorRepresentation:localizable:)`
+
+```swift
+public init(
+  templateRenderingIntent: RenderingIntent?,
+  autoScaling: AppleWatchAutoScaingMethod?,
+  compressionType: CompressionType?,
+  preservesVectorRepresentation: Bool?,
+  localizable: Bool?
+)
+```
+
 ### `init(properties:)`
 
 ```swift
 public init(properties: AssetSpecificationPropertiesProtocol)
 ```
+
+### `init(from:)`
+
+```swift
+public init(from decoder: Decoder) throws
+```
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| decoder | The decoder to read data from. |
+
+### `encode(to:)`
+
+```swift
+public func encode(to encoder: Encoder) throws
+```
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| encoder | The encoder to write data to. |

@@ -3,7 +3,7 @@
 # `AssetSpecificationPropertiesProtocol`
 
 ```swift
-public protocol AssetSpecificationPropertiesProtocol
+public protocol AssetSpecificationPropertiesProtocol: Codable
 ```
 
 ## Properties

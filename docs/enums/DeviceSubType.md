@@ -44,5 +44,5 @@ case size44 = "44mm"
 ### `macCatalyst`
 
 ```swift
-case macCatalyst
+case macCatalyst = "mac-catalyst"
 ```

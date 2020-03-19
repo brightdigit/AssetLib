@@ -16,5 +16,5 @@ case sRGB
 ### `displayP3`
 
 ```swift
-case displayP3
+case displayP3 = "display-P3"
 ```
