@@ -42,14 +42,24 @@ final class AssetTemplateTests: XCTestCase {
     guard let expectedData = tryAndFail({ try jsonEncoder.encode(expectedDocument) }) else {
       return
     }
-
-    let mismatches = Data.jsonMismatch(lhs: actualData, rhs: expectedData)
-
-    if mismatches.count > 0 {
-      try? expectedData.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.expected.json"))
-
-      try? actualData.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"))
-      XCTFail(mismatches.debugDescription)
+    
+    guard let actualString = String(bytes: actualData, encoding: .utf8) else {
+            XCTFail("No String")
+      return
+    }
+    
+    guard let expectedString = String(bytes: expectedData, encoding: .utf8) else {
+            XCTFail("No String")
+      return
+    }
+    
+    
+    XCTAssertEqual(actualString, expectedString)
+    
+    if actualString != expectedString {
+      try? actualString.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"), atomically: false, encoding: .utf8)
+      
+      try? expectedString.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.expected.json"), atomically: false, encoding: .utf8)
     }
   }
 
