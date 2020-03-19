@@ -6,4 +6,5 @@ public protocol AssetSpecificationPropertiesProtocol: Codable {
   var compressionType: CompressionType? { get }
   var preservesVectorRepresentation: Bool? { get }
   var localizable: Bool? { get }
+  var onDemandResourceTags: [String] { get }
 }

@@ -1,0 +1,207 @@
+{
+  "images" : [
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : "<=145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : "<=145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "memory" : "1GB",
+      "screen-width" : "<=145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "memory" : "1GB",
+      "screen-width" : "<=145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">161"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">161"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "memory" : "1GB",
+      "screen-width" : ">161"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "memory" : "1GB",
+      "screen-width" : ">161"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "memory" : "1GB",
+      "screen-width" : ">145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "memory" : "1GB",
+      "screen-width" : ">145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">183"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">183"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "memory" : "1GB",
+      "screen-width" : ">183"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "memory" : "1GB",
+      "screen-width" : ">183"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : "<=145",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : "<=145",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : "<=145",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : "<=145",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">161",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">161",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">161",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">161",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">145",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">145",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">145",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">145",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">183",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">183",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">183",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">183",
+      "memory" : "1GB",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "on-demand-resource-tags" : [
+      "taga",
+      "tagb"
+    ],
+    "auto-scaling" : "auto"
+  }
+}

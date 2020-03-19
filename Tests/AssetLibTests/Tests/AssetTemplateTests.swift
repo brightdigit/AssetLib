@@ -60,27 +60,27 @@ final class AssetTemplateTests: XCTestCase {
     XCTAssertEqual(expectedDocument.properties?.compressionType, actualDocument.properties?.compressionType)
     XCTAssertEqual(expectedDocument.properties?.preservesVectorRepresentation, actualDocument.properties?.preservesVectorRepresentation)
     XCTAssertEqual(expectedDocument.properties?.localizable, actualDocument.properties?.localizable)
-    return
+    
 
 //    XCTAssertEqual(actualString, expectedString)
 //
 //
 //
 //    if actualString != expectedString {
-//      try? actualString.write(
-//    to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"),
-//    atomically: false, encoding: .utf8)
-//
-//      try? expectedString.write(
-//    to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.expected.json"),
-//    atomically: false, encoding: .utf8)
+      try? actualString.write(
+    to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"),
+    atomically: false, encoding: .utf8)
+
+      try? expectedString.write(
+    to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.expected.json"),
+    atomically: false, encoding: .utf8)
 //    }
 //
 //    XCTAssertEqual(Data.jsonMismatch(lhs: actualData, rhs: expectedData).count, 0)
   }
 
   func testTemplateBuilding() {
-    let template = ImageSetTemplate(
+    assertImageSet("SingleImage.imageset", ImageSetTemplate(
       renderAs: .template,
       compression: .gpuOptimizedBest,
       preserveVectorData: true,
@@ -97,8 +97,24 @@ final class AssetTemplateTests: XCTestCase {
       autoScaling: false,
       locales: [],
       resourceTags: []
-    )
-    let imageSetName = "SingleImage.imageset"
-    assertImageSet(imageSetName, template)
+    ))
+    assertImageSet("ImageSet02.imageset", ImageSetTemplate(
+      renderAs: nil,
+      compression: .automatic,
+      preserveVectorData: false,
+      devices: Set([.watch]),
+      appearances: [ValueAppearance(value: Contrast.high).eraseToAny()],
+      scaling: .single,
+      specifyGamut: false,
+      direction: [.leftToRight, .rightToLeft],
+      specifiedWidthClass: .regular,
+      specifiedHeightClass: .compact,
+      memorySet: [.requires1GB],
+      graphicFSSet: [.apple6],
+      specifyAWWidth: true,
+      autoScaling: true,
+      locales: [],
+      resourceTags: ["taga", "tagb"]
+    ))
   }
 }
