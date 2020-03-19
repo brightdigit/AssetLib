@@ -6,8 +6,8 @@
 -   [AssetSpecificationMetadataProtocol](protocols/AssetSpecificationMetadataProtocol.md)
 -   [AssetSpecificationPropertiesProtocol](protocols/AssetSpecificationPropertiesProtocol.md)
 -   [AssetSpecificationProtocol](protocols/AssetSpecificationProtocol.md)
--   [ImageIdiomDependencyProvider](protocols/ImageIdiomDependencyProvider.md)
--   [ImageIdiomScaleProvider](protocols/ImageIdiomScaleProvider.md)
+-   [ISDeviceIdiomProviderProtocol](protocols/ISDeviceIdiomProviderProtocol.md)
+-   [IdiomScaleProviderProtocol](protocols/IdiomScaleProviderProtocol.md)
 
 ## Structs
 
@@ -16,8 +16,8 @@
 -   [AssetSpecificationDocument](structs/AssetSpecificationDocument.md)
 -   [AssetSpecificationMetadata](structs/AssetSpecificationMetadata.md)
 -   [AssetSpecificationProperties](structs/AssetSpecificationProperties.md)
--   [ImageSetDeviceIdiomProvider](structs/ImageSetDeviceIdiomProvider.md)
--   [ScaleListProvider](structs/ScaleListProvider.md)
+-   [ISDeviceIdiomProvider](structs/ISDeviceIdiomProvider.md)
+-   [IdiomScaleProvider](structs/IdiomScaleProvider.md)
 -   [Size](structs/Size.md)
 -   [ValueAppearance](structs/ValueAppearance.md)
 
