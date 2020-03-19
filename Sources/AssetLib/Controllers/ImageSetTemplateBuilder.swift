@@ -9,23 +9,33 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
 
   typealias Template = ImageSetTemplate
 
+  func setProducts<T>(_ lhs: [T],
+                      specs: [AssetSpecificationProtocol],
+                      withKeyPath keyPath: WritableKeyPath<AssetSpecificationBuilder, T>) -> [AssetSpecificationProtocol] {
+    lhs.flatMap { value in
+      specs.map { spec in
+        var specBuilder = AssetSpecificationBuilder(specifications: spec)
+        specBuilder[keyPath: keyPath] = value
+        return specBuilder.assetSpec()
+      }
+    }
+  }
+
+  fileprivate func scalesBasedOn(_ idiom: ImageIdiom, withScaling scaling: TemplateScaling?) -> [Float?] {
+    if scaling == .some(.single) {
+      return [nil]
+    }
+    var scales: [Float?] = scaleProvider.scales(forIdiom: idiom)
+    if scaling == nil {
+      scales.append(nil)
+    }
+    return scales
+  }
+
   func document(fromTemplate configuration: ImageSetTemplate) -> AssetSpecificationDocumentProtocol {
-    /* global renderAs, compress, preserveVectorData, autoScaling, locale */
-
-    /* appearances, specifyGamut, direction, specified*Class, memorySet, graphicFSSet, specifyAWWidth, locale */
-
     let idioms = configuration.devices.map(dependencyProvider.idioms(forDevice:))
 
-    let scales: [[Float?]] = idioms.map { (args) -> [Float?] in
-      if configuration.scaling == .some(.single) {
-        return [nil]
-      }
-      var scales: [Float?] = scaleProvider.scales(forIdiom: args.0)
-      if configuration.scaling == nil {
-        scales.append(nil)
-      }
-      return scales
-    }
+    let scales: [[Float?]] = idioms.map { scalesBasedOn($0.0, withScaling: configuration.scaling) }
 
     var specs: [AssetSpecificationProtocol] = zip(idioms, scales).flatMap { args in
       args.1.map { scale in
@@ -49,23 +59,11 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
           })
     }
     if configuration.specifyGamut {
-      specs = DisplayGamut.allCases.flatMap { displayGamut in
-        specs.map { spec in
-          var specBuilder = AssetSpecificationBuilder(specifications: spec)
-          specBuilder.displayGamut = displayGamut
-          return specBuilder.assetSpec()
-        }
-      }
+      specs = setProducts(DisplayGamut.allCases, specs: specs, withKeyPath: \.displayGamut)
     }
 
     if configuration.direction.count > 0 {
-      specs = configuration.direction.flatMap { direction in
-        specs.map { spec in
-          var specBuilder = AssetSpecificationBuilder(specifications: spec)
-          specBuilder.languageDirection = direction
-          return specBuilder.assetSpec()
-        }
-      }
+      specs = setProducts([LanguageDirection](configuration.direction), specs: specs, withKeyPath: \.languageDirection)
     }
 
     if let heightClass = configuration.specifiedHeightClass {
