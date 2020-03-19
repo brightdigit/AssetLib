@@ -1,4 +1,4 @@
-public struct ImageSetDeviceIdiomProvider: ImageIdiomDependencyProvider {
+public struct ISDeviceIdiomProvider: ISDeviceIdiomProviderProtocol {
   let dictionary: [ImageSetDevice: (ImageIdiom, DeviceSubType?)]
 
   static let defaultDictionray: [ImageSetDevice: (ImageIdiom, DeviceSubType?)] = [

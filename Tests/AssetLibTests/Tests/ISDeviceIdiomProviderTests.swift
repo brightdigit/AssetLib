@@ -1,7 +1,7 @@
 @testable import AssetLib
 import XCTest
 
-final class ImageSetDeviceIdiomProviderTests: XCTestCase {
+final class ISDeviceIdiomProviderTests: XCTestCase {
   func testValidDictionary() {
     var dictionary = [ImageSetDevice: (ImageIdiom, DeviceSubType?)]()
     for device in ImageSetDevice.allCases {
@@ -26,7 +26,7 @@ final class ImageSetDeviceIdiomProviderTests: XCTestCase {
       }
       dictionary[device] = value
     }
-    let imageSetIdiomProvider = ImageSetDeviceIdiomProvider(dictionary: dictionary)
+    let imageSetIdiomProvider = ISDeviceIdiomProvider(dictionary: dictionary)
 
     XCTAssertNotNil(imageSetIdiomProvider)
 
@@ -46,7 +46,7 @@ final class ImageSetDeviceIdiomProviderTests: XCTestCase {
     dictionary = [
       .ipad: (ImageIdiom.watchMarketing, .size42)
     ]
-    let imageSetIdiomProvider = ImageSetDeviceIdiomProvider(dictionary: dictionary)
+    let imageSetIdiomProvider = ISDeviceIdiomProvider(dictionary: dictionary)
 
     XCTAssertNil(imageSetIdiomProvider)
   }

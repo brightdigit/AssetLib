@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ScaleListProvider: ImageIdiomScaleProvider {
+public struct IdiomScaleProvider: IdiomScaleProviderProtocol {
   let dictionary: [ImageIdiom: [Float]]
 
   static let defaultDictionary: [ImageIdiom: [Float]] = [

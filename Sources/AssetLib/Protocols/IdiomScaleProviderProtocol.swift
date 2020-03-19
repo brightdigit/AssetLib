@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol ImageIdiomScaleProvider {
+public protocol IdiomScaleProviderProtocol {
   func scales(forIdiom idiom: ImageIdiom) -> [Float]
 }
