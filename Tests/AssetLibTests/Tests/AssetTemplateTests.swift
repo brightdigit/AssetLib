@@ -56,11 +56,15 @@ final class AssetTemplateTests: XCTestCase {
     
     XCTAssertEqual(actualString, expectedString)
     
+    
+    
     if actualString != expectedString {
       try? actualString.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"), atomically: false, encoding: .utf8)
       
       try? expectedString.write(to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.expected.json"), atomically: false, encoding: .utf8)
     }
+    
+    XCTAssertEqual(Data.jsonMismatch(lhs: actualData, rhs: expectedData).count, 0)
   }
 
   func testTemplate() {
@@ -69,7 +73,7 @@ final class AssetTemplateTests: XCTestCase {
       compression: .gpuOptimizedBest,
       preserveVectorData: true,
       devices: Set([.universal]),
-      appearances: [ValueAppearance(value: Luminosity.dark).eraseToAny(), ValueAppearance(value: Luminosity.light).eraseToAny()],
+      appearances: [ValueAppearance(value: Luminosity.light).eraseToAny(), ValueAppearance(value: Luminosity.dark).eraseToAny()],
       scaling: .single,
       specifyGamut: true,
       direction: [],
