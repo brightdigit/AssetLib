@@ -11,7 +11,7 @@ func tryAndFail<T>(_ closure: () throws -> T) -> T? {
   return result
 }
 
-final class AssetTemplateTests: XCTestCase {
+final class ImageSetTemplateBuilderTests: XCTestCase {
   fileprivate func assertImageSet(_ imageSetName: String, _ template: ImageSetTemplate) {
     let hereUrl = URL(fileURLWithPath: #file)
     let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("../../../Data/Data")

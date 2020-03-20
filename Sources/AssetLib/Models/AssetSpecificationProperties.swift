@@ -5,7 +5,8 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
   public let autoScaling: AppleWatchAutoScaingMethod?
   public let compressionType: CompressionType
   public let preservesVectorRepresentation: Bool
-  public let localizable: Bool?
+  public let localizable: Bool
+  public let preRendered: Bool
   public let onDemandResourceTags: [String]
 
   public enum CodingKeys: String, CodingKey {
@@ -14,6 +15,7 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     case compressionType = "compression-type"
     case preservesVectorRepresentation = "preserves-vector-representation"
     case localizable
+    case preRendered = "pre-rendered"
     case onDemandResourceTags = "on-demand-resource-tags"
   }
 
@@ -22,7 +24,8 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     autoScaling: AppleWatchAutoScaingMethod?,
     compressionType: CompressionType = .automatic,
     preservesVectorRepresentation: Bool = false,
-    localizable: Bool?,
+    localizable: Bool = false,
+    preRendered: Bool = false,
     onDemandResourceTags: [String]
   ) {
     self.templateRenderingIntent = templateRenderingIntent
@@ -30,6 +33,7 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     self.compressionType = compressionType
     self.preservesVectorRepresentation = preservesVectorRepresentation
     self.localizable = localizable
+    self.preRendered = preRendered
     self.onDemandResourceTags = onDemandResourceTags
   }
 
@@ -39,6 +43,7 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     compressionType = properties.compressionType
     preservesVectorRepresentation = properties.preservesVectorRepresentation
     localizable = properties.localizable
+    preRendered = properties.preRendered
     onDemandResourceTags = properties.onDemandResourceTags
   }
 
@@ -48,7 +53,8 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     autoScaling = try container.decodeIfPresent(AppleWatchAutoScaingMethod.self, forKey: .autoScaling)
     compressionType = try container.decodeIfPresent(CompressionType.self, forKey: .compressionType) ?? .automatic
     preservesVectorRepresentation = try container.decodeIfPresent(Bool.self, forKey: .preservesVectorRepresentation) ?? false
-    localizable = try container.decodeIfPresent(Bool.self, forKey: .localizable)
+    localizable = try container.decodeIfPresent(Bool.self, forKey: .localizable) ?? false
+    preRendered = try container.decodeIfPresent(Bool.self, forKey: .preRendered) ?? false
     onDemandResourceTags = try container.decodeIfPresent([String].self, forKey: .onDemandResourceTags) ?? [String]()
   }
 
@@ -59,11 +65,14 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     if compressionType != .automatic {
       try container.encodeIfPresent(compressionType, forKey: .compressionType)
     }
-    if preservesVectorRepresentation == true {
-      try container.encodeIfPresent(preservesVectorRepresentation, forKey: .preservesVectorRepresentation)
+    if preservesVectorRepresentation {
+      try container.encode(preservesVectorRepresentation, forKey: .preservesVectorRepresentation)
     }
-    if localizable == true {
-      try container.encodeIfPresent(localizable, forKey: .localizable)
+    if localizable {
+      try container.encode(localizable, forKey: .localizable)
+    }
+    if preRendered {
+      try container.encode(preRendered, forKey: .preRendered)
     }
     if onDemandResourceTags.count > 0 {
       try container.encode(onDemandResourceTags, forKey: .onDemandResourceTags)

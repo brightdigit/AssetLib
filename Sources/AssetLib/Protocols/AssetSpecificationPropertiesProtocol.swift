@@ -5,6 +5,7 @@ public protocol AssetSpecificationPropertiesProtocol: Codable {
   var autoScaling: AppleWatchAutoScaingMethod? { get }
   var compressionType: CompressionType { get }
   var preservesVectorRepresentation: Bool { get }
-  var localizable: Bool? { get }
+  var localizable: Bool { get }
   var onDemandResourceTags: [String] { get }
+  var preRendered: Bool { get }
 }
