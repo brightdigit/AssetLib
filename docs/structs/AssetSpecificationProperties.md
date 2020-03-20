@@ -54,13 +54,13 @@ public let onDemandResourceTags: [String]
 
 ```swift
 public init(
-  templateRenderingIntent: RenderingIntent?,
-  autoScaling: AppleWatchAutoScaingMethod?,
+  templateRenderingIntent: RenderingIntent? = nil,
+  autoScaling: AppleWatchAutoScaingMethod? = nil,
   compressionType: CompressionType = .automatic,
   preservesVectorRepresentation: Bool = false,
   localizable: Bool = false,
   preRendered: Bool = false,
-  onDemandResourceTags: [String]
+  onDemandResourceTags: [String] = [String]()
 )
 ```
 
