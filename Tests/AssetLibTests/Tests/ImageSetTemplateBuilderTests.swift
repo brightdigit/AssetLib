@@ -53,6 +53,9 @@ func assertApproximateEquals(_ actualDocument: AssetSpecificationDocument, _ ima
   XCTAssertEqual(expectedDocument.properties?.preservesVectorRepresentation, actualDocument.properties?.preservesVectorRepresentation)
   XCTAssertEqual(expectedDocument.properties?.localizable, actualDocument.properties?.localizable)
 
+  if expectedDocument.images?.count == actualDocument.images?.count {
+    return
+  }
   try? actualString.write(
     to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"),
     atomically: false, encoding: .utf8
