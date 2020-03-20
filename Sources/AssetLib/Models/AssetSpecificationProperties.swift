@@ -20,13 +20,13 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
   }
 
   public init(
-    templateRenderingIntent: RenderingIntent?,
-    autoScaling: AppleWatchAutoScaingMethod?,
+    templateRenderingIntent: RenderingIntent? = nil,
+    autoScaling: AppleWatchAutoScaingMethod? = nil,
     compressionType: CompressionType = .automatic,
     preservesVectorRepresentation: Bool = false,
     localizable: Bool = false,
     preRendered: Bool = false,
-    onDemandResourceTags: [String]
+    onDemandResourceTags: [String] = [String]()
   ) {
     self.templateRenderingIntent = templateRenderingIntent
     self.autoScaling = autoScaling
