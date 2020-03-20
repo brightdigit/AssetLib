@@ -17,18 +17,6 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
     self.map = map ?? AppIconDeviceIdiomMap()
   }
 
-  func setProducts<T>(_ lhs: [T],
-                      specs: [AssetSpecificationProtocol],
-                      withKeyPath keyPath: WritableKeyPath<AssetSpecificationBuilder, T>) -> [AssetSpecificationProtocol] {
-    lhs.flatMap { value in
-      specs.map { spec in
-        var specBuilder = AssetSpecificationBuilder(specifications: spec)
-        specBuilder[keyPath: keyPath] = value
-        return specBuilder.assetSpec()
-      }
-    }
-  }
-
   public func document(fromTemplate template: AppIconTemplate) -> AssetSpecificationDocumentProtocol {
     let specs = Set(template.devices.flatMap(map.idiom(forDevice:))).flatMap { (idiom) -> [AssetSpecificationProtocol] in
       // let specsOpt = dictionary[idiom]
