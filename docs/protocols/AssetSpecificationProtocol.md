@@ -20,7 +20,7 @@ var idiom: ImageIdiom
 ### `scale`
 
 ```swift
-var scale: CGFloat?
+var scale: Float?
 ```
 
 > The targeted display scale for the image or icon.
@@ -28,7 +28,7 @@ var scale: CGFloat?
 ### `size`
 
 ```swift
-var size: CGSize?
+var size: Size?
 ```
 
 > The size of the app icon.
@@ -52,7 +52,61 @@ var role: AppleWatchRole?
 ### `subtype`
 
 ```swift
-var subtype: AppleWatchType?
+var subtype: DeviceSubType?
 ```
 
 > The type of Apple Watch when there is more than one icon size for a role.
+
+### `appearances`
+
+```swift
+var appearances: [AnyAppearance]
+```
+
+### `displayGamut`
+
+```swift
+var displayGamut: DisplayGamut?
+```
+
+### `languageDirection`
+
+```swift
+var languageDirection: LanguageDirection?
+```
+
+### `screenWidth`
+
+```swift
+var screenWidth: AppleWatchScreenWidth?
+```
+
+### `heightClass`
+
+```swift
+var heightClass: SizeClass?
+```
+
+### `widthClass`
+
+```swift
+var widthClass: SizeClass?
+```
+
+### `memory`
+
+```swift
+var memory: Memory?
+```
+
+### `graphicsFeatureSet`
+
+```swift
+var graphicsFeatureSet: GraphicsFeatureSet?
+```
+
+### `locale`
+
+```swift
+var locale: Locale?
+```

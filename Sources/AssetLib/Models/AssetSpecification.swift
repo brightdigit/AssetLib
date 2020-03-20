@@ -1,23 +1,30 @@
 import Foundation
 
-#if canImport(CoreGraphics)
-  import CoreGraphics
-#endif
-
 /// A size or variant of an image or icon.
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
+  public let screenWidth: AppleWatchScreenWidth?
+  public let heightClass: SizeClass?
+  public let widthClass: SizeClass?
+  public let memory: Memory?
+  public let graphicsFeatureSet: GraphicsFeatureSet?
+  public let locale: Locale?
+
   /// The device type for the image.
   public let idiom: ImageIdiom
   /// The targeted display scale for the image or icon.
-  public let scale: CGFloat?
+  public let scale: Float?
   /// The size of the app icon.
-  public let size: CGSize?
+  public let size: Size?
   /// The HEIF, .png, .jpg, or .pdf file for the image.
   public let filename: String?
   /// The role for an Apple Watch icon
   public let role: AppleWatchRole?
   /// The type of Apple Watch when there is more than one icon size for a role.
-  public let subtype: AppleWatchType?
+  public let subtype: DeviceSubType?
+
+  public let appearances: [AnyAppearance]
+  public let displayGamut: DisplayGamut?
+  public let languageDirection: LanguageDirection?
 
   enum CodingKeys: String, CodingKey {
     case idiom
@@ -26,6 +33,15 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     case filename
     case role
     case subtype
+    case appearances
+    case displayGamut = "display-gamut"
+    case languageDirection = "language-direction"
+    case screenWidth = "screen-width"
+    case heightClass = "height-class"
+    case widthClass = "width-class"
+    case memory
+    case graphicsFeatureSet = "graphics-feature-set"
+    case locale
   }
 
   /// Builds an AssetSpecification
@@ -37,17 +53,35 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   ///   - subtype: The type of Apple Watch when there is more than one icon size for a role.
   ///   - filename: The HEIF, .png, .jpg, or .pdf file for the image.
   public init(idiom: ImageIdiom,
-              scale: CGFloat? = nil,
-              size: CGSize? = nil,
+              scale: Float? = nil,
+              size: Size? = nil,
               role: AppleWatchRole? = nil,
-              subtype: AppleWatchType? = nil,
-              filename: String? = nil) {
+              subtype: DeviceSubType? = nil,
+              filename: String? = nil,
+              appearances: [AnyAppearance] = [AnyAppearance](),
+              displayGamut: DisplayGamut? = nil,
+              languageDirection: LanguageDirection? = nil,
+              screenWidth: AppleWatchScreenWidth? = nil,
+              heightClass: SizeClass? = nil,
+              widthClass: SizeClass? = nil,
+              memory: Memory? = nil,
+              graphicsFeatureSet: GraphicsFeatureSet? = nil,
+              locale: Locale? = nil) {
     self.idiom = idiom
     self.scale = scale
     self.size = size
     self.filename = filename
     self.role = role
     self.subtype = subtype
+    self.appearances = appearances
+    self.displayGamut = displayGamut
+    self.languageDirection = languageDirection
+    self.screenWidth = screenWidth
+    self.heightClass = heightClass
+    self.widthClass = widthClass
+    self.memory = memory
+    self.graphicsFeatureSet = graphicsFeatureSet
+    self.locale = locale
   }
 
   /// Builds an AssetSpecification from an AssetSpecificationProtocol.
@@ -59,6 +93,15 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     filename = specifications.filename
     subtype = specifications.subtype
     role = specifications.role
+    appearances = specifications.appearances
+    displayGamut = specifications.displayGamut
+    languageDirection = specifications.languageDirection
+    screenWidth = specifications.screenWidth
+    heightClass = specifications.heightClass
+    widthClass = specifications.widthClass
+    memory = specifications.memory
+    graphicsFeatureSet = specifications.graphicsFeatureSet
+    locale = specifications.locale
   }
 
   // swiftlint:disable force_try
@@ -75,42 +118,55 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
       guard let scaleValueString = scaleString.firstMatchGroups(regex: Self.scaleRegularExpression)?[1], let scale = Double(scaleValueString) else {
         throw DecodingError.dataCorruptedError(forKey: .scale, in: container, debugDescription: scaleString)
       }
-      self.scale = CGFloat(scale)
+      self.scale = Float(scale)
     } else {
       scale = nil
     }
 
     if let sizeString = try container.decodeIfPresent(String.self, forKey: .size) {
-      let sizeArray = sizeString.split(separator: Character("x")).map(String.init).compactMap(Double.init)
+      let sizeArray = sizeString.split(separator: Character("x")).map(String.init).compactMap(Float.init)
       guard let width = sizeArray.first, let height = sizeArray.last, sizeArray.count == 2 else {
         throw DecodingError.dataCorruptedError(forKey: .size, in: container, debugDescription: sizeString)
       }
-      size = CGSize(width: width, height: height)
+      size = Size(width: width, height: height)
     } else {
       size = nil
     }
 
     role = try container.decodeIfPresent(AppleWatchRole.self, forKey: .role)
-    subtype = try container.decodeIfPresent(AppleWatchType.self, forKey: .subtype)
+    subtype = try container.decodeIfPresent(DeviceSubType.self, forKey: .subtype)
+    appearances = try container.decodeIfPresent([AnyAppearance].self, forKey: .appearances) ?? [AnyAppearance]()
+    displayGamut = try container.decodeIfPresent(DisplayGamut.self, forKey: .displayGamut)
+    languageDirection = try container.decodeIfPresent(LanguageDirection.self, forKey: .languageDirection)
+    screenWidth = try container.decodeIfPresent(AppleWatchScreenWidth.self, forKey: .screenWidth)
+    heightClass = try container.decodeIfPresent(SizeClass.self, forKey: .heightClass)
+    widthClass = try container.decodeIfPresent(SizeClass.self, forKey: .widthClass)
+    memory = try container.decodeIfPresent(Memory.self, forKey: .memory)
+    graphicsFeatureSet = try container.decodeIfPresent(GraphicsFeatureSet.self, forKey: .graphicsFeatureSet)
+
+    let localeString = try container.decodeIfPresent(String.self, forKey: .locale)
+
+    locale = localeString.map(Locale.init(identifier:))
   }
 
-  /// Formats an CGSize for an Asset's size.
+  /// Formats an Size for an Asset's size.
   /// - Parameter size: The dimensions for the image or icon variant.
-  public static func formatSize(_ size: CGSize) -> String {
+  public static func formatSize(_ size: Size) -> String {
     "\(size.width.clean)x\(size.height.clean)"
   }
 
-  /// Formats a CGFloat for an Asset's scale.
+  /// Formats a Float for an Asset's scale.
   /// - Parameter size: The scale for the image or icon variant.
-  static func formatScale(_ scale: CGFloat) -> String {
+  static func formatScale(_ scale: Float) -> String {
     let scale = Int(scale.rounded())
     return "\(scale)x"
   }
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
+
     if let size = size {
-      try container.encode(AssetSpecification.formatSize(size), forKey: .size)
+      try container.encodeIfPresent(AssetSpecification.formatSize(size), forKey: .size)
     }
 
     if let scale = scale {
@@ -130,5 +186,26 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
     }
 
     try container.encode(idiom, forKey: .idiom)
+
+    if appearances.count > 0 {
+      try container.encode(appearances, forKey: .appearances)
+    }
+
+    try container.encodeIfPresent(displayGamut, forKey: .displayGamut)
+
+    try container.encodeIfPresent(languageDirection, forKey: .languageDirection)
+
+    try container.encodeIfPresent(screenWidth, forKey: .screenWidth)
+
+    try container.encodeIfPresent(heightClass, forKey: .heightClass)
+
+    try container.encodeIfPresent(widthClass, forKey: .widthClass)
+    try container.encodeIfPresent(memory, forKey: .memory)
+
+    try container.encodeIfPresent(graphicsFeatureSet, forKey: .graphicsFeatureSet)
+
+    if let localeIdentifier = locale.map({ $0.identifier }) {
+      try container.encode(localeIdentifier, forKey: .locale)
+    }
   }
 }

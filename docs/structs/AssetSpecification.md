@@ -9,6 +9,42 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable
 > A size or variant of an image or icon.
 
 ## Properties
+### `screenWidth`
+
+```swift
+public let screenWidth: AppleWatchScreenWidth?
+```
+
+### `heightClass`
+
+```swift
+public let heightClass: SizeClass?
+```
+
+### `widthClass`
+
+```swift
+public let widthClass: SizeClass?
+```
+
+### `memory`
+
+```swift
+public let memory: Memory?
+```
+
+### `graphicsFeatureSet`
+
+```swift
+public let graphicsFeatureSet: GraphicsFeatureSet?
+```
+
+### `locale`
+
+```swift
+public let locale: Locale?
+```
+
 ### `idiom`
 
 ```swift
@@ -20,7 +56,7 @@ public let idiom: ImageIdiom
 ### `scale`
 
 ```swift
-public let scale: CGFloat?
+public let scale: Float?
 ```
 
 > The targeted display scale for the image or icon.
@@ -28,7 +64,7 @@ public let scale: CGFloat?
 ### `size`
 
 ```swift
-public let size: CGSize?
+public let size: Size?
 ```
 
 > The size of the app icon.
@@ -52,21 +88,48 @@ public let role: AppleWatchRole?
 ### `subtype`
 
 ```swift
-public let subtype: AppleWatchType?
+public let subtype: DeviceSubType?
 ```
 
 > The type of Apple Watch when there is more than one icon size for a role.
 
+### `appearances`
+
+```swift
+public let appearances: [AnyAppearance]
+```
+
+### `displayGamut`
+
+```swift
+public let displayGamut: DisplayGamut?
+```
+
+### `languageDirection`
+
+```swift
+public let languageDirection: LanguageDirection?
+```
+
 ## Methods
-### `init(idiom:scale:size:role:subtype:filename:)`
+### `init(idiom:scale:size:role:subtype:filename:appearances:displayGamut:languageDirection:screenWidth:heightClass:widthClass:memory:graphicsFeatureSet:locale:)`
 
 ```swift
 public init(idiom: ImageIdiom,
-            scale: CGFloat? = nil,
-            size: CGSize? = nil,
+            scale: Float? = nil,
+            size: Size? = nil,
             role: AppleWatchRole? = nil,
-            subtype: AppleWatchType? = nil,
-            filename: String? = nil)
+            subtype: DeviceSubType? = nil,
+            filename: String? = nil,
+            appearances: [AnyAppearance] = [AnyAppearance](),
+            displayGamut: DisplayGamut? = nil,
+            languageDirection: LanguageDirection? = nil,
+            screenWidth: AppleWatchScreenWidth? = nil,
+            heightClass: SizeClass? = nil,
+            widthClass: SizeClass? = nil,
+            memory: Memory? = nil,
+            graphicsFeatureSet: GraphicsFeatureSet? = nil,
+            locale: Locale? = nil)
 ```
 
 > Builds an AssetSpecification
@@ -119,10 +182,10 @@ public init(from decoder: Decoder) throws
 ### `formatSize(_:)`
 
 ```swift
-public static func formatSize(_ size: CGSize) -> String
+public static func formatSize(_ size: Size) -> String
 ```
 
-> Formats an CGSize for an Asset's size.
+> Formats an Size for an Asset's size.
 > - Parameter size: The dimensions for the image or icon variant.
 
 #### Parameters

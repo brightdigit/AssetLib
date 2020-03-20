@@ -7,14 +7,38 @@ public enum CodingKeys: String, CodingKey
 ```
 
 ## Cases
-### `images`
+### `templateRenderingIntent`
 
 ```swift
-case images
+case templateRenderingIntent = "template-rendering-intent"
 ```
 
-### `info`
+### `autoScaling`
 
 ```swift
-case info
+case autoScaling = "auto-scaling"
+```
+
+### `compressionType`
+
+```swift
+case compressionType = "compression-type"
+```
+
+### `preservesVectorRepresentation`
+
+```swift
+case preservesVectorRepresentation = "preserves-vector-representation"
+```
+
+### `localizable`
+
+```swift
+case localizable
+```
+
+### `onDemandResourceTags`
+
+```swift
+case onDemandResourceTags = "on-demand-resource-tags"
 ```

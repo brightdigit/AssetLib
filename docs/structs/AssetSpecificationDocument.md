@@ -17,6 +17,12 @@ public let info: AssetSpecificationMetadataProtocol
 
 > Metadata for the author and format version of the asset catalog.
 
+### `properties`
+
+```swift
+public let properties: AssetSpecificationPropertiesProtocol?
+```
+
 ### `images`
 
 ```swift
@@ -26,6 +32,16 @@ public let images: [AssetSpecificationProtocol]?
 > An array of sizes or variants of an image or icon.
 
 ## Methods
+### `init(info:images:properties:)`
+
+```swift
+public init(
+  info: AssetSpecificationMetadataProtocol,
+  images: [AssetSpecificationProtocol]?,
+  properties: AssetSpecificationPropertiesProtocol? = nil
+)
+```
+
 ### `init(from:)`
 
 ```swift

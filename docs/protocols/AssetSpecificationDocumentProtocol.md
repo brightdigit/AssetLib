@@ -17,6 +17,12 @@ var info: AssetSpecificationMetadataProtocol
 
 > Metadata for the author and format version of the asset catalog.
 
+### `properties`
+
+```swift
+var properties: AssetSpecificationPropertiesProtocol?
+```
+
 ### `images`
 
 ```swift

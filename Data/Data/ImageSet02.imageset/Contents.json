@@ -1,0 +1,607 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "language-direction" : "left-to-right"
+    },
+    {
+      "idiom" : "universal",
+      "language-direction" : "right-to-left"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "1x",
+      "language-direction" : "left-to-right"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "1x",
+      "language-direction" : "right-to-left"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "language-direction" : "left-to-right"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "language-direction" : "right-to-left"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "language-direction" : "left-to-right"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "language-direction" : "right-to-left"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact"
+    },
+    {
+      "idiom" : "universal",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact"
+    },
+    {
+      "idiom" : "universal",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "left-to-right"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "right-to-left"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "left-to-right",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "right-to-left",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "left-to-right",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "right-to-left",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "left-to-right",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "right-to-left",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "left-to-right",
+      "height-class" : "compact",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "width-class" : "regular",
+      "graphics-feature-set" : "apple6",
+      "language-direction" : "right-to-left",
+      "height-class" : "compact",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : "<=145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : "<=145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "memory" : "1GB",
+      "screen-width" : "<=145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "memory" : "1GB",
+      "screen-width" : "<=145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">161"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">161"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "memory" : "1GB",
+      "screen-width" : ">161"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "memory" : "1GB",
+      "screen-width" : ">161"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "memory" : "1GB",
+      "screen-width" : ">145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "memory" : "1GB",
+      "screen-width" : ">145"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">183"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">183"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "memory" : "1GB",
+      "screen-width" : ">183"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "memory" : "1GB",
+      "screen-width" : ">183"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : "<=145",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : "<=145",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : "<=145",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : "<=145",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">161",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">161",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">161",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">161",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">145",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">145",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">145",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">145",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">183",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">183",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "left-to-right",
+      "screen-width" : ">183",
+      "memory" : "1GB",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "language-direction" : "right-to-left",
+      "screen-width" : ">183",
+      "memory" : "1GB",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "on-demand-resource-tags" : [
+      "taga",
+      "tagb"
+    ],
+    "auto-scaling" : "auto"
+  }
+}
