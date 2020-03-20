@@ -9,6 +9,15 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
 
   typealias Template = ImageSetTemplate
 
+  func modifySpec<T>(_ keyPath: WritableKeyPath<AssetSpecificationBuilder, T>) -> (AssetSpecificationProtocol, T) -> AssetSpecificationProtocol {
+    return {
+      spec, value in
+      var builder = AssetSpecificationBuilder(specifications: spec)
+      builder[keyPath: keyPath] = value
+      return builder.assetSpec()
+    }
+  }
+
   func setProducts<T>(_ lhs: [T],
                       specs: [AssetSpecificationProtocol],
                       withKeyPath keyPath: WritableKeyPath<AssetSpecificationBuilder, T>) -> [AssetSpecificationProtocol] {
@@ -32,16 +41,20 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     return scales
   }
 
-  func document(fromTemplate configuration: ImageSetTemplate) -> AssetSpecificationDocumentProtocol {
-    let idioms = configuration.devices.map(dependencyProvider.idioms(forDevice:))
+  func specsBasedOn(devices: [ImageSetDevice], andScaling scaling: TemplateScaling?) -> [AssetSpecificationProtocol] {
+    let idioms = devices.map(dependencyProvider.idioms(forDevice:))
 
-    let scales: [[Float?]] = idioms.map { scalesBasedOn($0.0, withScaling: configuration.scaling) }
+    let scales: [[Float?]] = idioms.map { scalesBasedOn($0.0, withScaling: scaling) }
 
-    var specs: [AssetSpecificationProtocol] = zip(idioms, scales).flatMap { args in
+    return zip(idioms, scales).flatMap { args in
       args.1.map { scale in
         AssetSpecification(idiom: args.0.0, scale: scale, subtype: args.0.1)
       }
     }
+  }
+
+  func document(fromTemplate configuration: ImageSetTemplate) -> AssetSpecificationDocumentProtocol {
+    var specs: [AssetSpecificationProtocol] = specsBasedOn(devices: [ImageSetDevice](configuration.devices), andScaling: configuration.scaling)
 
     let appearances = [String: [AnyAppearance]].init(grouping: [AnyAppearance](configuration.appearances)) {
       $0.appearance
@@ -67,38 +80,25 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
 
     if let heightClass = configuration.specifiedHeightClass {
-      specs.append(contentsOf: product(specs.filter { $0.idiom == .universal }, [heightClass], using: { spec, sizeClass in
-        var builder = AssetSpecificationBuilder(specifications: spec)
-        builder.heightClass = sizeClass
-        return builder.assetSpec()
-      }))
+      specs.append(contentsOf: product(specs.filter { $0.idiom == .universal }, [heightClass], using: modifySpec(\.heightClass)))
     }
 
     if let widthClass = configuration.specifiedWidthClass {
-      specs.append(contentsOf: product(specs.filter { $0.idiom == .universal }, [widthClass], using: { spec, sizeClass in
-        var builder = AssetSpecificationBuilder(specifications: spec)
-        builder.widthClass = sizeClass
-        return builder.assetSpec()
-      }))
+      specs.append(contentsOf: product(specs.filter { $0.idiom == .universal }, [widthClass], using: modifySpec(\.widthClass)))
     }
 
     let tempSpecs = specs
 
     if configuration.memorySet.count > 0 {
-      specs.append(contentsOf: product(tempSpecs.filter { $0.idiom == .universal }, [Memory](configuration.memorySet)) { spec, memory in
-        var builder = AssetSpecificationBuilder(specifications: spec)
-        builder.memory = memory
-        return builder.assetSpec()
-      })
+      specs.append(contentsOf: product(tempSpecs.filter { $0.idiom == .universal }, [Memory](configuration.memorySet), using: modifySpec(\.memory)))
     }
 
     if configuration.graphicFSSet.count > 0 {
-      specs.append(contentsOf: product(tempSpecs.filter { $0.idiom != .universal },
-                                       [GraphicsFeatureSet](configuration.graphicFSSet)) { spec, graphicsFeatureSet in
-          var builder = AssetSpecificationBuilder(specifications: spec)
-          builder.graphicsFeatureSet = graphicsFeatureSet
-          return builder.assetSpec()
-      })
+      specs.append(
+        contentsOf: product(tempSpecs.filter { $0.idiom != .universal },
+                            [GraphicsFeatureSet](configuration.graphicFSSet),
+                            using: modifySpec(\.graphicsFeatureSet))
+      )
     }
 
     if configuration.specifyAWWidth {
@@ -114,11 +114,7 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       }
     }
 
-    specs.append(contentsOf: product(specs, configuration.locales, using: { spec, locale in
-      var builder = AssetSpecificationBuilder(specifications: spec)
-      builder.locale = locale
-      return builder.assetSpec()
-         }))
+    specs.append(contentsOf: product(specs, configuration.locales, using: modifySpec(\.locale)))
 
     let properties = AssetSpecificationProperties(
       templateRenderingIntent: configuration.renderAs,
