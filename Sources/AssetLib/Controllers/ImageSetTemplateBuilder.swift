@@ -1,3 +1,6 @@
+/**
+ Builds a `AssetSpecificationDocument` based on the `ImageSetTemplate`
+ */
 struct ImageSetTemplateBuilder: AssetTemplateBuilder {
   let scaleProvider: IdiomScaleProviderProtocol
   let dependencyProvider: ISDeviceIdiomProviderProtocol
@@ -32,6 +35,12 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
   }
 
+  /**
+   Creates `AssetSpecificationDocumentProtocol` based on the `ImageSetTemplate`.
+
+    - Parameter template: The `ImageSetTemplate`.
+    - Returns: The `AssetSpecificationDocumentProtocol`
+   */
   func document(fromTemplate configuration: ImageSetTemplate) -> AssetSpecificationDocumentProtocol {
     var specs: [AssetSpecificationProtocol] = specsBasedOn(devices: [ImageSetDevice](configuration.devices), andScaling: configuration.scaling)
 
