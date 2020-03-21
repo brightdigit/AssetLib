@@ -1,6 +1,17 @@
+/**
+ Returns whether a speciifc `ImageIdiom` supports display gamuts for App Icons.
+ */
 public struct ImageIdiomDisplayGamut: ImageIdiomDisplayGamutProtocol {
-  public let supportedImageIdioms: [ImageIdiom]
+  /**
+   Set of `ImageIdiom` which support display gamut.
+   */
+  public let supportedImageIdioms: Set<ImageIdiom>
 
+  /**
+   Returns whether a speciifc `ImageIdiom` supports display gamuts for App Icons.
+    - Parameter idiom: The `ImageIdiom` to check.
+    - Returns: true, if the `ImageIdiom` supports display gamuts for App Icons; false, otherwise.
+   */
   public func supportsDisplayGamut(_ idiom: ImageIdiom) -> Bool {
     return supportedImageIdioms.contains(idiom)
   }
