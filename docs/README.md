@@ -17,6 +17,7 @@
 
 -   [AnyAppearance](structs/AnyAppearance.md)
 -   [AppIconDeviceIdiomMap](structs/AppIconDeviceIdiomMap.md)
+-   [AppIconMasterDocumentProvider](structs/AppIconMasterDocumentProvider.md)
 -   [AppIconTemplate](structs/AppIconTemplate.md)
 -   [AppIconTemplateBuilder](structs/AppIconTemplateBuilder.md)
 -   [AssetSpecification](structs/AssetSpecification.md)
