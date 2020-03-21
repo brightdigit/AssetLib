@@ -50,7 +50,7 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
         return specs
       }
 
-      return setProducts(DisplayGamut.allCases, specs: specs, withKeyPath: \.displayGamut)
+      return specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
     }
 
     return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs, properties: AssetSpecificationProperties(preRendered: true))

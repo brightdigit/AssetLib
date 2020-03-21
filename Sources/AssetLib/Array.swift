@@ -13,7 +13,27 @@ extension WritableKeyPath where Root == AssetSpecificationBuilder {
 }
 
 extension Array where Element == AssetSpecificationProtocol {
-  func multiply<PropertyType>(by _: [PropertyType], with _: WritableKeyPath<AssetSpecificationBuilder, PropertyType>, where _: ((Element) -> Bool)? = nil, append _: Bool = false) -> [Element] {
-    return self
+  func multiply<PropertyType>(by factor: [PropertyType], with keyPath: WritableKeyPath<AssetSpecificationBuilder, PropertyType>, where filter: ((Element) -> Bool)? = nil, append: Bool = false) -> [Element] {
+    let multiplier: Self
+
+    if let filter = filter {
+      multiplier = self.filter(filter)
+    } else {
+      multiplier = self
+    }
+
+    let result = factor.flatMap { value in
+      multiplier.map { spec -> AssetSpecificationProtocol in
+        var specBuilder = AssetSpecificationBuilder(specifications: spec)
+        specBuilder[keyPath: keyPath] = value
+        return specBuilder.assetSpec()
+      }
+    }
+
+    if append {
+      return self + result
+    } else {
+      return result
+    }
   }
 }

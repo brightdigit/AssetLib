@@ -17,6 +17,7 @@ func product<Multiplier, Factor, Product>(
   product(sequence, other).map(closure)
 }
 
+@available(*, deprecated)
 func setProducts<T>(_ lhs: [T],
                     specs: [AssetSpecificationProtocol],
                     withKeyPath keyPath: WritableKeyPath<AssetSpecificationBuilder, T>) -> [AssetSpecificationProtocol] {

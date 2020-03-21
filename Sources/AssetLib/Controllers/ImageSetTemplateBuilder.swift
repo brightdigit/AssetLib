@@ -60,33 +60,31 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
           })
     }
     if configuration.specifyGamut {
-      specs = setProducts(DisplayGamut.allCases, specs: specs, withKeyPath: \.displayGamut)
+      specs = specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
     }
 
     if configuration.direction.count > 0 {
-      specs = setProducts([LanguageDirection](configuration.direction), specs: specs, withKeyPath: \.languageDirection)
+      specs = specs.multiply(by: [LanguageDirection](configuration.direction), with: \.languageDirection)
     }
 
     if let heightClass = configuration.specifiedHeightClass {
-      specs.append(contentsOf: product(specs.filter { $0.idiom == .universal }, [heightClass], using: (\AssetSpecificationBuilder.heightClass).modify))
+      specs = specs.multiply(by: [heightClass], with: \.heightClass, where: { $0.idiom == .universal }, append: true)
     }
 
     if let widthClass = configuration.specifiedWidthClass {
-      specs.append(contentsOf: product(specs.filter { $0.idiom == .universal }, [widthClass], using: (\AssetSpecificationBuilder.widthClass).modify))
+      specs = specs.multiply(by: [widthClass], with: \.widthClass, where: { $0.idiom == .universal }, append: true)
     }
 
     let tempSpecs = specs
 
     if configuration.memorySet.count > 0 {
-      specs.append(contentsOf: product(tempSpecs.filter { $0.idiom == .universal }, [Memory](configuration.memorySet), using: (\AssetSpecificationBuilder.memory).modify))
+      specs.append(contentsOf:
+        tempSpecs.multiply(by: [Memory](configuration.memorySet), with: \.memory, where: { $0.idiom == .universal })
+      )
     }
 
     if configuration.graphicFSSet.count > 0 {
-      specs.append(
-        contentsOf: product(tempSpecs.filter { $0.idiom != .universal },
-                            [GraphicsFeatureSet](configuration.graphicFSSet),
-                            using: (\AssetSpecificationBuilder.graphicsFeatureSet).modify)
-      )
+      specs.append(contentsOf: tempSpecs.multiply(by: [GraphicsFeatureSet](configuration.graphicFSSet), with: \.graphicsFeatureSet, where: { $0.idiom != .universal }))
     }
 
     if configuration.specifyAWWidth {
