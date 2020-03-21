@@ -68,11 +68,11 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
 
     if let heightClass = configuration.specifiedHeightClass {
-      specs = specs.multiply(by: [heightClass], with: \.heightClass, where: { $0.idiom == .universal }, append: true)
+      specs = specs.multiply(by: [heightClass], with: \.heightClass, where: { $0.idiom == .universal }, operation: .append)
     }
 
     if let widthClass = configuration.specifiedWidthClass {
-      specs = specs.multiply(by: [widthClass], with: \.widthClass, where: { $0.idiom == .universal }, append: true)
+      specs = specs.multiply(by: [widthClass], with: \.widthClass, where: { $0.idiom == .universal }, operation: .append)
     }
 
     let tempSpecs = specs
@@ -88,19 +88,10 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
 
     if configuration.specifyAWWidth {
-      specs = specs.flatMap { (spec) -> [AssetSpecificationProtocol] in
-        guard spec.idiom == .watch else {
-          return [spec]
-        }
-        return AppleWatchScreenWidth.allCases.map { width in
-          var builder = AssetSpecificationBuilder(specifications: spec)
-          builder.screenWidth = width
-          return builder.assetSpec()
-        }
-      }
+      specs = specs.multiply(by: AppleWatchScreenWidth.allCases, with: \.screenWidth, where: { $0.idiom == .watch }, operation: .modify)
     }
 
-    specs.append(contentsOf: product(specs, configuration.locales, using: (\AssetSpecificationBuilder.locale).modify))
+    specs = specs.multiply(by: configuration.locales, with: \.locale, operation: .append)
 
     let properties = AssetSpecificationProperties(
       templateRenderingIntent: configuration.renderAs,

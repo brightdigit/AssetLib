@@ -4,33 +4,34 @@ extension Array {
   }
 }
 
-extension WritableKeyPath where Root == AssetSpecificationBuilder {
-  func modify(spec: AssetSpecificationProtocol, value: Value) -> AssetSpecificationProtocol {
-    var builder = AssetSpecificationBuilder(specifications: spec)
-    builder[keyPath: self] = value
-    return builder.assetSpec()
-  }
+enum ProductOperation {
+  case replace
+  case append
+  case modify
 }
 
 extension Array where Element == AssetSpecificationProtocol {
-  func multiply<PropertyType>(by factor: [PropertyType], with keyPath: WritableKeyPath<AssetSpecificationBuilder, PropertyType>, where filter: ((Element) -> Bool)? = nil, append: Bool = false) -> [Element] {
+  func multiply<PropertyType>(by factor: [PropertyType], with keyPath: WritableKeyPath<AssetSpecificationBuilder, PropertyType>, where filter: ((Element) -> Bool)? = nil, operation: ProductOperation = .replace) -> [Element] {
     let multiplier: Self
 
-    if let filter = filter {
+    if let filter = filter, operation != .modify {
       multiplier = self.filter(filter)
     } else {
       multiplier = self
     }
 
-    let result = factor.flatMap { value in
-      multiplier.map { spec -> AssetSpecificationProtocol in
+    let result: [AssetSpecificationProtocol] = multiplier.flatMap { (spec) -> [AssetSpecificationProtocol] in
+      guard operation != .modify || filter?(spec) == true else {
+        return [spec]
+      }
+      return factor.map { value in
         var specBuilder = AssetSpecificationBuilder(specifications: spec)
         specBuilder[keyPath: keyPath] = value
         return specBuilder.assetSpec()
       }
     }
 
-    if append {
+    if operation == .append {
       return self + result
     } else {
       return result
