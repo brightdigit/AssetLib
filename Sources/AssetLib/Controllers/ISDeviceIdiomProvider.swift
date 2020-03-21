@@ -23,10 +23,7 @@ public struct ISDeviceIdiomProvider: ISDeviceIdiomProviderProtocol {
     self.dictionary = dictionary
   }
 
-  public func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?) {
-    guard let result = dictionary[device] else {
-      preconditionFailure()
-    }
-    return result
+  public func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?)? {
+    return dictionary[device]
   }
 }

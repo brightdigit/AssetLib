@@ -14,7 +14,7 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
   /**
    Returns a list of `AssetSpecificationProtocol` based on the `ImageIdiom`.
    */
-  let appIconSpecifications: ImageIdiomAppIconSpecificationProvider
+  let appIconSpecifications: IdiomAppIconSpecProvider
 
   /**
    Returns a list of `ImageIdiom` based on the  `AppIconDevice`.
@@ -28,11 +28,11 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
   ///   - idiomDeviceMap: Returns a list of `ImageIdiom` based on the  `AppIconDevice`.
   init(
     supportsDisplayGamut: ImageIdiomDisplayGamutProtocol? = nil,
-    appIconSpecifications: ImageIdiomAppIconSpecificationProvider? = nil,
+    appIconSpecifications: IdiomAppIconSpecProvider? = nil,
     map: AppIconDeviceIdiomMapProtocol? = nil
   ) {
     self.supportsDisplayGamut = supportsDisplayGamut ?? ImageIdiomDisplayGamut(supportedImageIdioms: [.iphone, .ipad, .mac])
-    self.appIconSpecifications = appIconSpecifications ?? ImageIdiomAppIconSpecificationMap()
+    self.appIconSpecifications = appIconSpecifications ?? IdiomAppIconSpecMap()
     idiomDeviceMap = map ?? AppIconDeviceIdiomMap()
   }
 

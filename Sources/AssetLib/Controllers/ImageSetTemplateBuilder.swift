@@ -24,7 +24,7 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
   }
 
   func specsBasedOn(devices: [ImageSetDevice], andScaling scaling: TemplateScaling?) -> [AssetSpecificationProtocol] {
-    let idioms = devices.map(dependencyProvider.idioms(forDevice:))
+    let idioms = devices.compactMap(dependencyProvider.idioms(forDevice:))
 
     let scales: [[Float?]] = idioms.map { scalesBasedOn($0.0, withScaling: scaling) }
 
