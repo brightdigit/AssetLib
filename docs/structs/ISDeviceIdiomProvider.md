@@ -22,5 +22,5 @@ public init?(dictionary: [ImageSetDevice: (ImageIdiom, DeviceSubType?)])
 ### `idioms(forDevice:)`
 
 ```swift
-public func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?)
+public func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?)?
 ```
