@@ -26,13 +26,14 @@ public init(dictionary: [ImageIdiom: [AssetSpecificationProtocol]]? = nil)
 
 > Creates a `IdiomAppIconSpecMap` based on the `[ImageIdiom: [AssetSpecificationProtocol]]` Dictionary passed.
 >
-> - Parameter dictionary: The optional `[ImageIdiom: [AssetSpecificationProtocol]]` to use otherwise base it on what `AppIconMasterDocumentProvider` provides.
+> - Parameter dictionary: The optional `[ImageIdiom: [AssetSpecificationProtocol]]` to use.
+> Otherwise base it on what `AppIconMasterDocumentProvider` provides.
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| dictionary | The optional `[ImageIdiom: [AssetSpecificationProtocol]]` to use otherwise base it on what `AppIconMasterDocumentProvider` provides. |
+| dictionary | The optional `[ImageIdiom: [AssetSpecificationProtocol]]` to use. Otherwise base it on what `AppIconMasterDocumentProvider` provides. |
 
 ### `appIcon(specificationFor:)`
 

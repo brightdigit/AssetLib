@@ -6,9 +6,22 @@
 public protocol ISDeviceIdiomProviderProtocol
 ```
 
+> Converts `ImageSetDevice` into an `ImageSetIdiomDetail`.
+
 ## Methods
-### `idioms(forDevice:)`
+### `idiom(forDevice:)`
 
 ```swift
-func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?)?
+func idiom(forDevice device: ImageSetDevice) -> ImageSetIdiomDetail?
 ```
+
+> Provides the `ImageSetIdiomDetail` based on the `ImageSetDevice`,
+>
+> - Parameter device: `ImageSetDevice` to lookup.
+> - Returns: `ImageSetIdiomDetail` for device.
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| device | `ImageSetDevice` to lookup. |
