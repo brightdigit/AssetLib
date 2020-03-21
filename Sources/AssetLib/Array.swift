@@ -4,11 +4,16 @@ extension Array {
   }
 }
 
-func modifySpec<T>(_ keyPath: WritableKeyPath<AssetSpecificationBuilder, T>) -> (AssetSpecificationProtocol, T) -> AssetSpecificationProtocol {
-  return {
-    spec, value in
+extension WritableKeyPath where Root == AssetSpecificationBuilder {
+  func modify(spec: AssetSpecificationProtocol, value: Value) -> AssetSpecificationProtocol {
     var builder = AssetSpecificationBuilder(specifications: spec)
-    builder[keyPath: keyPath] = value
+    builder[keyPath: self] = value
     return builder.assetSpec()
+  }
+}
+
+extension Array where Element == AssetSpecificationProtocol {
+  func multiply<PropertyType>(by _: [PropertyType], with _: WritableKeyPath<AssetSpecificationBuilder, PropertyType>, where _: ((Element) -> Bool)? = nil, append _: Bool = false) -> [Element] {
+    return self
   }
 }

@@ -68,24 +68,24 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
 
     if let heightClass = configuration.specifiedHeightClass {
-      specs.append(contentsOf: product(specs.filter { $0.idiom == .universal }, [heightClass], using: modifySpec(\.heightClass)))
+      specs.append(contentsOf: product(specs.filter { $0.idiom == .universal }, [heightClass], using: (\AssetSpecificationBuilder.heightClass).modify))
     }
 
     if let widthClass = configuration.specifiedWidthClass {
-      specs.append(contentsOf: product(specs.filter { $0.idiom == .universal }, [widthClass], using: modifySpec(\.widthClass)))
+      specs.append(contentsOf: product(specs.filter { $0.idiom == .universal }, [widthClass], using: (\AssetSpecificationBuilder.widthClass).modify))
     }
 
     let tempSpecs = specs
 
     if configuration.memorySet.count > 0 {
-      specs.append(contentsOf: product(tempSpecs.filter { $0.idiom == .universal }, [Memory](configuration.memorySet), using: modifySpec(\.memory)))
+      specs.append(contentsOf: product(tempSpecs.filter { $0.idiom == .universal }, [Memory](configuration.memorySet), using: (\AssetSpecificationBuilder.memory).modify))
     }
 
     if configuration.graphicFSSet.count > 0 {
       specs.append(
         contentsOf: product(tempSpecs.filter { $0.idiom != .universal },
                             [GraphicsFeatureSet](configuration.graphicFSSet),
-                            using: modifySpec(\.graphicsFeatureSet))
+                            using: (\AssetSpecificationBuilder.graphicsFeatureSet).modify)
       )
     }
 
@@ -102,7 +102,7 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       }
     }
 
-    specs.append(contentsOf: product(specs, configuration.locales, using: modifySpec(\.locale)))
+    specs.append(contentsOf: product(specs, configuration.locales, using: (\AssetSpecificationBuilder.locale).modify))
 
     let properties = AssetSpecificationProperties(
       templateRenderingIntent: configuration.renderAs,
