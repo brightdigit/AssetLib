@@ -18,7 +18,8 @@ public struct IdiomAppIconSpecMap: IdiomAppIconSpecProvider {
   /**
    Creates a `IdiomAppIconSpecMap` based on the `[ImageIdiom: [AssetSpecificationProtocol]]` Dictionary passed.
 
-   - Parameter dictionary: The optional `[ImageIdiom: [AssetSpecificationProtocol]]` to use otherwise base it on what `AppIconMasterDocumentProvider` provides.
+   - Parameter dictionary: The optional `[ImageIdiom: [AssetSpecificationProtocol]]` to use.
+   Otherwise base it on what `AppIconMasterDocumentProvider` provides.
    */
   public init(dictionary: [ImageIdiom: [AssetSpecificationProtocol]]? = nil) {
     self.dictionary = dictionary ?? IdiomAppIconSpecMap.defaultDictionary

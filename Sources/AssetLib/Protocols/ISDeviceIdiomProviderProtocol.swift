@@ -1,3 +1,12 @@
+/**
+ Converts `ImageSetDevice` into an `ImageSetIdiomDetail`.
+ */
 public protocol ISDeviceIdiomProviderProtocol {
-  func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?)?
+  /**
+   Provides the `ImageSetIdiomDetail` based on the `ImageSetDevice`,
+
+   - Parameter device: `ImageSetDevice` to lookup.
+   - Returns: `ImageSetIdiomDetail` for device.
+   */
+  func idiom(forDevice device: ImageSetDevice) -> ImageSetIdiomDetail?
 }

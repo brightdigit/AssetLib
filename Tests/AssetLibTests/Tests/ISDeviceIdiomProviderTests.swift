@@ -34,7 +34,7 @@ final class ISDeviceIdiomProviderTests: XCTestCase {
       return
     }
     for device in ImageSetDevice.allCases {
-      let actual = idiomProvider.idioms(forDevice: device)
+      let actual = idiomProvider.idiom(forDevice: device)
       let expected = dictionary[device]
       XCTAssertEqual(actual?.0, expected?.0)
       XCTAssertEqual(actual?.1, expected?.1)

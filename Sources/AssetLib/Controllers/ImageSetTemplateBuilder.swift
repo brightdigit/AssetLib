@@ -24,7 +24,7 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
   }
 
   func specsBasedOn(devices: [ImageSetDevice], andScaling scaling: TemplateScaling?) -> [AssetSpecificationProtocol] {
-    let idioms = devices.compactMap(dependencyProvider.idioms(forDevice:))
+    let idioms = devices.compactMap(dependencyProvider.idiom(forDevice:))
 
     let scales: [[Float?]] = idioms.map { scalesBasedOn($0.0, withScaling: scaling) }
 
@@ -84,7 +84,13 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
 
     if configuration.graphicFSSet.count > 0 {
-      specs.append(contentsOf: tempSpecs.multiply(by: [GraphicsFeatureSet](configuration.graphicFSSet), with: \.graphicsFeatureSet, where: { $0.idiom != .universal }))
+      specs.append(
+        contentsOf:
+        tempSpecs.multiply(
+          by: [GraphicsFeatureSet](configuration.graphicFSSet),
+          with: \.graphicsFeatureSet,
+          where: { $0.idiom != .universal }
+        ))
     }
 
     if configuration.specifyAWWidth {

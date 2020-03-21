@@ -11,7 +11,12 @@ enum ProductOperation {
 }
 
 extension Array where Element == AssetSpecificationProtocol {
-  func multiply<PropertyType>(by factor: [PropertyType], with keyPath: WritableKeyPath<AssetSpecificationBuilder, PropertyType>, where filter: ((Element) -> Bool)? = nil, operation: ProductOperation = .replace) -> [Element] {
+  func multiply<PropertyType>(
+    by factor: [PropertyType],
+    with keyPath: WritableKeyPath<AssetSpecificationBuilder, PropertyType>,
+    where filter: ((Element) -> Bool)? = nil,
+    operation: ProductOperation = .replace
+  ) -> [Element] {
     let multiplier: Self
 
     if let filter = filter, operation != .modify {

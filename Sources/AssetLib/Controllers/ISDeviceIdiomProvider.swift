@@ -1,7 +1,16 @@
+/**
+ Converts `ImageSetDevice` into an `ImageSetIdiomDetail`.
+ */
 public struct ISDeviceIdiomProvider: ISDeviceIdiomProviderProtocol {
-  let dictionary: [ImageSetDevice: (ImageIdiom, DeviceSubType?)]
+  /**
+   Dictionary to look up `ImageSetIdiomDetail` based on `ImageSetDevice`.
+   */
+  public let dictionary: [ImageSetDevice: ImageSetIdiomDetail]
 
-  static let defaultDictionray: [ImageSetDevice: (ImageIdiom, DeviceSubType?)] = [
+  /**
+   Default dictionary to look up `ImageSetIdiomDetail` based on `ImageSetDevice`.
+   */
+  public static let defaultDictionray: [ImageSetDevice: ImageSetIdiomDetail] = [
     .universal: (.universal, nil),
     .iphone: (.iphone, nil),
     .ipad: (.ipad, nil),
@@ -12,18 +21,32 @@ public struct ISDeviceIdiomProvider: ISDeviceIdiomProviderProtocol {
     .macCatalyst: (.ipad, .macCatalyst)
   ]
 
+  /**
+   Create `ISDeviceIdiomProvider` based on default dictionary.
+   */
   public init() {
     dictionary = Self.defaultDictionray
   }
 
-  public init?(dictionary: [ImageSetDevice: (ImageIdiom, DeviceSubType?)]) {
+  /**
+   Create `ISDeviceIdiomProvider` based on dictionary passed as long as all `ImageSetDevice` cases are keys.
+
+   - Parameter dictionary: Dictionary to look up `ImageSetIdiomDetail` based on `ImageSetDevice`.
+   */
+  public init?(dictionary: [ImageSetDevice: ImageSetIdiomDetail]) {
     guard Set(dictionary.keys) == Set(ImageSetDevice.allCases) else {
       return nil
     }
     self.dictionary = dictionary
   }
 
-  public func idioms(forDevice device: ImageSetDevice) -> (ImageIdiom, DeviceSubType?)? {
+  /**
+   Provides the `ImageSetIdiomDetail` based on the `ImageSetDevice`,
+
+   - Parameter device: `ImageSetDevice` to lookup.
+   - Returns: `ImageSetIdiomDetail` for device.
+   */
+  public func idiom(forDevice device: ImageSetDevice) -> ImageSetIdiomDetail? {
     return dictionary[device]
   }
 }
