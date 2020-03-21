@@ -9,27 +9,6 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
 
   typealias Template = ImageSetTemplate
 
-  func modifySpec<T>(_ keyPath: WritableKeyPath<AssetSpecificationBuilder, T>) -> (AssetSpecificationProtocol, T) -> AssetSpecificationProtocol {
-    return {
-      spec, value in
-      var builder = AssetSpecificationBuilder(specifications: spec)
-      builder[keyPath: keyPath] = value
-      return builder.assetSpec()
-    }
-  }
-
-  func setProducts<T>(_ lhs: [T],
-                      specs: [AssetSpecificationProtocol],
-                      withKeyPath keyPath: WritableKeyPath<AssetSpecificationBuilder, T>) -> [AssetSpecificationProtocol] {
-    lhs.flatMap { value in
-      specs.map { spec in
-        var specBuilder = AssetSpecificationBuilder(specifications: spec)
-        specBuilder[keyPath: keyPath] = value
-        return specBuilder.assetSpec()
-      }
-    }
-  }
-
   fileprivate func scalesBasedOn(_ idiom: ImageIdiom, withScaling scaling: TemplateScaling?) -> [Float?] {
     if scaling == .some(.single) {
       return [nil]
@@ -121,7 +100,7 @@ struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       autoScaling: configuration.autoScaling ? .automatic : nil,
       compressionType: configuration.compression,
       preservesVectorRepresentation: configuration.preserveVectorData,
-      localizable: configuration.locales.count > 0 ? true : nil,
+      localizable: configuration.locales.count > 0,
       onDemandResourceTags: [String](configuration.resourceTags)
     )
 

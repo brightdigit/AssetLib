@@ -34,11 +34,17 @@ var preservesVectorRepresentation: Bool
 ### `localizable`
 
 ```swift
-var localizable: Bool?
+var localizable: Bool
 ```
 
 ### `onDemandResourceTags`
 
 ```swift
 var onDemandResourceTags: [String]
+```
+
+### `preRendered`
+
+```swift
+var preRendered: Bool
 ```

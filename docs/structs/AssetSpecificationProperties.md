@@ -34,7 +34,13 @@ public let preservesVectorRepresentation: Bool
 ### `localizable`
 
 ```swift
-public let localizable: Bool?
+public let localizable: Bool
+```
+
+### `preRendered`
+
+```swift
+public let preRendered: Bool
 ```
 
 ### `onDemandResourceTags`
@@ -44,16 +50,17 @@ public let onDemandResourceTags: [String]
 ```
 
 ## Methods
-### `init(templateRenderingIntent:autoScaling:compressionType:preservesVectorRepresentation:localizable:onDemandResourceTags:)`
+### `init(templateRenderingIntent:autoScaling:compressionType:preservesVectorRepresentation:localizable:preRendered:onDemandResourceTags:)`
 
 ```swift
 public init(
-  templateRenderingIntent: RenderingIntent?,
-  autoScaling: AppleWatchAutoScaingMethod?,
+  templateRenderingIntent: RenderingIntent? = nil,
+  autoScaling: AppleWatchAutoScaingMethod? = nil,
   compressionType: CompressionType = .automatic,
   preservesVectorRepresentation: Bool = false,
-  localizable: Bool?,
-  onDemandResourceTags: [String]
+  localizable: Bool = false,
+  preRendered: Bool = false,
+  onDemandResourceTags: [String] = [String]()
 )
 ```
 

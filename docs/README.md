@@ -1,5 +1,7 @@
 ## Protocols
 
+-   [AppIconDeviceIdiomMapProtocol](protocols/AppIconDeviceIdiomMapProtocol.md)
+-   [AppIconMasterDocumentProviderProtocol](protocols/AppIconMasterDocumentProviderProtocol.md)
 -   [Appearance](protocols/Appearance.md)
 -   [AppearanceValue](protocols/AppearanceValue.md)
 -   [AssetSpecificationDocumentProtocol](protocols/AssetSpecificationDocumentProtocol.md)
@@ -8,16 +10,23 @@
 -   [AssetSpecificationProtocol](protocols/AssetSpecificationProtocol.md)
 -   [ISDeviceIdiomProviderProtocol](protocols/ISDeviceIdiomProviderProtocol.md)
 -   [IdiomScaleProviderProtocol](protocols/IdiomScaleProviderProtocol.md)
+-   [ImageIdiomAppIconSpecificationProvider](protocols/ImageIdiomAppIconSpecificationProvider.md)
+-   [ImageIdiomDisplayGamutProtocol](protocols/ImageIdiomDisplayGamutProtocol.md)
 
 ## Structs
 
 -   [AnyAppearance](structs/AnyAppearance.md)
+-   [AppIconDeviceIdiomMap](structs/AppIconDeviceIdiomMap.md)
+-   [AppIconTemplate](structs/AppIconTemplate.md)
+-   [AppIconTemplateBuilder](structs/AppIconTemplateBuilder.md)
 -   [AssetSpecification](structs/AssetSpecification.md)
 -   [AssetSpecificationDocument](structs/AssetSpecificationDocument.md)
 -   [AssetSpecificationMetadata](structs/AssetSpecificationMetadata.md)
 -   [AssetSpecificationProperties](structs/AssetSpecificationProperties.md)
 -   [ISDeviceIdiomProvider](structs/ISDeviceIdiomProvider.md)
 -   [IdiomScaleProvider](structs/IdiomScaleProvider.md)
+-   [ImageIdiomAppIconSpecificationMap](structs/ImageIdiomAppIconSpecificationMap.md)
+-   [ImageIdiomDisplayGamut](structs/ImageIdiomDisplayGamut.md)
 -   [Size](structs/Size.md)
 -   [ValueAppearance](structs/ValueAppearance.md)
 
