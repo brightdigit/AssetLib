@@ -84,7 +84,7 @@ final class ImageSetTemplateBuilderTests: XCTestCase {
       compression: .gpuOptimizedBest,
       preserveVectorData: true,
       devices: Set([.universal]),
-      appearances: [ValueAppearance(value: Luminosity.light).eraseToAny(), ValueAppearance(value: Luminosity.dark).eraseToAny()],
+      appearances: [ValuedAppearance(value: Luminosity.light).eraseToAny(), ValuedAppearance(value: Luminosity.dark).eraseToAny()],
       scaling: .single,
       specifyGamut: true,
       direction: [],

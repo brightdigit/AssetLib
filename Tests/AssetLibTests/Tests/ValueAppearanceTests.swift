@@ -11,7 +11,7 @@ struct MockValueType: AppearanceValue {
 
 final class ValueAppearanceTests: XCTestCase {
   func assertAppearanceValue<ValueType: AppearanceValue>(value: ValueType) {
-    let val = ValueAppearance(value: value)
+    let val = ValuedAppearance(value: value)
     XCTAssertEqual(value.appearanceValue, val.value)
     XCTAssertEqual(val.appearance, ValueType.appearanceKey)
     let anyValue = val.eraseToAny()
