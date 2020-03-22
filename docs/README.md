@@ -29,7 +29,7 @@
 -   [IdiomScaleProvider](structs/IdiomScaleProvider.md)
 -   [ImageIdiomDisplayGamut](structs/ImageIdiomDisplayGamut.md)
 -   [Size](structs/Size.md)
--   [ValueAppearance](structs/ValueAppearance.md)
+-   [ValuedAppearance](structs/ValuedAppearance.md)
 
 ## Enums
 
