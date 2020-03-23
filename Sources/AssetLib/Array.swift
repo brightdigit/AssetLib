@@ -4,12 +4,6 @@ extension Array {
   }
 }
 
-enum ProductOperation {
-  case replace
-  case append
-  case modify
-}
-
 extension Array where Element == AssetSpecificationProtocol {
   func multiply<PropertyType>(
     by factor: [PropertyType],
