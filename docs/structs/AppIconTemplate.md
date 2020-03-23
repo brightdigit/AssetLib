@@ -3,5 +3,5 @@
 # `AppIconTemplate`
 
 ```swift
-public struct AppIconTemplate
+public struct AppIconTemplate: Codable
 ```

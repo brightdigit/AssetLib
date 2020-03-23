@@ -28,6 +28,7 @@
 -   [IdiomAppIconSpecMap](structs/IdiomAppIconSpecMap.md)
 -   [IdiomScaleProvider](structs/IdiomScaleProvider.md)
 -   [ImageIdiomDisplayGamut](structs/ImageIdiomDisplayGamut.md)
+-   [ImageSetTemplate](structs/ImageSetTemplate.md)
 -   [Size](structs/Size.md)
 -   [ValuedAppearance](structs/ValuedAppearance.md)
 
@@ -50,6 +51,7 @@
 -   [Memory](enums/Memory.md)
 -   [RenderingIntent](enums/RenderingIntent.md)
 -   [SizeClass](enums/SizeClass.md)
+-   [TemplateScaling](enums/TemplateScaling.md)
 
 ## Extensions
 

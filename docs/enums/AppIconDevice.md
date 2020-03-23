@@ -3,7 +3,7 @@
 # `AppIconDevice`
 
 ```swift
-public enum AppIconDevice
+public enum AppIconDevice: String, Codable
 ```
 
 > The device type for the image.
