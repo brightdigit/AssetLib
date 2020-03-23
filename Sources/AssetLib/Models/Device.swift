@@ -1,7 +1,7 @@
 import Foundation
 
 /// The device type for the image.
-public enum AppIconDevice {
+public enum AppIconDevice: String, Codable {
   ///  The image is for iPhone devices.
   case iphone
   ///  The image is for iPad devices.
