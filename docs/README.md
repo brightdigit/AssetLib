@@ -29,6 +29,7 @@
 -   [IdiomScaleProvider](structs/IdiomScaleProvider.md)
 -   [ImageIdiomDisplayGamut](structs/ImageIdiomDisplayGamut.md)
 -   [ImageSetTemplate](structs/ImageSetTemplate.md)
+-   [ImageSetTemplateBuilder](structs/ImageSetTemplateBuilder.md)
 -   [Size](structs/Size.md)
 -   [ValuedAppearance](structs/ValuedAppearance.md)
 
