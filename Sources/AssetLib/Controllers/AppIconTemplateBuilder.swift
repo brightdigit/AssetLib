@@ -53,6 +53,10 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
       return specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
     }
 
-    return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs, properties: AssetSpecificationProperties(preRendered: template.prerendered))
+    return AssetSpecificationDocument(
+      info: AssetSpecificationMetadata(),
+      images: specs,
+      properties: AssetSpecificationProperties(preRendered: template.prerendered)
+    )
   }
 }
