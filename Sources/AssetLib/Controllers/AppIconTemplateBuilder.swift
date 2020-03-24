@@ -9,24 +9,24 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
   /**
    Tells whether the `ImageIdiom` supports display gamuts.
    */
-  let supportsDisplayGamut: ImageIdiomDisplayGamutProtocol
+  public let supportsDisplayGamut: ImageIdiomDisplayGamutProtocol
 
   /**
    Returns a list of `AssetSpecificationProtocol` based on the `ImageIdiom`.
    */
-  let appIconSpecifications: IdiomAppIconSpecProvider
+  public let appIconSpecifications: IdiomAppIconSpecProvider
 
   /**
    Returns a list of `ImageIdiom` based on the  `AppIconDevice`.
    */
-  let idiomDeviceMap: AppIconDeviceIdiomMapProtocol
+  public let idiomDeviceMap: AppIconDeviceIdiomMapProtocol
 
   /// Creates the `AppIconTemplateBuilder`.
   /// - Parameters:
   ///   - supportsDisplayGamut: Tells whether the `ImageIdiom` supports display gamuts.
   ///   - appIconSpecifications: Returns a list of `AssetSpecificationProtocol` based on the `ImageIdiom`.
   ///   - idiomDeviceMap: Returns a list of `ImageIdiom` based on the  `AppIconDevice`.
-  init(
+  public init(
     supportsDisplayGamut: ImageIdiomDisplayGamutProtocol? = nil,
     appIconSpecifications: IdiomAppIconSpecProvider? = nil,
     map: AppIconDeviceIdiomMapProtocol? = nil
@@ -46,13 +46,13 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
     let specs = Set(template.devices.flatMap(idiomDeviceMap.idiom(forDevice:))).flatMap { (idiom) -> [AssetSpecificationProtocol] in
       let specs = appIconSpecifications.appIcon(specificationFor: idiom)
 
-      guard supportsDisplayGamut.supportsDisplayGamut(idiom) else {
+      guard template.specifyGamut, supportsDisplayGamut.supportsDisplayGamut(idiom) else {
         return specs
       }
 
       return specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
     }
 
-    return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs, properties: AssetSpecificationProperties(preRendered: true))
+    return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs, properties: AssetSpecificationProperties(preRendered: template.prerendered))
   }
 }

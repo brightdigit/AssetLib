@@ -1,22 +1,96 @@
 import ArgumentParser
+import AssetLib
 import Foundation
 
-enum TemplateType: String, Codable {
-  case appicon
-  case imageset
+enum Template {
+  case appicon(AppIconTemplate)
+  case imageset(ImageSetTemplate)
+  case failure(Error)
 }
 
-struct TemplateArgument: Codable {
-  let type: TemplateType
-  let url: URL
+enum TemplateType {
+  case appicon
+  case imageset
 }
 
 struct Repeat: ParsableCommand {
   @Argument(help: "The phrase to repeat.")
   var templateFile: String
 
+  @Argument(help: "The phrase to repeat.")
+  var output: String
+
+  func template(withType type: TemplateType?) -> Template {
+    let jsonDecoder = JSONDecoder()
+    let url = URL(fileURLWithPath: templateFile)
+    let dataResult = Result(catching: { try Data(contentsOf: url) })
+
+    if type != .imageset {
+      let appiconResult = dataResult.flatMap { data in
+        Result(catching: { try jsonDecoder.decode(AppIconTemplate.self, from: data) })
+      }
+
+      do {
+        let template = try appiconResult.get()
+        return .appicon(template)
+      } catch {
+        if type == .appicon {
+          return .failure(error)
+        }
+      }
+    }
+
+    let imagesetResult = dataResult.flatMap { data in
+      Result(catching: { try jsonDecoder.decode(ImageSetTemplate.self, from: data) })
+    }
+
+    do {
+      return .imageset(try imagesetResult.get())
+    } catch {
+      return .failure(error)
+    }
+  }
+
   func run() throws {
-    dump(templateFile)
+    let type: TemplateType?
+    if let ext = output.components(separatedBy: ".").last {
+      if ext == "imageset" {
+        type = .imageset
+      } else if ext == "appiconset" {
+        type = .appicon
+      } else {
+        type = nil
+      }
+    } else {
+      type = nil
+    }
+
+    let outputURL: URL
+    if type != nil {
+      let outputDirURL = URL(fileURLWithPath: output, isDirectory: true)
+      try FileManager.default.createDirectory(at: outputDirURL, withIntermediateDirectories: false, attributes: nil)
+      outputURL = outputDirURL.appendingPathComponent("Contents.json")
+    } else {
+      outputURL = URL(fileURLWithPath: output)
+    }
+
+    let jsonEncoder = JSONEncoder()
+    let actual = template(withType: type)
+    let document: AssetSpecificationDocumentProtocol
+    switch actual {
+    case let .appicon(template):
+      let builder = AppIconTemplateBuilder()
+      document = builder.document(fromTemplate: template)
+    case let .imageset(template):
+      let builder = ImageSetTemplateBuilder()
+      document = builder.document(fromTemplate: template)
+
+    case let .failure(error):
+      throw error
+    }
+
+    let data = try jsonEncoder.encode(AssetSpecificationDocument(info: document.info, images: document.images, properties: document.properties))
+    try data.write(to: outputURL)
   }
 }
 
