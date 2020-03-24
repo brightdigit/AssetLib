@@ -3,7 +3,7 @@
 # `ImageSetDevice`
 
 ```swift
-public enum ImageSetDevice: CaseIterable
+public enum ImageSetDevice: String, Codable, CaseIterable
 ```
 
 > The device type for the image.
