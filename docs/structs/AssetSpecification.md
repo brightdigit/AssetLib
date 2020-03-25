@@ -15,6 +15,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable
 public let screenWidth: AppleWatchScreenWidth?
 ```
 
+> A different version of an image for each Apple Watch screen size.
+
 ### `heightClass`
 
 ```swift
@@ -38,6 +40,8 @@ public let memory: Memory?
 ```swift
 public let graphicsFeatureSet: GraphicsFeatureSet?
 ```
+
+> The graphics feature set required for the item.
 
 ### `locale`
 
@@ -104,6 +108,8 @@ public let appearances: [AnyAppearance]
 ```swift
 public let displayGamut: DisplayGamut?
 ```
+
+> The color gamut of the device display for the image.
 
 ### `languageDirection`
 

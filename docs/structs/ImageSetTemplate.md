@@ -19,6 +19,8 @@ public let renderAs: RenderingIntent?
 public let compression: CompressionType
 ```
 
+> The type of compression
+
 ### `preserveVectorData`
 
 ```swift
@@ -79,17 +81,23 @@ public let memorySet: Set<Memory>
 public let graphicFSSet: Set<GraphicsFeatureSet>
 ```
 
+> Graphics feature sets specifically required by the Image Set.
+
 ### `specifyAWWidth`
 
 ```swift
 public let specifyAWWidth: Bool
 ```
 
+> Whether to allow specific images based on Apple Watch size.
+
 ### `autoScaling`
 
 ```swift
 public let autoScaling: Bool
 ```
+
+> Whether to allow for auto-scaling of PDFs for the Apple Watch.
 
 ### `locales`
 

@@ -69,6 +69,8 @@ var appearances: [AnyAppearance]
 var displayGamut: DisplayGamut?
 ```
 
+> The color gamut of the device display for the image.
+
 ### `languageDirection`
 
 ```swift
@@ -80,6 +82,8 @@ var languageDirection: LanguageDirection?
 ```swift
 var screenWidth: AppleWatchScreenWidth?
 ```
+
+> A different version of an image for each Apple Watch screen size.
 
 ### `heightClass`
 
@@ -104,6 +108,8 @@ var memory: Memory?
 ```swift
 var graphicsFeatureSet: GraphicsFeatureSet?
 ```
+
+> The graphics feature set required for the item.
 
 ### `locale`
 

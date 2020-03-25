@@ -6,6 +6,8 @@
 public enum GraphicsFeatureSet: String, Codable
 ```
 
+> The graphics feature set required for the item.
+
 ## Cases
 ### `metal1v2`
 
@@ -68,3 +70,5 @@ case metal4v1
 ```swift
 case apple6
 ```
+
+> The item requires features in MTLGPUFamilyApple6

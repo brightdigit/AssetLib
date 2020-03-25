@@ -46,3 +46,5 @@ case size44 = "44mm"
 ```swift
 case macCatalyst = "mac-catalyst"
 ```
+
+> For ImageSets which will be used in mac Catalyst apps.

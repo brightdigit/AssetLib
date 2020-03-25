@@ -25,6 +25,8 @@ var autoScaling: AppleWatchAutoScaingMethod?
 var compressionType: CompressionType
 ```
 
+> The type of compression
+
 ### `preservesVectorRepresentation`
 
 ```swift
