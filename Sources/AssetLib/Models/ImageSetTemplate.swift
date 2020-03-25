@@ -28,8 +28,20 @@ public struct ImageSetTemplate: Codable {
     If no `LanguageDirection` is specified then the image has a fixed horizontal orientation and will display in the same direction.
    */
   public let direction: Set<LanguageDirection>
+
+  /**
+   The size class for the image width.
+   */
   public let specifiedWidthClass: SizeClass?
+
+  /**
+   The size class for the image height.
+   */
   public let specifiedHeightClass: SizeClass?
+
+  /**
+   Specific memory configurations required by the data item.
+   */
   public let memorySet: Set<Memory>
   /**
    Graphics feature sets specifically required by the Image Set.
@@ -43,6 +55,10 @@ public struct ImageSetTemplate: Codable {
    Whether to allow for auto-scaling of PDFs for the Apple Watch.
    */
   public let autoScaling: Bool
+
+  /**
+   Locales supported by the asset.
+   */
   public let locales: [Locale]
   /***
    The on-demand resource tags for the image set.

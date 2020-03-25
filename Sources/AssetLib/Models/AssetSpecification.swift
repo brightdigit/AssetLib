@@ -6,13 +6,25 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
    A different version of an image for each Apple Watch screen size.
    */
   public let screenWidth: AppleWatchScreenWidth?
+  /**
+   The size class for the image height.
+   */
   public let heightClass: SizeClass?
+  /**
+   The size class for the image width.
+   */
   public let widthClass: SizeClass?
+  /**
+   The minimum device memory configuration required by the data item.
+   */
   public let memory: Memory?
   /**
    The graphics feature set required for the item.
    */
   public let graphicsFeatureSet: GraphicsFeatureSet?
+  /**
+   Locale supported by the asset.
+   */
   public let locale: Locale?
 
   /// The device type for the image.
@@ -28,6 +40,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   /// The type of Apple Watch when there is more than one icon size for a role.
   public let subtype: DeviceSubType?
 
+  /// Specific appearances supported by the asset.
   public let appearances: [AnyAppearance]
 
   /** The color gamut of the device display for the image. */

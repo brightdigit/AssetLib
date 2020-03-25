@@ -20,6 +20,10 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
    Set to true to preserve the vector information for a PDF file.
    */
   public let preservesVectorRepresentation: Bool
+
+  /**
+   Whether localization is supported.
+   */
   public let localizable: Bool
 
   /***

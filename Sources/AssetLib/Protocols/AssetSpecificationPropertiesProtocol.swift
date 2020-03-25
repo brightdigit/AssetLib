@@ -21,6 +21,9 @@ public protocol AssetSpecificationPropertiesProtocol: Codable {
    Set to true to preserve the vector information for a PDF file.
    */
   var preservesVectorRepresentation: Bool { get }
+  /**
+   Whether localization is supported.
+   */
   var localizable: Bool { get }
 
   /***
