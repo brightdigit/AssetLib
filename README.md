@@ -25,18 +25,14 @@
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 
-> Using Google Analytics for Tracking Events, Timing, Errors and more
-
-Rather than downloading large amounts of libraries framework in order to understand how your app is used, you can use this library for easy data. The library works directly with Google Analytics using their Measure Protocol API. See all your data right from the Google Analytics dashboard.
+> Build, Create, and Modify Asset Catalogs in Swift or in the Terminal
 
 ## Features
 
-Included with this library is the ability to track:
+Included with this library is the ability:
 
-- [x] Events with Custom Data
-- [x] Timing of various operations
-- [x] Swift Errors and NSExceptions
-- [x] Custom actions such screens and transactions
+- [x] Programmatically parse and modify Asset Catalogs
+- [x] Create Asset Catalogs based on Template in code or terminal
 
 ## Reqirements
 
@@ -51,7 +47,7 @@ Included with this library is the ability to track:
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate AssetLib into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod 'AssetLib', '~> 0.0.1'
+pod 'AssetLib', '~> 0.1.0'
 ```
 
 ### Swift Package Manager
@@ -62,7 +58,7 @@ Once you have your Swift package set up, adding AssetLib as a dependency is as e
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/brightdigit/AssetLib.git", .upToNextMajor(from: "0.0.1"))
+    .package(url: "https://github.com/brightdigit/AssetLib.git", .upToNextMajor(from: "0.1.0"))
 ]
 ```
 
@@ -70,32 +66,11 @@ dependencies: [
 
 ### [API Documentation](/Documentation/Reference/README.md)
 
-Before moving forward make sure to setup a property under your Google Analytics account. With your new property for your application, you will need your _tracking identifier_. Typically a _tracking identifier_ has a format of `UA-XXXXXXXXX-XX`. You will need the _tracking identifier_ as well as the:
-
-- **Application Name**
-- **Application Version**
-- **Client Identifier** - this should be a ananymous UUID created on application installation and saved to future use on launch
-
-### Configuration
-
-In order to begin tracking, you will need to setup a `AnalyticsTracker` with the configuration of your application using a `AnalyticsConfiguration` object:
-
-```swift
-  let tracker = AnalyticsTracker(configuration: AnalyticsConfiguration(
-    trackingIdentifier: "UA-XXXXXXXX-XX",
-    applicationName: "AssetLibDemo",
-    applicationVersion: "1.0",
-    clientIdentifier: clientIdentifer
-  ))
-```
-
-Now that you have setup your `AnalyticsTracker`, let's being tracking events.
-
-### Tracking
+### App Icons
 
 There are three types of tracking objects: Events, Timing, and Exceptions.
 
-#### Events
+#### Image Sets
 
 For tracking events, you can create an `AnalyticsEvent` with a category and action:
 
@@ -110,105 +85,90 @@ For tracking events, you can create an `AnalyticsEvent` with a category and acti
 
 You can read [more details about events on the Google Analytics Measurement Protocol documentation.](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide#event)
 
-#### Timing
+#### Templating
 
-For tracking timing, you can create an `AnalyticsTiming` or use `AnalyticsTracker.track(time:...)` with a category and action:
+You can build an App Icon for an Asset Catalog based on a template either programmatically or in the terminal. 
 
-```swift
-    let start : Date
-    ...
-    let timing = start.timeIntervalSinceNow
-    tracker.track(time: -timing, withCategory: "jsonLoader", withVariable: "load") { result in
-      if case let .failure(error) = result {
-        debugPrint(error)
-      }
-    }
-```
+##### App Icons
 
-You can read [more details about timing on the Google Analytics Measurement Protocol documentation.](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide#usertiming)
-
-#### Errors and Exceptions
-
-For tracking errors and exceptions, you can use `AnalyticsTracker.track(error:...)`:
+In order to create an `AssetSpecificationDocument`, create an `AppIconTemplate` with the settings of your choice as well as a `AppIconTemplateBuilder`. Then call: `.document(fromTemplate:)` to build the `AssetSpecificationDocument`:
 
 ```swift
-    do {
-      try doSomething()
-    } catch let error {
-      tracker.track(error: error, isFatal: false) { result in
-        if case let .failure(error) = result {
-          debugPrint(error)
-        }
-      }
-    }
+let template = AppIconTemplate(
+  devices: [.car, .ipad, .iphone, .mac, .tv, .watch], 
+  specifyGamut: true, 
+  prerendered: true)
+let builder = AppIconTemplateBuilder()
+let document = builder.document(fromTemplate: template)
 ```
 
-You can read [more details about events on the Google Analytics Measurement Protocol documentation.](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide#exception)
+`AppIconTemplate` has three properties which correspond with the properties in available in **Xcode**:
 
-#### Custom Items
+- `devices`: _optional_ `Set<AppIconDevice>` the devices which this AppIcon supports, which are: `.car`, `.ipad`, `.iphone`, `.mac`, `.tv`, `.watch`. If `nil`, assume **all** devices are supported.
+- `specifyGamut`: _optional, default: false_ whether to specify separate images for sRGB and the P3 wide gamut color space.
+-  `prerendered` : _optional, default: false_ backward compatibile property for iOS 6.0 indicating if the icon includes the mask and shine effect
 
-You can also track custom items by implementing `AnalyticsTrackable`. This requires the implmentation of two methods:
+For more details, check out the documentation on `AppIconTemplate`.
+
+##### Image Sets
+
+In order to create an `AssetSpecificationDocument`, create an `ImageSetTemplate` with the settings of your choice as well as a `ImageSetTemplateBuilder`. Then call: `.document(fromTemplate:)` to build the `AssetSpecificationDocument`:
 
 ```swift
-  var hitType: AnalyticsHitType {
-    get
-  }
-
-  func parameters() -> AnalyticsParameterDictionary
+let template = ImageSetTemplate(
+  renderAs: .template,
+  compression: .gpuOptimizedBest,
+  preserveVectorData: true,
+  devices: Set([.universal]),
+  appearances: [
+    ValuedAppearance(value: Luminosity.light).eraseToAny(), 
+    ValuedAppearance(value: Luminosity.dark).eraseToAny()
+  ],
+  scaling: .single,
+  specifyGamut: true,
+  direction: [],
+  specifiedWidthClass: nil,
+  specifiedHeightClass: nil,
+  memorySet: [],
+  graphicFSSet: [],
+  specifyAWWidth: false,
+  autoScaling: false,
+  locales: [],
+  resourceTags: []
+)
+let builder = ImageSetTemplateBuilder()
+let document = builder.document(fromTemplate: template)
 ```
 
-An `AnalyticsParameterDictionary` is simply a dictionary with keys of type `AnalyticsParameterKey`.
+For more details, check out the documentation on `ImageSetTemplate`.
 
-```swift
-public typealias AnalyticsParameterDictionary = [AnalyticsParameterKey: Any]
+##### Command Line Application
 
-public enum AnalyticsParameterKey: String, CaseIterable {
-  case hitType = "t", version = "v", trackingId = "tid",
-    userTimingCategory = "utc", userTimingLabel = "utl", timing = "utt", clientId = "cid",
-    userTimingVariable = "utv",
-    applicationName = "an", applicationVersion = "av", eventAction = "ea",
-    eventCategory = "ec", eventLabel = "el", eventValue = "ev",
-    userLanguage = "ul", operatingSystemVersion = "cd1", model = "cd2",
-    exceptionDescription = "exd", exceptionFatal = "exf"
-}
-```
+In addition to the API, you can build an `AssetSpecificationDocument` i.e. Contents.json file using the executable provided in the Swift package. 
 
-The rules regarding what are required based on hit type and each parameter is located in the [Google Analytics Measurement Protocol Parameter Reference.](https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters)
+Simply create a `json` file, with the corresponding properties for a the `ImageSetTemplate` or `AppIconTemplate`. 
 
-### Debugging vs. Release
+For an `AppIconTemplate`, the corresponding `json` properties are:
 
-By default, the library will either use the Google Analytics Measurement Protocol API url for validation purposes or the actual url depending on whether the build is `DEBUG` or `RELEASE`. When using the validation server, no items will be actually be tracked only validated. You can override this in one of two ways:
+- `devices` : `devices`
+- `specifyGamut` : `specify-gamut`
+- `prerendered` : `pre-rendered`
 
-1. Supply a custom URL for the AnalyticsSessionManager
-
-  ```swift
-    let tracker = AnalyticsTracker(configuration: AnalyticsConfiguration(
-      trackingIdentifier: "UA-XXXXXXXX-XX",
-      applicationName: "AssetLibDemo",
-      applicationVersion: "1.0",
-      clientIdentifier: clientIdentifer
-    ), sessionManager: AnalyticsURLSession(url : url))
-  ```
-
-2. Use the debug mode flag for using the validation server 
-
-  ```swift
-    let tracker = AnalyticsTracker(configuration: AnalyticsConfiguration(
-      trackingIdentifier: "UA-XXXXXXXX-XX",
-      applicationName: "AssetLibDemo",
-      applicationVersion: "1.0",
-      clientIdentifier: clientIdentifer
-    ), debugMode: false)
-  ```
+| Template Type | Swift Name | JSON Name |
+|---------------|--------------|---------------|
+| AppIcon | devices | devices |
+| AppIcon | specifyGamut | specify-gamut |
+| AppIcon | prerendered | pre-rendered |
+|  |  |  |
 
 ## Links
 
-- Google Analytics Measurement Protocol API
-  - https://developers.google.com/analytics/devguides/collection/protocol/v1
-- Repository
-  - https://github.com/brightdigit/AssetLib/
-- Issue tracker
-  - https://github.com/brightdigit/AssetLib/issues
+- Asset Catalog Format Overview
+  - https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/
+- Asset Catalog Image Set Documentation
+  - https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/ImageSetType.html#//apple_ref/doc/uid/TP40015170-CH25-SW33
+- Asset Catalog App Icon Documentation
+  - https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/AppIconType.html#//apple_ref/doc/uid/TP40015170-CH22-SW1
 
 ## License
 
