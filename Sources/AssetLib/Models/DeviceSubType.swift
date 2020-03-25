@@ -8,6 +8,6 @@ public enum DeviceSubType: String, Codable {
   case size42 = "42mm"
   /** The icon is for a 44mm Apple Watch. */
   case size44 = "44mm"
-
+  /** For ImageSets which will be used in mac Catalyst apps.  */
   case macCatalyst = "mac-catalyst"
 }

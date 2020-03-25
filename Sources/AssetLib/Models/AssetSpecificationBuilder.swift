@@ -1,20 +1,26 @@
 import Foundation
 
 struct AssetSpecificationBuilder: AssetSpecificationProtocol {
-  var screenWidth: AppleWatchScreenWidth?
+  /**
+   A different version of an image for each Apple Watch screen size.
+   */
+  public var screenWidth: AppleWatchScreenWidth?
 
-  var heightClass: SizeClass?
+  public var heightClass: SizeClass?
 
-  var widthClass: SizeClass?
+  public var widthClass: SizeClass?
 
-  var memory: Memory?
+  public var memory: Memory?
+  /**
+   The graphics feature set required for the item.
+   */
+  public var graphicsFeatureSet: GraphicsFeatureSet?
 
-  var graphicsFeatureSet: GraphicsFeatureSet?
+  public var locale: Locale?
 
-  var locale: Locale?
+  public var languageDirection: LanguageDirection?
 
-  var languageDirection: LanguageDirection?
-
+  /** The color gamut of the device display for the image. */
   public var displayGamut: DisplayGamut?
 
   /// The device type for the image.

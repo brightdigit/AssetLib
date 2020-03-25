@@ -2,7 +2,16 @@ import Foundation
 
 public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol {
   public let templateRenderingIntent: RenderingIntent?
+  // swiftlint:disable line_length
+  /*
+    In watchOS 5 and later, allows for calable PDF assets.
+   https://developer.apple.com/documentation/watchkit/storyboard_elements/building_watchos_app_interfaces_using_the_storyboard/supporting_multiple_watch_sizes
+   */
   public let autoScaling: AppleWatchAutoScaingMethod?
+  // swiftlint:enable line_length
+  /**
+   The type of compression
+   */
   public let compressionType: CompressionType
   public let preservesVectorRepresentation: Bool
   public let localizable: Bool

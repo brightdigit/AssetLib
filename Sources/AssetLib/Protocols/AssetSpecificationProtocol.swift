@@ -17,14 +17,20 @@ public protocol AssetSpecificationProtocol {
 
   var appearances: [AnyAppearance] { get }
 
+  /** The color gamut of the device display for the image. */
   var displayGamut: DisplayGamut? { get }
 
   var languageDirection: LanguageDirection? { get }
-
+  /**
+   A different version of an image for each Apple Watch screen size.
+   */
   var screenWidth: AppleWatchScreenWidth? { get }
   var heightClass: SizeClass? { get }
   var widthClass: SizeClass? { get }
   var memory: Memory? { get }
+  /**
+   The graphics feature set required for the item.
+   */
   var graphicsFeatureSet: GraphicsFeatureSet? { get }
   var locale: Locale? { get }
 }

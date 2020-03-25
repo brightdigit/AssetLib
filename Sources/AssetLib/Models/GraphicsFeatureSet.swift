@@ -1,3 +1,6 @@
+/**
+ The graphics feature set required for the item.
+ */
 public enum GraphicsFeatureSet: String, Codable {
   /**
    The item requires features in MTLFeatureSet_iOS_GPUFamily1_v2.
@@ -34,5 +37,8 @@ public enum GraphicsFeatureSet: String, Codable {
    */
   case metal4v1
 
+  /**
+   The item requires features in MTLGPUFamilyApple6
+   */
   case apple6
 }

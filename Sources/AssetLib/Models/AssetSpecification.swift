@@ -2,10 +2,16 @@ import Foundation
 
 /// A size or variant of an image or icon.
 public struct AssetSpecification: AssetSpecificationProtocol, Codable {
+  /**
+   A different version of an image for each Apple Watch screen size.
+   */
   public let screenWidth: AppleWatchScreenWidth?
   public let heightClass: SizeClass?
   public let widthClass: SizeClass?
   public let memory: Memory?
+  /**
+   The graphics feature set required for the item.
+   */
   public let graphicsFeatureSet: GraphicsFeatureSet?
   public let locale: Locale?
 
@@ -23,6 +29,8 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
   public let subtype: DeviceSubType?
 
   public let appearances: [AnyAppearance]
+
+  /** The color gamut of the device display for the image. */
   public let displayGamut: DisplayGamut?
   public let languageDirection: LanguageDirection?
 
