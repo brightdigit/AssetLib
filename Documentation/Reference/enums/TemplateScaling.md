@@ -6,6 +6,8 @@
 public enum TemplateScaling: String, Codable
 ```
 
+> Specific scaling supported by the ImageSet.
+
 ## Cases
 ### `single`
 
@@ -13,8 +15,12 @@ public enum TemplateScaling: String, Codable
 case single
 ```
 
+> Single vector PDF image file.
+
 ### `individual`
 
 ```swift
 case individual
 ```
+
+> Raster image files for each scale.

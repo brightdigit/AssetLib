@@ -70,3 +70,5 @@ case car
 ```swift
 case macCatalyst
 ```
+
+> The image for an mac Catalyst app.

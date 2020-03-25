@@ -23,6 +23,9 @@ var info: AssetSpecificationMetadataProtocol
 var properties: AssetSpecificationPropertiesProtocol?
 ```
 
+>
+> Properties associated with the app icon or image set.
+
 ### `images`
 
 ```swift
