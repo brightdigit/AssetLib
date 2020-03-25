@@ -13,11 +13,11 @@ enum TemplateType {
   case imageset
 }
 
-struct Repeat: ParsableCommand {
-  @Argument(help: "The phrase to repeat.")
+struct Assetlibrary: ParsableCommand {
+  @Argument(help: "JSON template file.")
   var templateFile: String
 
-  @Argument(help: "The phrase to repeat.")
+  @Argument(help: "Output directory or file. If this path ends in either 'imageset' or 'appicon', then a directory will be created with a 'Contents.json' file inside. Otherwise, it will be the resulting file path.")
   var output: String
 
   func template(withType type: TemplateType?) -> Template {
@@ -94,4 +94,4 @@ struct Repeat: ParsableCommand {
   }
 }
 
-Repeat.main()
+Assetlibrary.main()

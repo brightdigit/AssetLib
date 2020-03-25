@@ -69,6 +69,25 @@ public struct ImageSetTemplate: Codable {
    **/
   public let onDemandResourceTags: Set<String>
 
+  enum CodingKeys: String, CodingKey {
+    case templateRenderingIntent = "template-rendering-intent"
+    case compressionType = "compression-type"
+    case preservesVectorRepresentation = "preserves-vector-representation"
+    case devices
+    case appearances
+    case scaling
+    case displayGamuts = "display-gamuts"
+    case languageDirections = "language-directions"
+    case widthClass = "width-class"
+    case heightClass = "height-class"
+    case memorySet = "memory-set"
+    case graphicsFeatureSets = "graphics-feature-sets"
+    case appleWatchScreens = "apple-watch-screens"
+    case autoScaling = "auto-scaling"
+    case locales
+    case onDemandResourceTags = "on-demand-resource-tags"
+  }
+
   public init(
     templateRenderingIntent: RenderingIntent? = nil,
     compressionType: CompressionType = .automatic,

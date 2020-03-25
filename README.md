@@ -159,7 +159,23 @@ For an `AppIconTemplate`, the corresponding `json` properties are:
 | AppIcon | devices | devices |
 | AppIcon | specifyGamut | specify-gamut |
 | AppIcon | prerendered | pre-rendered |
-|  |  |  |
+| ImageSet | templateRenderingIntent | template-rendering-intent |
+| ImageSet | compressionType | compression-type |
+| ImageSet | preservesVectorRepresentation | preserves-vector-representati |
+| ImageSet | devices | devices |
+| ImageSet | appearances | appearances |
+| ImageSet | scaling | scaling |
+| ImageSet | displayGamuts | display-gamuts |
+| ImageSet | languageDirections | language-directions |
+| ImageSet | widthClass | width-class |
+| ImageSet | heightClass | height-class |
+| ImageSet | memorySet | memory-set |
+| ImageSet | graphicsFeatureSets | graphics-feature-sets |
+| ImageSet | appleWatchScreens | apple-watch-screens |
+| ImageSet | autoScaling | auto-scaling |
+| ImageSet | locales | locales |
+| ImageSet | onDemandResourceTags | on-demand-resource-tags |
+
 
 ## Links
 
