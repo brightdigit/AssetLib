@@ -6,6 +6,8 @@
 public enum Luminosity: String, AppearanceValue
 ```
 
+> Luminosity appearance values for dark-mode and light-mode.
+
 ## Cases
 ### `light`
 
@@ -13,11 +15,15 @@ public enum Luminosity: String, AppearanceValue
 case light
 ```
 
+> Light mode appearance value.
+
 ### `dark`
 
 ```swift
 case dark
 ```
+
+> Dakr mode appearance value.
 
 ## Properties
 ### `appearanceValue`

@@ -23,17 +23,23 @@ public let screenWidth: AppleWatchScreenWidth?
 public let heightClass: SizeClass?
 ```
 
+> The size class for the image height.
+
 ### `widthClass`
 
 ```swift
 public let widthClass: SizeClass?
 ```
 
+> The size class for the image width.
+
 ### `memory`
 
 ```swift
 public let memory: Memory?
 ```
+
+> The minimum device memory configuration required by the data item.
 
 ### `graphicsFeatureSet`
 
@@ -48,6 +54,8 @@ public let graphicsFeatureSet: GraphicsFeatureSet?
 ```swift
 public let locale: Locale?
 ```
+
+> Locale supported by the asset.
 
 ### `idiom`
 
@@ -102,6 +110,8 @@ public let subtype: DeviceSubType?
 ```swift
 public let appearances: [AnyAppearance]
 ```
+
+> Specific appearances supported by the asset.
 
 ### `displayGamut`
 

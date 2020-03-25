@@ -45,6 +45,8 @@ public let preservesVectorRepresentation: Bool
 public let localizable: Bool
 ```
 
+> Whether localization is supported.
+
 ### `preRendered`
 
 ```swift

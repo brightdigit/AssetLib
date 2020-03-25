@@ -78,17 +78,23 @@ public let direction: Set<LanguageDirection>
 public let specifiedWidthClass: SizeClass?
 ```
 
+> The size class for the image width.
+
 ### `specifiedHeightClass`
 
 ```swift
 public let specifiedHeightClass: SizeClass?
 ```
 
+> The size class for the image height.
+
 ### `memorySet`
 
 ```swift
 public let memorySet: Set<Memory>
 ```
+
+> Specific memory configurations required by the data item.
 
 ### `graphicFSSet`
 
@@ -119,6 +125,8 @@ public let autoScaling: Bool
 ```swift
 public let locales: [Locale]
 ```
+
+> Locales supported by the asset.
 
 ### `resourceTags`
 

@@ -63,6 +63,8 @@ var subtype: DeviceSubType?
 var appearances: [AnyAppearance]
 ```
 
+> Specific appearances supported by the asset.
+
 ### `displayGamut`
 
 ```swift
@@ -105,6 +107,8 @@ var widthClass: SizeClass?
 var memory: Memory?
 ```
 
+> Specific memory configurations required by the data item.
+
 ### `graphicsFeatureSet`
 
 ```swift
@@ -118,3 +122,5 @@ var graphicsFeatureSet: GraphicsFeatureSet?
 ```swift
 var locale: Locale?
 ```
+
+> Locale supported by the asset.

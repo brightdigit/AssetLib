@@ -45,6 +45,8 @@ var preservesVectorRepresentation: Bool
 var localizable: Bool
 ```
 
+> Whether localization is supported.
+
 ### `onDemandResourceTags`
 
 ```swift
