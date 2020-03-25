@@ -27,11 +27,16 @@ public let compression: CompressionType
 public let preserveVectorData: Bool
 ```
 
+>
+> Whether to preserve the vector information for a PDF file.
+
 ### `devices`
 
 ```swift
 public let devices: Set<ImageSetDevice>
 ```
+
+> The devices supported for the image set.
 
 ### `appearances`
 
@@ -39,11 +44,15 @@ public let devices: Set<ImageSetDevice>
 public let appearances: Set<AnyAppearance>
 ```
 
+> Specific appearances supported by the image set.
+
 ### `scaling`
 
 ```swift
 public let scaling: TemplateScaling?
 ```
+
+> Specific scaling supported by the ImageSet. `nil` value means both are supported.
 
 ### `specifyGamut`
 
@@ -51,11 +60,17 @@ public let scaling: TemplateScaling?
 public let specifyGamut: Bool
 ```
 
+> Whether to support specific display gamuts.
+
 ### `direction`
 
 ```swift
 public let direction: Set<LanguageDirection>
 ```
+
+> Specific horizontal display directions for the image set.
+>  If only one `LanguageDirection` is specified then the image is mirrored for the other `LanguageDirection`.
+>  If no `LanguageDirection` is specified then the image has a fixed horizontal orientation and will display in the same direction.
 
 ### `specifiedWidthClass`
 
@@ -110,3 +125,7 @@ public let locales: [Locale]
 ```swift
 public let resourceTags: Set<String>
 ```
+
+>
+> The on-demand resource tags for the image set.
+> *

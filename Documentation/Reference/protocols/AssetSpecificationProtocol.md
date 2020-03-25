@@ -77,6 +77,8 @@ var displayGamut: DisplayGamut?
 var languageDirection: LanguageDirection?
 ```
 
+> The horizontal display direction of the image for left-to-right and right-to-left languages.
+
 ### `screenWidth`
 
 ```swift

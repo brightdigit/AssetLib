@@ -6,6 +6,9 @@
 public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
 ```
 
+>
+> Properties associated with the app icon or image set.
+
 ## Properties
 ### `templateRenderingIntent`
 
@@ -33,6 +36,9 @@ public let compressionType: CompressionType
 public let preservesVectorRepresentation: Bool
 ```
 
+>
+> Set to true to preserve the vector information for a PDF file.
+
 ### `localizable`
 
 ```swift
@@ -45,11 +51,18 @@ public let localizable: Bool
 public let preRendered: Bool
 ```
 
+>
+> Backward compatibility for iOS 6.0 indicating if the icon includes the mask and shine effect.
+
 ### `onDemandResourceTags`
 
 ```swift
 public let onDemandResourceTags: [String]
 ```
+
+>
+> The on-demand resource tags for the image set.
+> *
 
 ## Methods
 ### `init(templateRenderingIntent:autoScaling:compressionType:preservesVectorRepresentation:localizable:preRendered:onDemandResourceTags:)`

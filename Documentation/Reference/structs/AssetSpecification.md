@@ -117,6 +117,8 @@ public let displayGamut: DisplayGamut?
 public let languageDirection: LanguageDirection?
 ```
 
+> The horizontal display direction of the image for left-to-right and right-to-left languages.
+
 ## Methods
 ### `init(idiom:scale:size:role:subtype:filename:appearances:displayGamut:languageDirection:screenWidth:heightClass:widthClass:memory:graphicsFeatureSet:locale:)`
 
