@@ -1,6 +1,10 @@
 import Foundation
 
 public struct ImageSetTemplate: Codable {
+  /**
+   Specifies if the image is a template for use with visual effects such as replacing colors.
+    For `nil` values, if the name of the image ends in "Template", use the image as a template, otherwise render it as the original image.
+   */
   public let renderAs: RenderingIntent?
   /**
    The type of compression

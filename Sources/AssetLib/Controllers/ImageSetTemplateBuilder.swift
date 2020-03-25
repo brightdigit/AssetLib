@@ -44,9 +44,7 @@ public struct ImageSetTemplateBuilder: AssetTemplateBuilder {
   public func document(fromTemplate configuration: ImageSetTemplate) -> AssetSpecificationDocumentProtocol {
     var specs: [AssetSpecificationProtocol] = specsBasedOn(devices: [ImageSetDevice](configuration.devices), andScaling: configuration.scaling)
 
-    let appearances = [String: [AnyAppearance]].init(grouping: [AnyAppearance](configuration.appearances)) {
-      $0.appearance
-    }
+    let appearances = configuration.appearances.group(by: \.appearance)
 
     for (_, values) in appearances {
       specs.append(contentsOf: specs.flatMap { spec in
