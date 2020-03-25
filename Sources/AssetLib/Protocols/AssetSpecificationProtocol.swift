@@ -20,6 +20,7 @@ public protocol AssetSpecificationProtocol {
   /** The color gamut of the device display for the image. */
   var displayGamut: DisplayGamut? { get }
 
+  /// The horizontal display direction of the image for left-to-right and right-to-left languages.
   var languageDirection: LanguageDirection? { get }
   /**
    A different version of an image for each Apple Watch screen size.

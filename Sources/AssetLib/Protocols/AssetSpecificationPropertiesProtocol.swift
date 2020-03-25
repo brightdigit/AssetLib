@@ -1,5 +1,8 @@
 import Foundation
 
+/***
+ Properties associated with the app icon or image set.
+ */
 public protocol AssetSpecificationPropertiesProtocol: Codable {
   var templateRenderingIntent: RenderingIntent? { get }
   // swiftlint:disable line_length
@@ -13,8 +16,19 @@ public protocol AssetSpecificationPropertiesProtocol: Codable {
    The type of compression
    */
   var compressionType: CompressionType { get }
+
+  /***
+   Set to true to preserve the vector information for a PDF file.
+   */
   var preservesVectorRepresentation: Bool { get }
   var localizable: Bool { get }
+
+  /***
+   The on-demand resource tags for the image set.
+   **/
   var onDemandResourceTags: [String] { get }
+  /***
+   Backward compatibility for iOS 6.0 indicating if the icon includes the mask and shine effect.
+   */
   var preRendered: Bool { get }
 }

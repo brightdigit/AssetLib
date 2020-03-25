@@ -6,11 +6,27 @@ public struct ImageSetTemplate: Codable {
    The type of compression
    */
   public let compression: CompressionType
+  /***
+   Whether to preserve the vector information for a PDF file.
+   */
   public let preserveVectorData: Bool
+  /// The devices supported for the image set.
   public let devices: Set<ImageSetDevice>
+  /// Specific appearances supported by the image set.
   public let appearances: Set<AnyAppearance>
+  /**
+   Specific scaling supported by the ImageSet. `nil` value means both are supported.
+   */
   public let scaling: TemplateScaling?
+  /**
+   Whether to support specific display gamuts.
+   */
   public let specifyGamut: Bool
+  /**
+   Specific horizontal display directions for the image set.
+    If only one `LanguageDirection` is specified then the image is mirrored for the other `LanguageDirection`.
+    If no `LanguageDirection` is specified then the image has a fixed horizontal orientation and will display in the same direction.
+   */
   public let direction: Set<LanguageDirection>
   public let specifiedWidthClass: SizeClass?
   public let specifiedHeightClass: SizeClass?
@@ -28,5 +44,8 @@ public struct ImageSetTemplate: Codable {
    */
   public let autoScaling: Bool
   public let locales: [Locale]
+  /***
+   The on-demand resource tags for the image set.
+   **/
   public let resourceTags: Set<String>
 }

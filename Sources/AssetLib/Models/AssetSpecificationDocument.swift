@@ -5,6 +5,9 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
   /// Metadata for the author and format version of the asset catalog.
   public let info: AssetSpecificationMetadataProtocol
 
+  /***
+   Properties associated with the app icon or image set.
+   */
   public let properties: AssetSpecificationPropertiesProtocol?
 
   /// An array of sizes or variants of an image or icon.

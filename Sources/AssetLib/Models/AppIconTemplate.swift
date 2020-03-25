@@ -1,6 +1,15 @@
 public struct AppIconTemplate: Codable {
+  /// The devices supported for the app icon.
   let devices: Set<AppIconDevice>
+
+  /**
+   Whether to support specific display gamuts.
+   */
   let specifyGamut: Bool
+
+  /***
+   Backward compatibility for iOS 6.0 indicating if the icon includes the mask and shine effect.
+   */
   let prerendered: Bool
 
   enum CodingKeys: String, CodingKey {

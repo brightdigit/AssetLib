@@ -18,6 +18,7 @@ struct AssetSpecificationBuilder: AssetSpecificationProtocol {
 
   public var locale: Locale?
 
+  /// The horizontal display direction of the image for left-to-right and right-to-left languages.
   public var languageDirection: LanguageDirection?
 
   /** The color gamut of the device display for the image. */

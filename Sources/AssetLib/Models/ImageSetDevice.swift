@@ -18,5 +18,6 @@ public enum ImageSetDevice: String, Codable, CaseIterable {
   case watch
   ///  The image is for CarPlay.
   case car
+  ///  The image for an mac Catalyst app.
   case macCatalyst
 }

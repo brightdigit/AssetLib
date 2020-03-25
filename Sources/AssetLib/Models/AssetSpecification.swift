@@ -32,6 +32,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
 
   /** The color gamut of the device display for the image. */
   public let displayGamut: DisplayGamut?
+  /// The horizontal display direction of the image for left-to-right and right-to-left languages.
   public let languageDirection: LanguageDirection?
 
   enum CodingKeys: String, CodingKey {
