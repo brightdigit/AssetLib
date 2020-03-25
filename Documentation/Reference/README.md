@@ -56,6 +56,8 @@
 
 ## Extensions
 
+-   [Appearance](extensions/Appearance.md)
+-   [DecodingError](extensions/DecodingError.md)
 -   [String](extensions/String.md)
 
 # Reference Documentation

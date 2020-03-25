@@ -24,3 +24,10 @@ public let version: Int
 ```
 
 > The format version of the asset catalog. Use 1.
+
+## Methods
+### `init(author:version:)`
+
+```swift
+public init(author: String = xcodeAuthor, version: Int = defaultVersion)
+```
