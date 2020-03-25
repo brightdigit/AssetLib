@@ -1,4 +1,4 @@
-@testable import AssetLib
+import AssetLib
 import XCTest
 
 func tryAndFail<T>(_ closure: () throws -> T) -> T? {
@@ -80,58 +80,58 @@ final class ImageSetTemplateBuilderTests: XCTestCase {
 
   func testTemplateBuilding() {
     assertImageSet("SingleImage.imageset", ImageSetTemplate(
-      renderAs: .template,
-      compression: .gpuOptimizedBest,
-      preserveVectorData: true,
+      templateRenderingIntent: .template,
+      compressionType: .gpuOptimizedBest,
+      preservesVectorRepresentation: true,
       devices: Set([.universal]),
       appearances: [ValuedAppearance(value: Luminosity.light).eraseToAny(), ValuedAppearance(value: Luminosity.dark).eraseToAny()],
       scaling: .single,
-      specifyGamut: true,
-      direction: [],
-      specifiedWidthClass: nil,
-      specifiedHeightClass: nil,
+      displayGamuts: true,
+      languageDirections: [],
+      widthClass: nil,
+      heightClass: nil,
       memorySet: [],
-      graphicFSSet: [],
-      specifyAWWidth: false,
+      graphicsFeatureSets: [],
+      appleWatchScreens: false,
       autoScaling: false,
       locales: [],
-      resourceTags: []
+      onDemandResourceTags: []
     ))
     assertImageSet("ImageSet02.imageset", ImageSetTemplate(
-      renderAs: nil,
-      compression: .automatic,
-      preserveVectorData: false,
+      templateRenderingIntent: nil,
+      compressionType: .automatic,
+      preservesVectorRepresentation: false,
       devices: Set([.watch, .universal]),
       appearances: [],
       scaling: nil,
-      specifyGamut: false,
-      direction: [.leftToRight, .rightToLeft],
-      specifiedWidthClass: .regular,
-      specifiedHeightClass: .compact,
+      displayGamuts: false,
+      languageDirections: [.leftToRight, .rightToLeft],
+      widthClass: .regular,
+      heightClass: .compact,
       memorySet: [.requires1GB],
-      graphicFSSet: [.apple6],
-      specifyAWWidth: true,
+      graphicsFeatureSets: [.apple6],
+      appleWatchScreens: true,
       autoScaling: true,
       locales: [],
-      resourceTags: ["taga", "tagb"]
+      onDemandResourceTags: ["taga", "tagb"]
     ))
     assertImageSet("Localized.imageset", ImageSetTemplate(
-      renderAs: nil,
-      compression: .automatic,
-      preserveVectorData: false,
+      templateRenderingIntent: nil,
+      compressionType: .automatic,
+      preservesVectorRepresentation: false,
       devices: Set([.universal]),
       appearances: [],
       scaling: .single,
-      specifyGamut: false,
-      direction: [],
-      specifiedWidthClass: nil,
-      specifiedHeightClass: nil,
+      displayGamuts: false,
+      languageDirections: [],
+      widthClass: nil,
+      heightClass: nil,
       memorySet: [],
-      graphicFSSet: [],
-      specifyAWWidth: false,
+      graphicsFeatureSets: [],
+      appleWatchScreens: false,
       autoScaling: false,
-      locales: ["es-419", "en", "fr"].map(Locale.init(identifier:)),
-      resourceTags: []
+      locales: Set(["es-419", "en", "fr"].map(Locale.init(identifier:))),
+      onDemandResourceTags: []
     ))
   }
 }

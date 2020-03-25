@@ -1,4 +1,4 @@
-@testable import AssetLib
+import AssetLib
 import XCTest
 
 final class ISDeviceIdiomProviderTests: XCTestCase {

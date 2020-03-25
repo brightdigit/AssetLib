@@ -57,19 +57,19 @@ public struct ImageSetTemplateBuilder: AssetTemplateBuilder {
         }
           })
     }
-    if configuration.specifyGamut {
+    if configuration.displayGamuts {
       specs = specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
     }
 
-    if configuration.direction.count > 0 {
-      specs = specs.multiply(by: [LanguageDirection](configuration.direction), with: \.languageDirection)
+    if configuration.languageDirections.count > 0 {
+      specs = specs.multiply(by: [LanguageDirection](configuration.languageDirections), with: \.languageDirection)
     }
 
-    if let heightClass = configuration.specifiedHeightClass {
+    if let heightClass = configuration.heightClass {
       specs = specs.multiply(by: [heightClass], with: \.heightClass, where: { $0.idiom == .universal }, operation: .append)
     }
 
-    if let widthClass = configuration.specifiedWidthClass {
+    if let widthClass = configuration.widthClass {
       specs = specs.multiply(by: [widthClass], with: \.widthClass, where: { $0.idiom == .universal }, operation: .append)
     }
 
@@ -81,29 +81,29 @@ public struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       )
     }
 
-    if configuration.graphicFSSet.count > 0 {
+    if configuration.graphicsFeatureSets.count > 0 {
       specs.append(
         contentsOf:
         tempSpecs.multiply(
-          by: [GraphicsFeatureSet](configuration.graphicFSSet),
+          by: [GraphicsFeatureSet](configuration.graphicsFeatureSets),
           with: \.graphicsFeatureSet,
           where: { $0.idiom != .universal }
         ))
     }
 
-    if configuration.specifyAWWidth {
+    if configuration.appleWatchScreens {
       specs = specs.multiply(by: AppleWatchScreenWidth.allCases, with: \.screenWidth, where: { $0.idiom == .watch }, operation: .modify)
     }
 
-    specs = specs.multiply(by: configuration.locales, with: \.locale, operation: .append)
+    specs = specs.multiply(by: Array(configuration.locales), with: \.locale, operation: .append)
 
     let properties = AssetSpecificationProperties(
-      templateRenderingIntent: configuration.renderAs,
+      templateRenderingIntent: configuration.templateRenderingIntent,
       autoScaling: configuration.autoScaling ? .automatic : nil,
-      compressionType: configuration.compression,
-      preservesVectorRepresentation: configuration.preserveVectorData,
+      compressionType: configuration.compressionType,
+      preservesVectorRepresentation: configuration.preservesVectorRepresentation,
       localizable: configuration.locales.count > 0,
-      onDemandResourceTags: [String](configuration.resourceTags)
+      onDemandResourceTags: [String](configuration.onDemandResourceTags)
     )
 
     return AssetSpecificationDocument(info: AssetSpecificationMetadata(), images: specs, properties: properties)

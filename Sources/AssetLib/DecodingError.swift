@@ -1,7 +1,7 @@
 import Foundation
 
 extension DecodingError {
-  var keyString: String? {
+  public var keyString: String? {
     switch self {
     case let .dataCorrupted(context):
       return context.codingPath.last?.stringValue

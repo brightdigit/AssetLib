@@ -12,7 +12,7 @@ public struct AssetSpecificationMetadata: AssetSpecificationMetadataProtocol {
   /// The format version of the asset catalog. Use 1.
   public let version: Int
 
-  init(author: String = xcodeAuthor, version: Int = defaultVersion) {
+  public init(author: String = xcodeAuthor, version: Int = defaultVersion) {
     self.author = author
     self.version = version
   }

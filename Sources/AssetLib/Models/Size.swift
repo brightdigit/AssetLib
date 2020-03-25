@@ -7,9 +7,14 @@ public struct Size: Equatable {
   /**
    Size width.
    */
-  let width: Float
+  public let width: Float
   /**
    Size height.
    */
-  let height: Float
+  public let height: Float
+
+  public init(width: Float, height: Float) {
+    self.width = width
+    self.height = height
+  }
 }
