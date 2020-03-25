@@ -144,15 +144,23 @@ For more details, check out the documentation on `ImageSetTemplate`.
 
 ##### Command Line Application
 
-In addition to the API, you can build an `AssetSpecificationDocument` i.e. Contents.json file using the executable provided in the Swift package. 
+In addition to the API, you can build an `AssetSpecificationDocument` i.e. Contents.json file using the executable provided in the Swift package:
 
-Simply create a `json` file, with the corresponding properties for a the `ImageSetTemplate` or `AppIconTemplate`. 
+```
+USAGE: assetlibrary <template-file> <output>
 
-For an `AppIconTemplate`, the corresponding `json` properties are:
+ARGUMENTS:
+  <template-file>         JSON template file. 
+  <output>                Output directory or file. If this path ends in either
+                          'imageset' or 'appicon', then a directory will be
+                          created with a 'Contents.json' file inside.
+                          Otherwise, it will be the resulting file path. 
 
-- `devices` : `devices`
-- `specifyGamut` : `specify-gamut`
-- `prerendered` : `pre-rendered`
+OPTIONS:
+  -h, --help              Show help information.
+```
+
+Simply create a `json` file, with the corresponding properties for a the `ImageSetTemplate` or `AppIconTemplate`. The corresponding JSON properties for each property in Swift are:
 
 | Template Type | Swift Name | JSON Name |
 |---------------|--------------|---------------|
@@ -175,6 +183,56 @@ For an `AppIconTemplate`, the corresponding `json` properties are:
 | ImageSet | autoScaling | auto-scaling |
 | ImageSet | locales | locales |
 | ImageSet | onDemandResourceTags | on-demand-resource-tags |
+
+For example to setup an App Icon template:
+
+```bash
+$ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
+```
+
+```json
+{
+  "template-rendering-intent" : "template",
+  "appearances" : [
+    {
+      "appearance" : "luminosity",
+      "value" : "dark"
+    }
+  ],
+  "appleWatchScreens" : true,
+  "locales" : ["en", "es", "fr"]
+}
+```
+
+```bash
+$ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
+```
+
+```json
+{
+  "devices" : ["iphone", "ipad"]
+}
+```
+
+```bash
+$ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
+```
+
+```json
+{
+  "specify-gamut" : true
+}
+```
+
+```bash
+$ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
+```
+
+```json
+{
+  "devices" : ["watch", "iphone", "ipad", "mac", "tv"]
+}
+```
 
 
 ## Links

@@ -1,0 +1,11 @@
+{
+  "template-rendering-intent" : "template",
+  "appearances" : [
+    {
+      "appearance" : "luminosity",
+      "value" : "dark"
+    }
+  ],
+  "appleWatchScreens" : true,
+  "locales" : ["en", "es", "fr"]
+}

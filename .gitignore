@@ -168,3 +168,6 @@ Tests/AssetLibTests/Data/**/*.pdf
 Pods
 *.lcov
 Brewfile.lock.json
+
+Example/Templates/Assets.xcassets/*.imageset/Contents.json
+Example/Templates/Assets.xcassets/*.appiconset/Contents.json

@@ -68,13 +68,14 @@ struct Assetlibrary: ParsableCommand {
     let outputURL: URL
     if type != nil {
       let outputDirURL = URL(fileURLWithPath: output, isDirectory: true)
-      try FileManager.default.createDirectory(at: outputDirURL, withIntermediateDirectories: false, attributes: nil)
+      try? FileManager.default.createDirectory(at: outputDirURL, withIntermediateDirectories: false, attributes: nil)
       outputURL = outputDirURL.appendingPathComponent("Contents.json")
     } else {
       outputURL = URL(fileURLWithPath: output)
     }
 
     let jsonEncoder = JSONEncoder()
+    jsonEncoder.outputFormatting = [.prettyPrinted]
     let actual = template(withType: type)
     let document: AssetSpecificationDocumentProtocol
     switch actual {
