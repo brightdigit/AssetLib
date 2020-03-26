@@ -192,6 +192,7 @@ For example to setup an Image Set:
 
 
 imageset-template.json:
+
 ```json
 {
   "template-rendering-intent" : "template",
@@ -207,14 +208,14 @@ imageset-template.json:
 ```
 
 then run:
-```bash
-$ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
-```
-
 
 ```bash
 $ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
 ```
+
+For an iPhone and iPad App Icon:
+
+appicon-iOS.json:
 
 ```json
 {
@@ -222,9 +223,15 @@ $ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets
 }
 ```
 
+then run:
+
 ```bash
-$ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
+$ assetlibrary Example/Templates/appicon-iOS.json Example/Templates/Assets.xcassets/AppIcon.appiconset
 ```
+
+For an App Icon for all devices with specification for each display gamut:
+
+appicon-iOS.json:
 
 ```json
 {
@@ -232,9 +239,15 @@ $ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets
 }
 ```
 
+Then run:
+
 ```bash
-$ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
+$ assetlibrary Example/Templates/appicon-gamut.json Example/Templates/Assets.xcassets/Gamut.appiconset
 ```
+
+For an App Icon for each device but CarPlay:
+
+appicon-devices.json:
 
 ```json
 {
@@ -242,6 +255,11 @@ $ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets
 }
 ```
 
+Then run:
+
+```bash
+$ assetlibrary Example/Templates/appicon-devices.json Example/Templates/Assets.xcassets/Devices.appiconset
+```
 
 ## Links
 
