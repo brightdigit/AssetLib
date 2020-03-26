@@ -70,7 +70,7 @@ dependencies: [
 
 There are three types of tracking objects: Events, Timing, and Exceptions.
 
-#### Image Sets
+### Image Sets
 
 For tracking events, you can create an `AnalyticsEvent` with a category and action:
 
@@ -85,11 +85,11 @@ For tracking events, you can create an `AnalyticsEvent` with a category and acti
 
 You can read [more details about events on the Google Analytics Measurement Protocol documentation.](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide#event)
 
-#### Templating
+### Templating
 
 You can build an App Icon for an Asset Catalog based on a template either programmatically or in the terminal. 
 
-##### App Icons
+#### App Icons
 
 In order to create an `AssetSpecificationDocument`, create an `AppIconTemplate` with the settings of your choice as well as a `AppIconTemplateBuilder`. Then call: `.document(fromTemplate:)` to build the `AssetSpecificationDocument`:
 
@@ -110,7 +110,7 @@ let document = builder.document(fromTemplate: template)
 
 For more details, check out the documentation on `AppIconTemplate`.
 
-##### Image Sets
+#### Image Sets
 
 In order to create an `AssetSpecificationDocument`, create an `ImageSetTemplate` with the settings of your choice as well as a `ImageSetTemplateBuilder`. Then call: `.document(fromTemplate:)` to build the `AssetSpecificationDocument`:
 
@@ -142,7 +142,7 @@ let document = builder.document(fromTemplate: template)
 
 For more details, check out the documentation on `ImageSetTemplate`.
 
-##### Command Line Application
+#### Command Line Application
 
 In addition to the API, you can build an `AssetSpecificationDocument` i.e. Contents.json file using the executable provided in the Swift package:
 
@@ -184,14 +184,17 @@ Simply create a `json` file, with the corresponding properties for a the `ImageS
 | ImageSet | locales | locales |
 | ImageSet | onDemandResourceTags | on-demand-resource-tags |
 
-For example to setup an Image Set:
+##### Examples
+
+###### Image Set
+
 - for a template image
 - with a specific dark mode
 - support for english, spanish, and french
 - individual images for each Apple Watch size
 
 
-imageset-template.json:
+**imageset-template.json**
 
 ```json
 {
@@ -207,15 +210,15 @@ imageset-template.json:
 }
 ```
 
-then run:
+**usage**
 
 ```bash
 $ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
 ```
 
-For an iPhone and iPad App Icon:
+###### iPhone and iPad App Icon
 
-appicon-iOS.json:
+**appicon-iOS.json**
 
 ```json
 {
@@ -223,15 +226,15 @@ appicon-iOS.json:
 }
 ```
 
-then run:
+**usage**
 
 ```bash
 $ assetlibrary Example/Templates/appicon-iOS.json Example/Templates/Assets.xcassets/AppIcon.appiconset
 ```
 
-For an App Icon for all devices with specification for each display gamut:
+###### Multi-Device Image Set (w/ Display Gamuts)
 
-appicon-iOS.json:
+**appicon-gamut.json**
 
 ```json
 {
@@ -239,15 +242,15 @@ appicon-iOS.json:
 }
 ```
 
-Then run:
+**usage**
 
 ```bash
 $ assetlibrary Example/Templates/appicon-gamut.json Example/Templates/Assets.xcassets/Gamut.appiconset
 ```
 
-For an App Icon for each device but CarPlay:
+###### Multi-Device Image Set (w/o CarPlay)
 
-appicon-devices.json:
+**appicon-devices.json**
 
 ```json
 {
@@ -255,7 +258,7 @@ appicon-devices.json:
 }
 ```
 
-Then run:
+**usage**
 
 ```bash
 $ assetlibrary Example/Templates/appicon-devices.json Example/Templates/Assets.xcassets/Devices.appiconset
