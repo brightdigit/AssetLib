@@ -3,7 +3,7 @@
 # `ImageSetTemplate`
 
 ```swift
-public struct ImageSetTemplate: Codable
+public struct ImageSetTemplate: Codable, Equatable
 ```
 
 ## Properties

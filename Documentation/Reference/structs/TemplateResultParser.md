@@ -12,7 +12,7 @@ public struct TemplateResultParser: TemplateResultParserProtocol
 ### `parser`
 
 ```swift
-public let parser: TemplateParser
+public let parser: TemplateDecoder
 ```
 
 ### `reader`
@@ -25,7 +25,7 @@ public let reader: (URL) throws -> Data
 ### `init(parser:reader:)`
 
 ```swift
-public init(parser: TemplateParser? = nil, reader: ((URL) throws -> Data)? = nil)
+public init(parser: TemplateDecoder? = nil, reader: ((URL) throws -> Data)? = nil)
 ```
 
 ### `template(fromURL:withType:)`
