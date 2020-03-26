@@ -3,8 +3,14 @@ import Foundation
 /**
  Deciphers the details for the template based on the path.
  */
+ @available(*, deprecated)
 public struct TemplateDetailsFactory: TemplateDetailsFactoryProtocol {
   public static let shared: TemplateDetailsFactoryProtocol = TemplateDetailsFactory()
+  
+  
+  public init () {
+    
+  }
   /**
    Deciphers the details for the template based on the path.
    - Parameter path: Output file path to template.

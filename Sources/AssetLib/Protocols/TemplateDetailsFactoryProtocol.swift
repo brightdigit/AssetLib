@@ -1,6 +1,7 @@
 /**
  Deciphers the details for the template based on the path.
  */
+@available(*, deprecated)
 public protocol TemplateDetailsFactoryProtocol {
   /**
    Deciphers the details for the template based on the path.
