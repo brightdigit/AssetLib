@@ -66,24 +66,59 @@ dependencies: [
 
 ### [API Documentation](/Documentation/Reference/README.md)
 
-### App Icons
+### Asset Catalog Items (i.e. App Icons and Image Sets)
 
-There are three types of tracking objects: Events, Timing, and Exceptions.
-
-### Image Sets
-
-For tracking events, you can create an `AnalyticsEvent` with a category and action:
+**AssetLib** contains a type `AssetSpecificationDocument` which can both be constructed, decoded, encoded and more. Typically in Xcode Asset Catalogs, this would be the `Contents.json` file inside an Image set or App Icon set. Therefore to read an `AssetSpecificationDocument`:
 
 ```swift
-    let event = AnalyticsEvent(category: "category", action: "action")
-    tracker.track(event) { result in
-      if case let .failure(error) = result {
-        debugPrint(error)
-      }
-    }
+// read the "Contents.json" for either Image Set or App Icon
+let dirURL = let outputDirURL = URL(fileURLWithPath: "ImageSet.imageset", isDirectory: true)
+let url = dirURL.appendingPathComponent("Contents.json")
+
+let decoder = JSONDecoder()
+let data = try Data(contentsOf: url)
+let document = decoder.decode(AssetSpecificationDocument.self, from: data)
 ```
 
-You can read [more details about events on the Google Analytics Measurement Protocol documentation.](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide#event)
+`AssetSpecificationDocument` contains three properties: `info`, `properties`, and `images`. The `images` property contains the specifications for each image used in the Image set or App Icon.
+
+#### Asset Catalog Images 
+
+**AssetLib** contains a type `AssetSpecification` for each image in a `AssetSpecificationDocument`. This could be anything from a 2x image in an Image Set to the image for an iPad notification.
+
+In order to build or modify an `AssetSpecification` use the `AssetSpecificationBuilder` type:
+
+```swift
+...
+let document = decoder.decode(AssetSpecificationDocument.self, from: data)
+let newImages = document.images.map {
+  oldImage in
+  var builder = AssetSpecificationBuilder(specifications: oldImage)
+  builder.locale = Locale(identifier: "fr")
+  return builder.assetSpec()
+}
+let modifiedDocument = AssetSpecificationDocument(
+  info: document.info,
+  images: newImages,
+  properties: document.properties)
+```
+
+#### Saving Your Document
+
+In order to save your new `AssetSpecificationDocument`, simply use `JSONEncoder`:
+
+```swift
+// save to "Contents.json" for either Image Set or App Icon to work in Xcode
+let outputDirURL = let outputDirURL = URL(fileURLWithPath: "NewImageSet.imageset", isDirectory: true)
+let outputURL = outputDirURL.appendingPathComponent("Contents.json")
+
+// In order to have it look similar to how Xcode outputs the document
+let encoder = JSONEncoder()
+encoder.outputFormatting = [.prettyPrinted]
+
+let data = try encoder.encode(modifiedDocument)
+try data.write(to: outputURL)
+```
 
 ### Templating
 
