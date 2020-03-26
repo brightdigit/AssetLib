@@ -19,10 +19,10 @@ struct AssetLibraryCommand: ParsableCommand {
 
   func run() throws {
     let url = URL(fileURLWithPath: templateFile)
-    let details = TemplateDetailsFactory.shared.details(fromFilePath: output)
+    let type = TemplateTypeParser().templateType(fromPath: output)
+    let outputURL = try AssetURLInitializer().url(fromPath: output, withType: type)
 
-    let outputURL = details.url
-    let actual = TemplateResultParser.shared.template(fromURL: url, withType: details.type)
+    let actual = TemplateResultParser.shared.template(fromURL: url, withType: type)
 
     try TemplateWriter.shared.saveTemplateResult(actual, to: outputURL)
   }

@@ -6,12 +6,12 @@ import Foundation
 public struct TemplateResultParser: TemplateResultParserProtocol {
   public static let shared: TemplateResultParserProtocol = TemplateResultParser()
 
-  public static let defaultParser: TemplateParser = JSONDecoder()
+  public static let defaultParser: TemplateDecoder = JSONDecoder()
 
-  public let parser: TemplateParser
+  public let parser: TemplateDecoder
   public let reader: (URL) throws -> Data
 
-  public init(parser: TemplateParser? = nil, reader: ((URL) throws -> Data)? = nil) {
+  public init(parser: TemplateDecoder? = nil, reader: ((URL) throws -> Data)? = nil) {
     self.parser = parser ?? Self.defaultParser
     self.reader = reader ?? { try Data(contentsOf: $0) }
   }
