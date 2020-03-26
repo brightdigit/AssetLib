@@ -12,7 +12,7 @@ public struct IdiomAppIconSpecMap: IdiomAppIconSpecProvider {
    The default `[ImageIdiom: [AssetSpecificationProtocol]]` Dictionary based on the default `AppIconMasterDocumentProvider`.
    */
   public static let defaultDictionary: [ImageIdiom: [AssetSpecificationProtocol]] =
-    try! (AppIconMasterDocumentProvider.default.document().images?.group(by: \.idiom))!
+    try! (AppIconMasterDocumentProvider.default.document().images.group(by: \.idiom))
   // swiftlint:enable force_try
 
   /**

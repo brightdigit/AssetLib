@@ -10,5 +10,5 @@ public protocol AssetSpecificationDocumentProtocol: Codable {
    */
   var properties: AssetSpecificationPropertiesProtocol? { get }
   /// An array of sizes or variants of an image or icon.
-  var images: [AssetSpecificationProtocol]? { get }
+  var images: [AssetSpecificationProtocol] { get }
 }

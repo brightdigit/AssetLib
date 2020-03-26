@@ -45,7 +45,7 @@ func assertApproximateEquals(_ actualDocument: AssetSpecificationDocument, _ ima
     return
   }
 
-  XCTAssertEqual(expectedDocument.images?.count, actualDocument.images?.count)
+  XCTAssertEqual(expectedDocument.images.count, actualDocument.images.count)
 
   XCTAssertEqual(expectedDocument.properties?.templateRenderingIntent, actualDocument.properties?.templateRenderingIntent)
   XCTAssertEqual(expectedDocument.properties?.autoScaling, actualDocument.properties?.autoScaling)
@@ -53,7 +53,7 @@ func assertApproximateEquals(_ actualDocument: AssetSpecificationDocument, _ ima
   XCTAssertEqual(expectedDocument.properties?.preservesVectorRepresentation, actualDocument.properties?.preservesVectorRepresentation)
   XCTAssertEqual(expectedDocument.properties?.localizable, actualDocument.properties?.localizable)
 
-  if expectedDocument.images?.count == actualDocument.images?.count {
+  if expectedDocument.images.count == actualDocument.images.count {
     return
   }
   try? actualString.write(
