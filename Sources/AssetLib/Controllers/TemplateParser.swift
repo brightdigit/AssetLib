@@ -1,11 +1,10 @@
 import Foundation
 
-public struct TemplateParser : TemplateParserProtocol {
+public struct TemplateParser: TemplateParserProtocol {
+  public static let shared: TemplateParserProtocol = TemplateParser()
 
-  public static let shared : TemplateParserProtocol = TemplateParser()
-  
   let jsonDecoder = JSONDecoder()
-  
+
   public func template(fromURL url: URL, withType type: TemplateType?) -> TemplateResult {
     let dataResult = Result(catching: { try Data(contentsOf: url) })
 

@@ -1,5 +1,3 @@
 import AssetLib
 
-
-
 AssetLibraryCommand.main()
