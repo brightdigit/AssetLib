@@ -29,7 +29,7 @@ var properties: AssetSpecificationPropertiesProtocol?
 ### `images`
 
 ```swift
-var images: [AssetSpecificationProtocol]?
+var images: [AssetSpecificationProtocol]
 ```
 
 > An array of sizes or variants of an image or icon.

@@ -29,7 +29,7 @@ public let properties: AssetSpecificationPropertiesProtocol?
 ### `images`
 
 ```swift
-public let images: [AssetSpecificationProtocol]?
+public let images: [AssetSpecificationProtocol]
 ```
 
 > An array of sizes or variants of an image or icon.
@@ -40,7 +40,7 @@ public let images: [AssetSpecificationProtocol]?
 ```swift
 public init(
   info: AssetSpecificationMetadataProtocol,
-  images: [AssetSpecificationProtocol]?,
+  images: [AssetSpecificationProtocol],
   properties: AssetSpecificationPropertiesProtocol? = nil
 )
 ```
