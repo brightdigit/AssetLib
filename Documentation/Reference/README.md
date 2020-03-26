@@ -12,6 +12,9 @@
 -   [IdiomAppIconSpecProvider](protocols/IdiomAppIconSpecProvider.md)
 -   [IdiomScaleProviderProtocol](protocols/IdiomScaleProviderProtocol.md)
 -   [ImageIdiomDisplayGamutProtocol](protocols/ImageIdiomDisplayGamutProtocol.md)
+-   [TemplateDetailsFactoryProtocol](protocols/TemplateDetailsFactoryProtocol.md)
+-   [TemplateParserProtocol](protocols/TemplateParserProtocol.md)
+-   [TemplateWriterProtocol](protocols/TemplateWriterProtocol.md)
 
 ## Structs
 
@@ -31,6 +34,10 @@
 -   [ImageSetTemplate](structs/ImageSetTemplate.md)
 -   [ImageSetTemplateBuilder](structs/ImageSetTemplateBuilder.md)
 -   [Size](structs/Size.md)
+-   [TemplateDetails](structs/TemplateDetails.md)
+-   [TemplateDetailsFactory](structs/TemplateDetailsFactory.md)
+-   [TemplateParser](structs/TemplateParser.md)
+-   [TemplateWriter](structs/TemplateWriter.md)
 -   [ValuedAppearance](structs/ValuedAppearance.md)
 
 ## Enums
@@ -52,7 +59,9 @@
 -   [Memory](enums/Memory.md)
 -   [RenderingIntent](enums/RenderingIntent.md)
 -   [SizeClass](enums/SizeClass.md)
+-   [TemplateResult](enums/TemplateResult.md)
 -   [TemplateScaling](enums/TemplateScaling.md)
+-   [TemplateType](enums/TemplateType.md)
 
 ## Extensions
 
