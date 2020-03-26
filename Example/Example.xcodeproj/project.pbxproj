@@ -6,6 +6,24 @@
 	objectVersion = 52;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B3D25F44242D59830053FF20 /* all */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B3D25F47242D59830053FF20 /* Build configuration list for PBXAggregateTarget "all" */;
+			buildPhases = (
+			);
+			dependencies = (
+				B3D25F49242D59BA0053FF20 /* PBXTargetDependency */,
+				B3D25F4B242D59BA0053FF20 /* PBXTargetDependency */,
+				B3D25F4D242D59BA0053FF20 /* PBXTargetDependency */,
+				B3D25F4F242D59BA0053FF20 /* PBXTargetDependency */,
+				B3D25F51242D59BA0053FF20 /* PBXTargetDependency */,
+			);
+			name = all;
+			productName = all;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		025E26E02B3C02462657DCA2 /* Pods_tvOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88338F7241DB23C5D497032 /* Pods_tvOS_Example.framework */; };
 		1A37FF684C1DC591026FFD62 /* Pods_watchOS_Example_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D102782F4B5CB466E8E34A /* Pods_watchOS_Example_Extension.framework */; };
@@ -87,6 +105,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = B321B5F623E4D22D0077D6FE;
 			remoteInfo = "watchOS Example";
+		};
+		B3D25F48242D59BA0053FF20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B321B55C23E4D1990077D6FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B321B58C23E4D2000077D6FE;
+			remoteInfo = "iOS Example";
+		};
+		B3D25F4A242D59BA0053FF20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B321B55C23E4D1990077D6FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B321B5D623E4D21C0077D6FE;
+			remoteInfo = "macOS Example";
+		};
+		B3D25F4C242D59BA0053FF20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B321B55C23E4D1990077D6FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B321B5B223E4D20D0077D6FE;
+			remoteInfo = "tvOS Example";
+		};
+		B3D25F4E242D59BA0053FF20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B321B55C23E4D1990077D6FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B321B5F623E4D22D0077D6FE;
+			remoteInfo = "watchOS Example";
+		};
+		B3D25F50242D59BA0053FF20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B321B55C23E4D1990077D6FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B321B60223E4D22D0077D6FE;
+			remoteInfo = "watchOS Example Extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -601,6 +654,9 @@
 					B321B60223E4D22D0077D6FE = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
+					B3D25F44242D59830053FF20 = {
+						CreatedOnToolsVersion = 11.4;
+					};
 				};
 			};
 			buildConfigurationList = B321B55F23E4D1990077D6FE /* Build configuration list for PBXProject "Example" */;
@@ -624,6 +680,7 @@
 				B321B5E723E4D21D0077D6FE /* macOS ExampleTests */,
 				B321B5F623E4D22D0077D6FE /* watchOS Example */,
 				B321B60223E4D22D0077D6FE /* watchOS Example Extension */,
+				B3D25F44242D59830053FF20 /* all */,
 			);
 		};
 /* End PBXProject section */
@@ -1045,6 +1102,31 @@
 			platformFilter = ios;
 			target = B321B5F623E4D22D0077D6FE /* watchOS Example */;
 			targetProxy = B321B60F23E4D22E0077D6FE /* PBXContainerItemProxy */;
+		};
+		B3D25F49242D59BA0053FF20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B321B58C23E4D2000077D6FE /* iOS Example */;
+			targetProxy = B3D25F48242D59BA0053FF20 /* PBXContainerItemProxy */;
+		};
+		B3D25F4B242D59BA0053FF20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B321B5D623E4D21C0077D6FE /* macOS Example */;
+			targetProxy = B3D25F4A242D59BA0053FF20 /* PBXContainerItemProxy */;
+		};
+		B3D25F4D242D59BA0053FF20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B321B5B223E4D20D0077D6FE /* tvOS Example */;
+			targetProxy = B3D25F4C242D59BA0053FF20 /* PBXContainerItemProxy */;
+		};
+		B3D25F4F242D59BA0053FF20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B321B5F623E4D22D0077D6FE /* watchOS Example */;
+			targetProxy = B3D25F4E242D59BA0053FF20 /* PBXContainerItemProxy */;
+		};
+		B3D25F51242D59BA0053FF20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B321B60223E4D22D0077D6FE /* watchOS Example Extension */;
+			targetProxy = B3D25F50242D59BA0053FF20 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2232,6 +2314,24 @@
 			};
 			name = Release;
 		};
+		B3D25F45242D59830053FF20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MLT7M394S7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B3D25F46242D59830053FF20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MLT7M394S7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2312,6 +2412,15 @@
 			buildConfigurations = (
 				B321B61723E4D22E0077D6FE /* Debug */,
 				B321B61823E4D22E0077D6FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3D25F47242D59830053FF20 /* Build configuration list for PBXAggregateTarget "all" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3D25F45242D59830053FF20 /* Debug */,
+				B3D25F46242D59830053FF20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
