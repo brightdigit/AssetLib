@@ -184,12 +184,14 @@ Simply create a `json` file, with the corresponding properties for a the `ImageS
 | ImageSet | locales | locales |
 | ImageSet | onDemandResourceTags | on-demand-resource-tags |
 
-For example to setup an App Icon template:
+For example to setup an Image Set:
+- for a template image
+- with a specific dark mode
+- support for english, spanish, and french
+- individual images for each Apple Watch size
 
-```bash
-$ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
-```
 
+imageset-template.json:
 ```json
 {
   "template-rendering-intent" : "template",
@@ -203,6 +205,12 @@ $ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets
   "locales" : ["en", "es", "fr"]
 }
 ```
+
+then run:
+```bash
+$ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
+```
+
 
 ```bash
 $ assetlibrary Example/Templates/imageset-template.json Example/Templates/Assets.xcassets/Template.imageset
