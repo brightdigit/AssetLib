@@ -13,7 +13,9 @@
 -   [IdiomScaleProviderProtocol](protocols/IdiomScaleProviderProtocol.md)
 -   [ImageIdiomDisplayGamutProtocol](protocols/ImageIdiomDisplayGamutProtocol.md)
 -   [TemplateDetailsFactoryProtocol](protocols/TemplateDetailsFactoryProtocol.md)
--   [TemplateParserProtocol](protocols/TemplateParserProtocol.md)
+-   [TemplateEncoder](protocols/TemplateEncoder.md)
+-   [TemplateParser](protocols/TemplateParser.md)
+-   [TemplateResultParserProtocol](protocols/TemplateResultParserProtocol.md)
 -   [TemplateWriterProtocol](protocols/TemplateWriterProtocol.md)
 
 ## Structs
@@ -36,7 +38,7 @@
 -   [Size](structs/Size.md)
 -   [TemplateDetails](structs/TemplateDetails.md)
 -   [TemplateDetailsFactory](structs/TemplateDetailsFactory.md)
--   [TemplateParser](structs/TemplateParser.md)
+-   [TemplateResultParser](structs/TemplateResultParser.md)
 -   [TemplateWriter](structs/TemplateWriter.md)
 -   [ValuedAppearance](structs/ValuedAppearance.md)
 
