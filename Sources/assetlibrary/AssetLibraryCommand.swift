@@ -22,7 +22,7 @@ struct AssetLibraryCommand: ParsableCommand {
     let details = TemplateDetailsFactory.shared.details(fromFilePath: output)
 
     let outputURL = details.url
-    let actual = TemplateParser.shared.template(fromURL: url, withType: details.type)
+    let actual = TemplateResultParser.shared.template(fromURL: url, withType: details.type)
 
     try TemplateWriter.shared.saveTemplateResult(actual, to: outputURL)
   }

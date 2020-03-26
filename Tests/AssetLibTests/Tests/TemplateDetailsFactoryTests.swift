@@ -1,4 +1,6 @@
 import AssetLib
 import XCTest
 
-final class TemplateDetailsFactoryTests: XCTestCase {}
+final class TemplateDetailsFactoryTests: XCTestCase {
+  func testDetails() {}
+}

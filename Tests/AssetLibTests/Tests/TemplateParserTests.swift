@@ -1,4 +1,6 @@
 import AssetLib
 import XCTest
 
-final class TemplateParserTests: XCTestCase {}
+final class TemplateParserTests: XCTestCase {
+  func testTemplate() {}
+}

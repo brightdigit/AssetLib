@@ -1,7 +1,14 @@
 import Foundation
 
+/**
+ Deciphers the details for the template based on the path.
+ */
 public struct TemplateDetailsFactory: TemplateDetailsFactoryProtocol {
   public static let shared: TemplateDetailsFactoryProtocol = TemplateDetailsFactory()
+  /**
+   Deciphers the details for the template based on the path.
+   - Parameter path: Output file path to template.
+   */
   public func details(fromFilePath path: String) -> TemplateDetails {
     let type: TemplateType?
     if let ext = path.components(separatedBy: ".").last {
