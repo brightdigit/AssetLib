@@ -31,3 +31,15 @@ public let height: Float
 ```swift
 public init(width: Float, height: Float)
 ```
+
+### `init(squareWithLength:)`
+
+```swift
+public init(squareWithLength length: Float)
+```
+
+### `init(_:)`
+
+```swift
+public init(_ size: Sizes)
+```
