@@ -1,6 +1,10 @@
 import Foundation
 
 extension String {
+  /**
+   Finds the first matching group from the regular expresion.
+   - Parameter regex: The Regular Expression.
+   */
   public func firstMatchGroups(regex: NSRegularExpression) -> [String]? {
     let range = NSRange(0 ..< count)
 

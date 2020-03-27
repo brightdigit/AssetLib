@@ -37,7 +37,7 @@ class DocumentsTableViewController: UITableViewController {
 
     cell.textLabel?.text = "\(name)"
 
-    if let imageCount = document?.images?.count {
+    if let imageCount = document?.images.count {
       cell.detailTextLabel?.text = "\(imageCount) images"
     } else {
       cell.detailTextLabel?.text = "group"

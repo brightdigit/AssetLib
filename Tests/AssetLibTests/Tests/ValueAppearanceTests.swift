@@ -1,13 +1,5 @@
-@testable import AssetLib
+import AssetLib
 import XCTest
-
-struct MockValueType: AppearanceValue {
-  static var appearanceKey: String {
-    return "mock"
-  }
-
-  let appearanceValue: String
-}
 
 final class ValueAppearanceTests: XCTestCase {
   func assertAppearanceValue<ValueType: AppearanceValue>(value: ValueType) {

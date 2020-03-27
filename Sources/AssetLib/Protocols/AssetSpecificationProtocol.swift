@@ -15,16 +15,32 @@ public protocol AssetSpecificationProtocol {
   /// The type of Apple Watch when there is more than one icon size for a role.
   var subtype: DeviceSubType? { get }
 
+  /// Specific appearances supported by the asset.
   var appearances: [AnyAppearance] { get }
 
+  /** The color gamut of the device display for the image. */
   var displayGamut: DisplayGamut? { get }
 
+  /// The horizontal display direction of the image for left-to-right and right-to-left languages.
   var languageDirection: LanguageDirection? { get }
-
+  /**
+   A different version of an image for each Apple Watch screen size.
+   */
   var screenWidth: AppleWatchScreenWidth? { get }
   var heightClass: SizeClass? { get }
   var widthClass: SizeClass? { get }
+
+  /**
+   Specific memory configurations required by the data item.
+   */
   var memory: Memory? { get }
+  /**
+   The graphics feature set required for the item.
+   */
   var graphicsFeatureSet: GraphicsFeatureSet? { get }
+
+  /**
+   Locale supported by the asset.
+   */
   var locale: Locale? { get }
 }

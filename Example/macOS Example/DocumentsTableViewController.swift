@@ -107,7 +107,7 @@ class DocumentsTableViewController: NSViewController, NSTableViewDelegate, NSTab
       text.stringValue = name
     } else {
       let details: String
-      if let imageCount = document?.images?.count {
+      if let imageCount = document?.images.count {
         details = "\(imageCount) images"
       } else {
         details = "group"

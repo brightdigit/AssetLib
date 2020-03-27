@@ -1,12 +1,43 @@
 import Foundation
 
+/***
+ Properties associated with the app icon or image set.
+ */
 public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol {
+  /**
+   Specifies if the image is a template for use with visual effects such as replacing colors.
+    For `nil` values, if the name of the image ends in "Template", use the image as a template, otherwise render it as the original image.
+   */
   public let templateRenderingIntent: RenderingIntent?
+  // swiftlint:disable line_length
+  /*
+    In watchOS 5 and later, allows for calable PDF assets.
+   https://developer.apple.com/documentation/watchkit/storyboard_elements/building_watchos_app_interfaces_using_the_storyboard/supporting_multiple_watch_sizes
+   */
   public let autoScaling: AppleWatchAutoScaingMethod?
+  // swiftlint:enable line_length
+  /**
+   The type of compression
+   */
   public let compressionType: CompressionType
+  /***
+   Set to true to preserve the vector information for a PDF file.
+   */
   public let preservesVectorRepresentation: Bool
+
+  /**
+   Whether localization is supported.
+   */
   public let localizable: Bool
+
+  /***
+   Backward compatibility for iOS 6.0 indicating if the icon includes the mask and shine effect.
+   */
   public let preRendered: Bool
+
+  /***
+   The on-demand resource tags for the image set.
+   **/
   public let onDemandResourceTags: [String]
 
   public enum CodingKeys: String, CodingKey {

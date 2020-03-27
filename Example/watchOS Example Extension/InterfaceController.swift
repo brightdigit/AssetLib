@@ -33,8 +33,8 @@ class InterfaceController: WKInterfaceController {
 
       row.nameLabel.setText("\(name)")
 
-      if let imageCount = document.images?.count {
-        row.detailLabel.setText("\(imageCount) images")
+      if document.images.count > 0 {
+        row.detailLabel.setText("\(document.images.count) images")
       } else {
         row.detailLabel.setText("group")
       }

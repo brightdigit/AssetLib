@@ -5,10 +5,13 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
   /// Metadata for the author and format version of the asset catalog.
   public let info: AssetSpecificationMetadataProtocol
 
+  /***
+   Properties associated with the app icon or image set.
+   */
   public let properties: AssetSpecificationPropertiesProtocol?
 
   /// An array of sizes or variants of an image or icon.
-  public let images: [AssetSpecificationProtocol]?
+  public let images: [AssetSpecificationProtocol]
 
   enum CodingKeys: String, CodingKey {
     case images
@@ -18,7 +21,7 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
 
   public init(
     info: AssetSpecificationMetadataProtocol,
-    images: [AssetSpecificationProtocol]?,
+    images: [AssetSpecificationProtocol],
     properties: AssetSpecificationPropertiesProtocol? = nil
   ) {
     self.info = info
@@ -30,7 +33,7 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
     let container = try decoder.container(keyedBy: CodingKeys.self)
     let info = try container.decode(AssetSpecificationMetadata.self, forKey: .info)
     let properties = try container.decodeIfPresent(AssetSpecificationProperties.self, forKey: .properties)
-    let images = try container.decodeIfPresent([AssetSpecification].self, forKey: CodingKeys.images)
+    let images = try container.decodeIfPresent([AssetSpecification].self, forKey: CodingKeys.images) ?? [AssetSpecificationProtocol]()
     self.images = images
     self.properties = properties
     self.info = info
@@ -39,7 +42,7 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
-    if let images = self.images {
+    if images.count > 0 {
       try container.encode(images.map(AssetSpecification.init(specifications:)), forKey: .images)
     }
 

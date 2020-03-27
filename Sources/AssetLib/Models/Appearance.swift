@@ -16,7 +16,7 @@ extension Appearance {
   /**
    Type erases the Appearance object.
    */
-  func eraseToAny() -> AnyAppearance {
+  public func eraseToAny() -> AnyAppearance {
     return AnyAppearance(appearance: appearance, value: value)
   }
 }

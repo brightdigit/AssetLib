@@ -1,20 +1,39 @@
 import Foundation
 
 struct AssetSpecificationBuilder: AssetSpecificationProtocol {
-  var screenWidth: AppleWatchScreenWidth?
+  /**
+   A different version of an image for each Apple Watch screen size.
+   */
+  public var screenWidth: AppleWatchScreenWidth?
 
-  var heightClass: SizeClass?
+  /**
+   The size class for the image height.
+   */
+  public var heightClass: SizeClass?
 
-  var widthClass: SizeClass?
+  /**
+   The size class for the width height.
+   */
+  public var widthClass: SizeClass?
 
-  var memory: Memory?
+  /**
+   The minimum device memory configuration required by the data item.
+   */
+  public var memory: Memory?
+  /**
+   The graphics feature set required for the item.
+   */
+  public var graphicsFeatureSet: GraphicsFeatureSet?
 
-  var graphicsFeatureSet: GraphicsFeatureSet?
+  /**
+   Locale supported by the asset.
+   */
+  public var locale: Locale?
 
-  var locale: Locale?
+  /// The horizontal display direction of the image for left-to-right and right-to-left languages.
+  public var languageDirection: LanguageDirection?
 
-  var languageDirection: LanguageDirection?
-
+  /** The color gamut of the device display for the image. */
   public var displayGamut: DisplayGamut?
 
   /// The device type for the image.
@@ -30,6 +49,7 @@ struct AssetSpecificationBuilder: AssetSpecificationProtocol {
   /// The type of Apple Watch when there is more than one icon size for a role.
   public var subtype: DeviceSubType?
 
+  /// Specific appearances supported by the asset.
   public var appearances: [AnyAppearance]
   init(specifications: AssetSpecificationProtocol) {
     idiom = specifications.idiom

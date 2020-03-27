@@ -1,4 +1,4 @@
-@testable import AssetLib
+import AssetLib
 import XCTest
 
 final class AppIconTemplateBuilderTests: XCTestCase {
@@ -11,6 +11,6 @@ final class AppIconTemplateBuilderTests: XCTestCase {
       return
     }
 
-    assertApproximateEquals(actualDocument, "BigAppIcon.appiconset")
+    AssetSpecificationDocument.assertApproximateEquals(actualDocument, "BigAppIcon.appiconset")
   }
 }
