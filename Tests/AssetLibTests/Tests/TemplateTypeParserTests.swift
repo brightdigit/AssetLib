@@ -7,5 +7,6 @@ final class TemplateDetailsFactoryTests: XCTestCase {
     XCTAssertEqual(parser.templateType(fromPath: "Image.imageset"), .imageset)
     XCTAssertEqual(parser.templateType(fromPath: "Image.appiconset"), .appicon)
     XCTAssertEqual(parser.templateType(fromPath: UUID().uuidString), nil)
+    XCTAssertEqual(parser.templateType(fromPath: ""), nil)
   }
 }
