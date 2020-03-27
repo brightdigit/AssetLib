@@ -8,10 +8,16 @@
 -   [AssetSpecificationMetadataProtocol](protocols/AssetSpecificationMetadataProtocol.md)
 -   [AssetSpecificationPropertiesProtocol](protocols/AssetSpecificationPropertiesProtocol.md)
 -   [AssetSpecificationProtocol](protocols/AssetSpecificationProtocol.md)
+-   [AssetURLIntializerProtocol](protocols/AssetURLIntializerProtocol.md)
 -   [ISDeviceIdiomProviderProtocol](protocols/ISDeviceIdiomProviderProtocol.md)
 -   [IdiomAppIconSpecProvider](protocols/IdiomAppIconSpecProvider.md)
 -   [IdiomScaleProviderProtocol](protocols/IdiomScaleProviderProtocol.md)
 -   [ImageIdiomDisplayGamutProtocol](protocols/ImageIdiomDisplayGamutProtocol.md)
+-   [TemplateDecoder](protocols/TemplateDecoder.md)
+-   [TemplateEncoder](protocols/TemplateEncoder.md)
+-   [TemplateResultParserProtocol](protocols/TemplateResultParserProtocol.md)
+-   [TemplateTypeParserProtocol](protocols/TemplateTypeParserProtocol.md)
+-   [TemplateWriterProtocol](protocols/TemplateWriterProtocol.md)
 
 ## Structs
 
@@ -24,6 +30,7 @@
 -   [AssetSpecificationDocument](structs/AssetSpecificationDocument.md)
 -   [AssetSpecificationMetadata](structs/AssetSpecificationMetadata.md)
 -   [AssetSpecificationProperties](structs/AssetSpecificationProperties.md)
+-   [AssetURLInitializer](structs/AssetURLInitializer.md)
 -   [ISDeviceIdiomProvider](structs/ISDeviceIdiomProvider.md)
 -   [IdiomAppIconSpecMap](structs/IdiomAppIconSpecMap.md)
 -   [IdiomScaleProvider](structs/IdiomScaleProvider.md)
@@ -31,6 +38,10 @@
 -   [ImageSetTemplate](structs/ImageSetTemplate.md)
 -   [ImageSetTemplateBuilder](structs/ImageSetTemplateBuilder.md)
 -   [Size](structs/Size.md)
+-   [TemplateDetails](structs/TemplateDetails.md)
+-   [TemplateResultParser](structs/TemplateResultParser.md)
+-   [TemplateTypeParser](structs/TemplateTypeParser.md)
+-   [TemplateWriter](structs/TemplateWriter.md)
 -   [ValuedAppearance](structs/ValuedAppearance.md)
 
 ## Enums
@@ -52,7 +63,9 @@
 -   [Memory](enums/Memory.md)
 -   [RenderingIntent](enums/RenderingIntent.md)
 -   [SizeClass](enums/SizeClass.md)
+-   [TemplateResult](enums/TemplateResult.md)
 -   [TemplateScaling](enums/TemplateScaling.md)
+-   [TemplateType](enums/TemplateType.md)
 
 ## Extensions
 
