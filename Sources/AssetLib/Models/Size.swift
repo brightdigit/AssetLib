@@ -17,4 +17,14 @@ public struct Size: Equatable {
     self.width = width
     self.height = height
   }
+
+  public init(squareWithLength length: Float) {
+    width = length
+    height = length
+  }
+
+  public init(_ size: Sizes) {
+    width = size.rawValue
+    height = size.rawValue
+  }
 }
