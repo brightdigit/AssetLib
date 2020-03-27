@@ -1,4 +1,4 @@
-![Logo of the project](https://raw.githubusercontent.com/brightdigit/AssetLib/master/logo.png)
+![Logo](https://raw.githubusercontent.com/brightdigit/AssetLib/master/logo.png)
 
 # AssetLib
 
