@@ -2,12 +2,25 @@ jobs:
   include:
     - os: linux
       dist: bionic
-      sudo: required
+      arch: amd64
+    - os: linux
+      dist: focal
+      arch: amd64
+    - os: linux
+      dist: bionic
+      arch: arm64
+    - os: linux
+      dist: focal
+      arch: arm64
     - os: osx
       osx_image: xcode11.3
+      osx_image: xcode11.4
+    - os: osx
+      osx_image: xcode11.5
 env:
   global:
   - FRAMEWORK_NAME=AssetLib
+  - SWIFT_VER=5.2.4
 before_install:
   - bash -e ./Scripts/before_install.sh
 script:
