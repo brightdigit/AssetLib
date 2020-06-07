@@ -1,6 +1,9 @@
 **EXTENSION**
 
 # `DecodingError`
+```swift
+extension DecodingError
+```
 
 ## Properties
 ### `keyString`
