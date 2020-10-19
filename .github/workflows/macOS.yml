@@ -19,7 +19,7 @@ jobs:
     - name: Set Xcode Name
       run: echo "::set-env name=XCODE_NAME::$(basename -- ${{ matrix.xcode }} | sed 's/\.[^.]*$//' | cut -d'_' -f2)"
     - name: Setup Xcode
-      run: sudo xcode-select -s ${{ env.XCODE_PATH }}/Contents/Developer
+      run: sudo xcode-select -s ${{ matrix.xcode }}/Contents/Developer
     - name: Prepare Build
       run: brew bundle
     - name: Build
