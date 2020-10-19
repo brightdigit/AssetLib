@@ -1,6 +1,9 @@
 **EXTENSION**
 
 # `String`
+```swift
+extension String
+```
 
 ## Methods
 ### `firstMatchGroups(regex:)`

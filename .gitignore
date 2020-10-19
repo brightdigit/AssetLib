@@ -169,5 +169,7 @@ Pods
 *.lcov
 Brewfile.lock.json
 
+Package.resolved
+Documentation/Reference/README.md
 Example/Templates/Assets.xcassets/*.imageset/Contents.json
 Example/Templates/Assets.xcassets/*.appiconset/Contents.json

@@ -55,7 +55,7 @@ public struct ImageSetTemplateBuilder: AssetTemplateBuilder {
 
           return newSpec.assetSpec()
         }
-          })
+      })
     }
     if configuration.displayGamuts {
       specs = specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)

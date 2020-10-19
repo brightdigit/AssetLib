@@ -1,6 +1,9 @@
 **EXTENSION**
 
 # `Appearance`
+```swift
+extension Appearance
+```
 
 ## Methods
 ### `eraseToAny()`

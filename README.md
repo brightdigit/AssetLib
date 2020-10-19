@@ -10,7 +10,11 @@
 
 [![macOS](https://github.com/brightdigit/AssetLib/workflows/macOS/badge.svg)](https://github.com/brightdigit/AssetLib/actions?query=workflow%3AmacOS)
 [![ubuntu](https://github.com/brightdigit/AssetLib/workflows/ubuntu/badge.svg)](https://github.com/brightdigit/AssetLib/actions?query=workflow%3Aubuntu)
+[![arm](https://github.com/brightdigit/AssetLib/workflows/arm/badge.svg)](https://github.com/brightdigit/AssetLib/actions?query=workflow%3Aarm)
 [![Travis (.com)](https://img.shields.io/travis/com/brightdigit/AssetLib?logo=travis)](https://travis-ci.com/brightdigit/AssetLib)
+[![CircleCI](https://img.shields.io/circleci/build/github/brightdigit/AssetLib?label=xenial&logo=circleci&token=9a2a5fd57594c2138187c14307c4b84e5f696d4d)](https://circleci.com/gh/brightdigit/AssetLib)
+[![Bitrise](https://img.shields.io/bitrise/96bc7c2338f588b6?label=macOS&logo=bitrise&token=JQwTk_9aG8HJcafb-Sqwbw)](https://app.bitrise.io/app/96bc7c2338f588b6)
+
 [![Codecov](https://img.shields.io/codecov/c/github/brightdigit/AssetLib)](https://codecov.io/gh/brightdigit/AssetLib)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/brightdigit/AssetLib)](https://www.codefactor.io/repository/github/brightdigit/AssetLib)
 [![codebeat badge](https://codebeat.co/badges/4f86fb90-f8de-40c5-ab63-e6069cde5002)](https://codebeat.co/projects/github-com-brightdigit-assetlib-master)
