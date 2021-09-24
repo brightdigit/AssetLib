@@ -1,6 +1,6 @@
 import Foundation
 
-@objc class SortedDictionary: NSDictionary, Comparable {
+class SortedDictionary: NSDictionary, Comparable {
   static func < (lhs: SortedDictionary, rhs: SortedDictionary) -> Bool {
     if lhs.count == rhs.count {
       let lhe = lhs.keyEnumerator()
@@ -87,7 +87,7 @@ import Foundation
     }
   }
 
-  @objc convenience init(_ dictionary: [String: Any]) {
+  convenience init(_ dictionary: [String: Any]) {
     self.init()
     dictionary.sorted {
       $0.0.compare($1.0, options: [.caseInsensitive, .forcedOrdering]) == .orderedAscending
