@@ -29,6 +29,7 @@ public struct TemplateWriter: TemplateWriterProtocol {
     case let .appicon(template):
       let builder = AppIconTemplateBuilder()
       document = builder.document(fromTemplate: template)
+
     case let .imageset(template):
       let builder = ImageSetTemplateBuilder()
       document = builder.document(fromTemplate: template)

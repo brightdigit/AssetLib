@@ -43,7 +43,7 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
     - Returns: The `AssetSpecificationDocumentProtocol`
    */
   public func document(fromTemplate template: AppIconTemplate) -> AssetSpecificationDocumentProtocol {
-    let specs = Set(template.devices.flatMap(idiomDeviceMap.idiom(forDevice:))).flatMap { (idiom) -> [AssetSpecificationProtocol] in
+    let specs = Set(template.devices.flatMap(idiomDeviceMap.idiom(forDevice:))).flatMap { idiom -> [AssetSpecificationProtocol] in
       let specs = appIconSpecifications.appIcon(specificationFor: idiom)
 
       guard template.specifyGamut, supportsDisplayGamut.supportsDisplayGamut(idiom) else {

@@ -37,6 +37,6 @@ public struct IdiomScaleProvider: IdiomScaleProviderProtocol {
    - Returns: The Set of `Float` scales
    */
   public func scales(forIdiom idiom: ImageIdiom) -> [Float] {
-    return dictionary[idiom] ?? [Float]()
+    dictionary[idiom] ?? [Float]()
   }
 }

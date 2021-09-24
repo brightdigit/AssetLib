@@ -47,6 +47,6 @@ public struct ISDeviceIdiomProvider: ISDeviceIdiomProviderProtocol {
    - Returns: `ImageSetIdiomDetail` for device.
    */
   public func idiom(forDevice device: ImageSetDevice) -> ImageSetIdiomDetail? {
-    return dictionary[device]
+    dictionary[device]
   }
 }

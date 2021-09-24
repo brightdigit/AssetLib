@@ -2,7 +2,11 @@ import AssetLib
 import XCTest
 
 final class AssetURLInitializerTests: XCTestCase {
-  fileprivate func assetURLTest(_ path: String, _ type: TemplateType?, _ shouldCreateDirectory: Bool) {
+  fileprivate func assetURLTest(
+    _ path: String,
+    _ type: TemplateType?,
+    _ shouldCreateDirectory: Bool
+  ) {
     var didCreateDirectory = false
     let assetURLInitializer = AssetURLInitializer { _ in didCreateDirectory = true }
     let actualURL: URL

@@ -12,6 +12,7 @@ final class ImageSetTemplateBuilderTests: XCTestCase {
     AssetSpecificationDocument.assertApproximateEquals(actualDocument, imageSetName)
   }
 
+  // swiftlint:disable:next function_body_length
   func testTemplateBuilding() {
     assertImageSet("SingleImage.imageset", ImageSetTemplate(
       templateRenderingIntent: .template,

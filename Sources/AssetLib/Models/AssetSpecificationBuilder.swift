@@ -68,6 +68,6 @@ struct AssetSpecificationBuilder: AssetSpecificationProtocol {
   }
 
   func assetSpec() -> AssetSpecificationProtocol {
-    return AssetSpecification(specifications: self)
+    AssetSpecification(specifications: self)
   }
 }

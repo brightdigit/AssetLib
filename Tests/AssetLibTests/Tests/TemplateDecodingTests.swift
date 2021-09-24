@@ -25,12 +25,10 @@ final class TemplateDecodingTests: XCTestCase {
           return try (url, decoder.decode(AppIconTemplate.self, from: data), data)
         } else if prefix == "imageset" {
           return try (url, decoder.decode(ImageSetTemplate.self, from: data), data)
-
         } else {
           // XCTFail("Invalid file name \(url)")
           return nil
         }
-
       } catch {
         XCTFail("\(url): \(error.localizedDescription)")
         return nil

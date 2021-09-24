@@ -34,6 +34,7 @@ public extension Data {
     switch alreadySerialized {
     case true:
       return _jsonMismatch(lhs: lhs, rhs: rhs)
+
     case false:
       guard let lhs = lhs.jsonSerialized(), let rhs = rhs.jsonSerialized() else {
         return [JsonMismatch]()

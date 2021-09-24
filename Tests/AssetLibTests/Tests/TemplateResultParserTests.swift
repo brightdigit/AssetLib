@@ -3,7 +3,7 @@ import XCTest
 
 final class TemplateResultParserTests: XCTestCase {
   fileprivate func data(_: URL) -> Data {
-    return Data()
+    Data()
   }
 
   fileprivate func resultTestWith(_ expectedType: TemplateType?) {
@@ -17,10 +17,12 @@ final class TemplateResultParserTests: XCTestCase {
 
       parser = TemplateResultParser(parser: MockDecoder(result: template, error: error), reader: data)
       actual = template
+
     case .some(.imageset):
       let template = ImageSetTemplate()
       parser = TemplateResultParser(parser: MockDecoder(result: template, error: error), reader: data)
       actual = template
+
     case .none:
       parser = TemplateResultParser(parser: ErrorDecoder(error: error), reader: data)
       actual = nil
@@ -34,6 +36,7 @@ final class TemplateResultParserTests: XCTestCase {
         switch expectedType {
         case .none:
           XCTAssertEqual(result, .failure(error))
+
         default:
 
           XCTAssertEqual(result, TemplateResult(actual))

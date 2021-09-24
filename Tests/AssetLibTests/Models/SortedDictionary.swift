@@ -42,11 +42,11 @@ import Foundation
   let keys: NSMutableOrderedSet = []
 
   override var count: Int {
-    return keys.count
+    keys.count
   }
 
   override func keyEnumerator() -> NSEnumerator {
-    return keys.objectEnumerator()
+    keys.objectEnumerator()
   }
 
   override func object(forKey aKey: Any) -> Any? {
@@ -73,7 +73,7 @@ import Foundation
     } else if let array = object as? [Any] {
       return array.map {
         convertObject($0)
-      }.sorted { (lhs, rhs) -> Bool in
+      }.sorted { lhs, rhs -> Bool in
         guard let lhd = lhs as? SortedDictionary else {
           return false
         }

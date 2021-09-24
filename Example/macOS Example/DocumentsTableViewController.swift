@@ -33,7 +33,7 @@ class DocumentsTableViewController: NSViewController, NSTableViewDelegate, NSTab
     withAttribute attribute: NSLayoutConstraint.Attribute,
     andConstant constant: CGFloat = 0
   ) -> NSLayoutConstraint {
-    return NSLayoutConstraint(
+    NSLayoutConstraint(
       item: scrollView,
       attribute: attribute,
       relatedBy: .equal,
@@ -90,7 +90,7 @@ class DocumentsTableViewController: NSViewController, NSTableViewDelegate, NSTab
   }
 
   func numberOfRows(in _: NSTableView) -> Int {
-    return documentMap?.count ?? 0
+    documentMap?.count ?? 0
   }
 
   func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {

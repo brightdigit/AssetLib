@@ -3,7 +3,7 @@ extension Array {
    Convert the array into a dictionary grouped by keyPath.
    */
   func group<PropertyType>(by keyPath: KeyPath<Element, PropertyType>) -> [PropertyType: [Element]] {
-    return Dictionary(grouping: self, by: { $0[keyPath: keyPath] })
+    Dictionary(grouping: self, by: { $0[keyPath: keyPath] })
   }
 }
 
@@ -12,7 +12,7 @@ extension Set {
    Convert the set into a dictionary grouped by keyPath.
    */
   func group<PropertyType>(by keyPath: KeyPath<Element, PropertyType>) -> [PropertyType: [Element]] {
-    (Array(self)).group(by: keyPath)
+    Array(self).group(by: keyPath)
   }
 }
 
@@ -39,7 +39,7 @@ extension Array where Element == AssetSpecificationProtocol {
       multiplier = self
     }
 
-    let result: [AssetSpecificationProtocol] = multiplier.flatMap { (spec) -> [AssetSpecificationProtocol] in
+    let result: [AssetSpecificationProtocol] = multiplier.flatMap { spec -> [AssetSpecificationProtocol] in
       guard operation != .modify || filter?(spec) == true else {
         return [spec]
       }

@@ -13,6 +13,6 @@ public struct ImageIdiomDisplayGamut: ImageIdiomDisplayGamutProtocol {
     - Returns: true, if the `ImageIdiom` supports display gamuts for App Icons; false, otherwise.
    */
   public func supportsDisplayGamut(_ idiom: ImageIdiom) -> Bool {
-    return supportedImageIdioms.contains(idiom)
+    supportedImageIdioms.contains(idiom)
   }
 }

@@ -32,6 +32,6 @@ public struct IdiomAppIconSpecMap: IdiomAppIconSpecProvider {
     - Returns: An `Array<AssetSpecificationProtocol>` based on the dictionary, otherwise an empty array.
    */
   public func appIcon(specificationFor idiom: ImageIdiom) -> [AssetSpecificationProtocol] {
-    return dictionary[idiom] ?? [AssetSpecificationProtocol]()
+    dictionary[idiom] ?? [AssetSpecificationProtocol]()
   }
 }

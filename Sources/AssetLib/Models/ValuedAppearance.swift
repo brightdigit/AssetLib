@@ -13,7 +13,7 @@ public struct ValuedAppearance<ValueType: AppearanceValue>: Appearance {
    The type of appearance object.
    */
   public var appearance: String {
-    return ValueType.appearanceKey
+    ValueType.appearanceKey
   }
 
   /**

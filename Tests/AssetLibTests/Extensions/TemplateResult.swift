@@ -5,10 +5,13 @@ extension TemplateResult: Equatable {
     switch (lhs, rhs) {
     case let (.appicon(lht), .appicon(rht)):
       return lht == rht
+
     case let (.imageset(lht), .imageset(rht)):
       return lht == rht
+
     case let (.failure(lhe), .failure(rhe)):
       return lhe.localizedDescription == rhe.localizedDescription
+
     default:
       return false
     }
