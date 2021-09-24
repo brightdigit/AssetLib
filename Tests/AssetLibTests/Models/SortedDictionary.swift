@@ -1,6 +1,6 @@
 import Foundation
 
-@objc class SortedDictionary: NSDictionary, Comparable {
+class SortedDictionary: NSDictionary, Comparable {
   static func < (lhs: SortedDictionary, rhs: SortedDictionary) -> Bool {
     if lhs.count == rhs.count {
       let lhe = lhs.keyEnumerator()
