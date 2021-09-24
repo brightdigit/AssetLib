@@ -20,24 +20,6 @@
         }
       },
       {
-        "package": "MarkdownGenerator",
-        "repositoryURL": "https://github.com/eneko/MarkdownGenerator.git",
-        "state": {
-          "branch": null,
-          "revision": "1fc31be6b66245187c3f87f35d86b6aeac6dfe7f",
-          "version": "0.5.0"
-        }
-      },
-      {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/Quick/Nimble",
-        "state": {
-          "branch": null,
-          "revision": "7a46a5fc86cb917f69e3daf79fcb045283d8f008",
-          "version": "8.1.2"
-        }
-      },
-      {
         "package": "PackageConfig",
         "repositoryURL": "https://github.com/shibapm/PackageConfig.git",
         "state": {
@@ -47,39 +29,12 @@
         }
       },
       {
-        "package": "ProcessRunner",
-        "repositoryURL": "https://github.com/eneko/ProcessRunner.git",
-        "state": {
-          "branch": null,
-          "revision": "bedc55797b206bff50f652ffad8269223320fee5",
-          "version": "1.1.0"
-        }
-      },
-      {
-        "package": "Quick",
-        "repositoryURL": "https://github.com/Quick/Quick",
-        "state": {
-          "branch": null,
-          "revision": "8cce6acd38f965f5baa3167b939f86500314022b",
-          "version": "3.1.2"
-        }
-      },
-      {
-        "package": "Rainbow",
-        "repositoryURL": "https://github.com/onevcat/Rainbow",
-        "state": {
-          "branch": null,
-          "revision": "626c3d4b6b55354b4af3aa309f998fae9b31a3d9",
-          "version": "3.2.0"
-        }
-      },
-      {
         "package": "Rocket",
-        "repositoryURL": "https://github.com/brightdigit/Rocket",
+        "repositoryURL": "https://github.com/shibapm/Rocket",
         "state": {
-          "branch": "feature/yams-4.0.0",
-          "revision": "73b647a00003902e6befb3eed251eef89ebaacfa",
-          "version": null
+          "branch": null,
+          "revision": "51a77ce5fa66c42715c14dcc542c01cd7a60fb27",
+          "version": "1.2.0"
         }
       },
       {
@@ -89,15 +44,6 @@
           "branch": null,
           "revision": "e1577acf2b6e90086d01a6d5e2b8efdaae033568",
           "version": "2.3.0"
-        }
-      },
-      {
-        "package": "SourceDocs",
-        "repositoryURL": "https://github.com/eneko/SourceDocs",
-        "state": {
-          "branch": null,
-          "revision": "6c6443434ef04328dc18ac71c73e7a2ec0d531d1",
-          "version": "1.2.1"
         }
       },
       {
@@ -119,30 +65,12 @@
         }
       },
       {
-        "package": "llbuild",
-        "repositoryURL": "https://github.com/apple/swift-llbuild.git",
-        "state": {
-          "branch": null,
-          "revision": "f1c9ad9a253cdf1aa89a7f5c99c30b4513b06ddb",
-          "version": "0.1.1"
-        }
-      },
-      {
-        "package": "SwiftPM",
-        "repositoryURL": "https://github.com/apple/swift-package-manager",
-        "state": {
-          "branch": null,
-          "revision": "8656a25cb906c1896339f950ac960ee1b4fe8034",
-          "version": "0.4.0"
-        }
-      },
-      {
         "package": "swift-test-codecov",
-        "repositoryURL": "https://github.com/mattpolzin/swift-test-codecov",
+        "repositoryURL": "https://github.com/brightdigit/swift-test-codecov",
         "state": {
-          "branch": "master",
-          "revision": "474b38a4dba9370c3cd64b91791c383f83ff5fdc",
-          "version": null
+          "branch": null,
+          "revision": "8ca50588a72d1869cc6edafdee5f1e7fa9783b7b",
+          "version": "1.0.0"
         }
       },
       {
@@ -188,24 +116,6 @@
           "branch": null,
           "revision": "9183170d20857753d4f331b0ca63f73c60764bf3",
           "version": "5.0.2"
-        }
-      },
-      {
-        "package": "TestSpy",
-        "repositoryURL": "https://github.com/f-meloni/TestSpy",
-        "state": {
-          "branch": null,
-          "revision": "63398d17c70ba7419cec78834f22be86b850643b",
-          "version": "0.5.0"
-        }
-      },
-      {
-        "package": "TextTable",
-        "repositoryURL": "https://github.com/mattpolzin/TextTable.git",
-        "state": {
-          "branch": "swift-5",
-          "revision": "536620625e75905a7d8ad457803e744656a1023b",
-          "version": null
         }
       },
       {
