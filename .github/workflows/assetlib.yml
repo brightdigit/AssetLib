@@ -19,6 +19,10 @@ jobs:
       matrix:
         runs-on: [ubuntu-18.04, ubuntu-20.04]
         swift-version: [5.1.5, 5.2.4, 5.3.3, 5.4.1, 5.5]
+        exclude:
+          # excludes node 8 on macOS
+          - os: ubuntu-20.04
+            node: 5.1.5
     steps:
       - uses: actions/checkout@v2
       - name: Set Ubuntu Release DOT
