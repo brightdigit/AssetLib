@@ -8,7 +8,7 @@ extension Array where Element == Any {
   }
 
   mutating func stripNulls() {
-    guard !self.isEmpty else {
+    guard !isEmpty else {
       return
     }
     let count = self.count

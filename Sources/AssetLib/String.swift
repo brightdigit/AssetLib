@@ -12,6 +12,9 @@ public extension String {
       return nil
     }
 
-    return (0 ..< result.numberOfRanges).map(result.range(at:)).compactMap { Range($0, in: self) }.map { String(self[$0]) }
+    return (0 ..< result.numberOfRanges)
+      .map(result.range(at:))
+      .compactMap { Range($0, in: self) }
+      .map { String(self[$0]) }
   }
 }

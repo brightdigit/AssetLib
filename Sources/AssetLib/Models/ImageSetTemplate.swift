@@ -3,7 +3,8 @@ import Foundation
 public struct ImageSetTemplate: Codable, Equatable {
   /**
    Specifies if the image is a template for use with visual effects such as replacing colors.
-    For `nil` values, if the name of the image ends in "Template", use the image as a template, otherwise render it as the original image.
+    For `nil` values, if the name of the image ends in "Template", use the image as a template,
+   otherwise render it as the original image.
    */
   public let templateRenderingIntent: RenderingIntent?
   /**
@@ -29,7 +30,8 @@ public struct ImageSetTemplate: Codable, Equatable {
   /**
    Specific horizontal display directions for the image set.
     If only one `LanguageDirection` is specified then the image is mirrored for the other `LanguageDirection`.
-    If no `LanguageDirection` is specified then the image has a fixed horizontal orientation and will display in the same direction.
+    If no `LanguageDirection` is specified then
+   the image has a fixed horizontal orientation and will display in the same direction.
    */
   public let languageDirections: Set<LanguageDirection>
 
@@ -124,23 +126,42 @@ public struct ImageSetTemplate: Codable, Equatable {
     self.onDemandResourceTags = onDemandResourceTags
   }
 
+  // swiftlint:disable:next function_body_length
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     templateRenderingIntent = try container.decodeIfPresent(RenderingIntent.self, forKey: .templateRenderingIntent)
     compressionType = try container.decodeIfPresent(CompressionType.self, forKey: .compressionType) ?? .automatic
-    preservesVectorRepresentation = try container.decodeIfPresent(Bool.self, forKey: .preservesVectorRepresentation) ?? false
+    preservesVectorRepresentation = try container.decodeIfPresent(
+      Bool.self,
+      forKey: .preservesVectorRepresentation
+    ) ?? false
     devices = try container.decodeIfPresent(Set<ImageSetDevice>.self, forKey: .devices) ?? Set([.universal])
     appearances = try container.decodeIfPresent(Set<AnyAppearance>.self, forKey: .appearances) ?? Set<AnyAppearance>()
     scaling = try container.decodeIfPresent(TemplateScaling.self, forKey: .scaling)
     displayGamuts = try container.decodeIfPresent(Bool.self, forKey: .displayGamuts) ?? false
-    languageDirections = try container.decodeIfPresent(Set<LanguageDirection>.self, forKey: .languageDirections) ?? Set<LanguageDirection>()
+    languageDirections = try container.decodeIfPresent(
+      Set<LanguageDirection>.self,
+      forKey: .languageDirections
+    ) ?? Set<LanguageDirection>()
     widthClass = try container.decodeIfPresent(SizeClass.self, forKey: .widthClass)
     heightClass = try container.decodeIfPresent(SizeClass.self, forKey: .heightClass)
     memorySet = try container.decodeIfPresent(Set<Memory>.self, forKey: .memorySet) ?? Set<Memory>()
-    graphicsFeatureSets = try container.decodeIfPresent(Set<GraphicsFeatureSet>.self, forKey: .graphicsFeatureSets) ?? Set<GraphicsFeatureSet>()
+    graphicsFeatureSets = try container.decodeIfPresent(
+      Set<GraphicsFeatureSet>.self, forKey: .graphicsFeatureSets
+    ) ?? Set<GraphicsFeatureSet>()
     appleWatchScreens = try container.decodeIfPresent(Bool.self, forKey: .appleWatchScreens) ?? false
-    autoScaling = try container.decodeIfPresent(Bool.self, forKey: .autoScaling) ?? false
-    locales = try (container.decodeIfPresent([String].self, forKey: .locales)?.map(Locale.init(identifier:))).map(Set.init) ?? Set<Locale>()
-    onDemandResourceTags = try container.decodeIfPresent(Set<String>.self, forKey: .onDemandResourceTags) ?? Set<String>()
+    autoScaling = try container.decodeIfPresent(
+      Bool.self,
+      forKey: .autoScaling
+    ) ?? false
+    locales = try (
+      container.decodeIfPresent([String].self,
+                                forKey: .locales)?.map(
+        Locale.init(identifier:))
+    ).map(Set.init) ?? Set<Locale>()
+    onDemandResourceTags = try container.decodeIfPresent(
+      Set<String>.self,
+      forKey: .onDemandResourceTags
+    ) ?? Set<String>()
   }
 }

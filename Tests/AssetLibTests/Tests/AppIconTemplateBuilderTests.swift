@@ -9,7 +9,8 @@ final class AppIconTemplateBuilderTests: XCTestCase {
     )
     let builder = AppIconTemplateBuilder()
 
-    guard let actualDocument = builder.document(fromTemplate: template) as? AssetSpecificationDocument else {
+    guard let actualDocument = builder.document(fromTemplate: template)
+      as? AssetSpecificationDocument else {
       XCTFail("Not Actual Document")
       return
     }

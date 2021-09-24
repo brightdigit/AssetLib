@@ -128,32 +128,48 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
 
   // swiftlint:disable force_try
   /// Regular Expression for a valid scale value.
-  public static let scaleRegularExpression = try! NSRegularExpression(pattern: "(\\d+)x", options: NSRegularExpression.Options())
+  public static let scaleRegularExpression = try! NSRegularExpression(
+    pattern: "(\\d+)x",
+    options: NSRegularExpression.Options()
+  )
   // swiftlint:enable force_try
+
+  fileprivate static func decodeScale(
+    _ container: KeyedDecodingContainer<AssetSpecification.CodingKeys>
+  ) throws -> Float? {
+    if let scaleString = try container.decodeIfPresent(String.self, forKey: .scale) {
+      guard let scaleValueString = scaleString.firstMatchGroups(regex: Self.scaleRegularExpression)?[1],
+            let scale = Double(scaleValueString) else {
+        throw DecodingError.dataCorruptedError(forKey: .scale, in: container, debugDescription: scaleString)
+      }
+      return Float(scale)
+    } else {
+      return nil
+    }
+  }
+
+  fileprivate static func decodeSize(
+    _ container: KeyedDecodingContainer<AssetSpecification.CodingKeys>
+  ) throws -> Size? {
+    if let sizeString = try container.decodeIfPresent(String.self, forKey: .size) {
+      let sizeArray = sizeString.split(separator: Character("x")).map(String.init).compactMap(Float.init)
+      guard let width = sizeArray.first, let height = sizeArray.last, sizeArray.count == 2 else {
+        throw DecodingError.dataCorruptedError(forKey: .size, in: container, debugDescription: sizeString)
+      }
+      return Size(width: width, height: height)
+    } else {
+      return nil
+    }
+  }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     idiom = try container.decode(ImageIdiom.self, forKey: .idiom)
     filename = try container.decodeIfPresent(String.self, forKey: .filename)
-    if let scaleString = try container.decodeIfPresent(String.self, forKey: .scale) {
-      guard let scaleValueString = scaleString.firstMatchGroups(regex: Self.scaleRegularExpression)?[1], let scale = Double(scaleValueString) else {
-        throw DecodingError.dataCorruptedError(forKey: .scale, in: container, debugDescription: scaleString)
-      }
-      self.scale = Float(scale)
-    } else {
-      scale = nil
-    }
+    scale = try Self.decodeScale(container)
 
-    if let sizeString = try container.decodeIfPresent(String.self, forKey: .size) {
-      let sizeArray = sizeString.split(separator: Character("x")).map(String.init).compactMap(Float.init)
-      guard let width = sizeArray.first, let height = sizeArray.last, sizeArray.count == 2 else {
-        throw DecodingError.dataCorruptedError(forKey: .size, in: container, debugDescription: sizeString)
-      }
-      size = Size(width: width, height: height)
-    } else {
-      size = nil
-    }
+    size = try Self.decodeSize(container)
 
     role = try container.decodeIfPresent(AppleWatchRole.self, forKey: .role)
     subtype = try container.decodeIfPresent(DeviceSubType.self, forKey: .subtype)
@@ -209,7 +225,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
 
     try container.encode(idiom, forKey: .idiom)
 
-    if appearances.count > 0 {
+    if !appearances.isEmpty {
       try container.encode(appearances, forKey: .appearances)
     }
 

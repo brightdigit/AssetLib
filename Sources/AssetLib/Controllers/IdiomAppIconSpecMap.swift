@@ -9,7 +9,8 @@ public struct IdiomAppIconSpecMap: IdiomAppIconSpecProvider {
 
   // swiftlint:disable force_try
   /**
-   The default `[ImageIdiom: [AssetSpecificationProtocol]]` Dictionary based on the default `AppIconMasterDocumentProvider`.
+   The default `[ImageIdiom: [AssetSpecificationProtocol]]` Dictionary
+   based on the default `AppIconMasterDocumentProvider`.
    */
   public static let defaultDictionary: [ImageIdiom: [AssetSpecificationProtocol]] =
     try! (AppIconMasterDocumentProvider.default.document().images.group(by: \.idiom))
@@ -26,7 +27,8 @@ public struct IdiomAppIconSpecMap: IdiomAppIconSpecProvider {
   }
 
   /**
-   Returns the list of `AssetSpecificationProtocol` based on the `ImageIdiom` using a `Dictionary`. Otherwise returns an empty array.
+   Returns the list of `AssetSpecificationProtocol` based on
+   the `ImageIdiom` using a `Dictionary`. Otherwise returns an empty array.
 
     - Parameter idiom: The `ImageIdiom`.
     - Returns: An `Array<AssetSpecificationProtocol>` based on the dictionary, otherwise an empty array.

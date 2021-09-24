@@ -22,7 +22,8 @@ extension Array where Element == AssetSpecificationProtocol {
    - Parameters:
    - factor: Property values to create a product with.
    - keyPath: The keyPath of the AssetSpecificationProtocol to update.
-   - filter: The filter operation to test whether the AssetSpecificationProtocol should be considered. If `nil` use all values.
+   - filter: The filter operation to test whether the AssetSpecificationProtocol should be considered.
+     If `nil` use all values.
    - operation:  Whether to return just the result, append the results, or replace the filtered with modified values.
    */
   func multiply<PropertyType>(
