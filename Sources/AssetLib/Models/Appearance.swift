@@ -12,11 +12,11 @@ public protocol Appearance: Hashable {
   var value: String { get }
 }
 
-extension Appearance {
+public extension Appearance {
   /**
    Type erases the Appearance object.
    */
-  public func eraseToAny() -> AnyAppearance {
-    return AnyAppearance(appearance: appearance, value: value)
+  func eraseToAny() -> AnyAppearance {
+    AnyAppearance(appearance: appearance, value: value)
   }
 }

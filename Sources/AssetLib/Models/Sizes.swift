@@ -76,5 +76,5 @@ public enum Sizes: Float, CaseIterable {
   /**
    The App Store icon.
    */
-  case appstoreicon = 1024.0
+  case appstoreicon = 1_024.0
 }

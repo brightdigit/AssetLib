@@ -6,7 +6,8 @@ import Foundation
 public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol {
   /**
    Specifies if the image is a template for use with visual effects such as replacing colors.
-    For `nil` values, if the name of the image ends in "Template", use the image as a template, otherwise render it as the original image.
+    For `nil` values,
+   if the name of the image ends in "Template", use the image as a template, otherwise render it as the original image.
    */
   public let templateRenderingIntent: RenderingIntent?
   // swiftlint:disable line_length
@@ -83,7 +84,10 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     templateRenderingIntent = try container.decodeIfPresent(RenderingIntent.self, forKey: .templateRenderingIntent)
     autoScaling = try container.decodeIfPresent(AppleWatchAutoScaingMethod.self, forKey: .autoScaling)
     compressionType = try container.decodeIfPresent(CompressionType.self, forKey: .compressionType) ?? .automatic
-    preservesVectorRepresentation = try container.decodeIfPresent(Bool.self, forKey: .preservesVectorRepresentation) ?? false
+    preservesVectorRepresentation = try container.decodeIfPresent(
+      Bool.self,
+      forKey: .preservesVectorRepresentation
+    ) ?? false
     localizable = try container.decodeIfPresent(Bool.self, forKey: .localizable) ?? false
     preRendered = try container.decodeIfPresent(Bool.self, forKey: .preRendered) ?? false
     onDemandResourceTags = try container.decodeIfPresent([String].self, forKey: .onDemandResourceTags) ?? [String]()
@@ -105,7 +109,7 @@ public struct AssetSpecificationProperties: AssetSpecificationPropertiesProtocol
     if preRendered {
       try container.encode(preRendered, forKey: .preRendered)
     }
-    if onDemandResourceTags.count > 0 {
+    if !onDemandResourceTags.isEmpty {
       try container.encode(onDemandResourceTags, forKey: .onDemandResourceTags)
     }
   }

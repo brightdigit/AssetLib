@@ -12,7 +12,7 @@ final class SizesTests: XCTestCase {
   }
 
   func testSizeSquare() {
-    let length = Float.random(in: 10.0 ... 2000.0)
+    let length = Float.random(in: 10.0 ... 2_000.0)
     let square = Size(squareWithLength: length)
     XCTAssertEqual(square.width, square.height)
     XCTAssertEqual(length, square.height)

@@ -3,7 +3,8 @@ import Foundation
 import XCTest
 
 extension AssetSpecificationDocument {
-  fileprivate static func tryAndFail<T>(_ closure: () throws -> T) -> T? {
+  fileprivate static func tryAndFail<T>(
+    _ closure: () throws -> T) -> T? {
     var result: T?
     do {
       result = try closure()
@@ -13,7 +14,48 @@ extension AssetSpecificationDocument {
     return result
   }
 
-  static func assertApproximateEquals(_ actualDocument: AssetSpecificationDocument, _ imageSetName: String) {
+  fileprivate static func XCTAssertEqualDocuments(
+    _ expectedDocument: AssetSpecificationDocument,
+    _ actualDocument: AssetSpecificationDocument
+  ) {
+    XCTAssertEqual(expectedDocument.images.count, actualDocument.images.count)
+
+    XCTAssertEqual(expectedDocument.properties?.templateRenderingIntent,
+                   actualDocument.properties?.templateRenderingIntent)
+    XCTAssertEqual(expectedDocument.properties?.autoScaling,
+                   actualDocument.properties?.autoScaling)
+    XCTAssertEqual(expectedDocument.properties?.compressionType,
+                   actualDocument.properties?.compressionType)
+    XCTAssertEqual(expectedDocument.properties?.preservesVectorRepresentation,
+                   actualDocument.properties?.preservesVectorRepresentation)
+    XCTAssertEqual(expectedDocument.properties?.localizable, actualDocument.properties?.localizable)
+  }
+
+  fileprivate static func writeDifferences(
+    _ expectedDocument: AssetSpecificationDocument,
+    _ actualDocument: AssetSpecificationDocument,
+    _ actualString: String,
+    _ hereUrl: URL,
+    _ expectedString: String
+  ) {
+    if expectedDocument.images.count == actualDocument.images.count {
+      return
+    }
+    try? actualString.write(
+      to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"),
+      atomically: false, encoding: .utf8
+    )
+
+    try? expectedString.write(
+      to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.expected.json"),
+      atomically: false, encoding: .utf8
+    )
+  }
+
+  static func assertApproximateEquals(
+    _ actualDocument: AssetSpecificationDocument,
+    _ imageSetName: String
+  ) {
     let jsonDecoder = JSONDecoder()
     let hereUrl = URL(fileURLWithPath: #file)
     let dataDirectoryUrl = hereUrl.deletingLastPathComponent().appendingPathComponent("../../../Data/Data")
@@ -29,7 +71,9 @@ extension AssetSpecificationDocument {
       return
     }
 
-    guard let expectedDocument = tryAndFail({ try jsonDecoder.decode(AssetSpecificationDocument.self, from: expectedDataRead) }) else {
+    guard let expectedDocument = tryAndFail({
+      try jsonDecoder.decode(AssetSpecificationDocument.self, from: expectedDataRead)
+    }) else {
       return
     }
 
@@ -47,25 +91,8 @@ extension AssetSpecificationDocument {
       return
     }
 
-    XCTAssertEqual(expectedDocument.images.count, actualDocument.images.count)
+    XCTAssertEqualDocuments(expectedDocument, actualDocument)
 
-    XCTAssertEqual(expectedDocument.properties?.templateRenderingIntent, actualDocument.properties?.templateRenderingIntent)
-    XCTAssertEqual(expectedDocument.properties?.autoScaling, actualDocument.properties?.autoScaling)
-    XCTAssertEqual(expectedDocument.properties?.compressionType, actualDocument.properties?.compressionType)
-    XCTAssertEqual(expectedDocument.properties?.preservesVectorRepresentation, actualDocument.properties?.preservesVectorRepresentation)
-    XCTAssertEqual(expectedDocument.properties?.localizable, actualDocument.properties?.localizable)
-
-    if expectedDocument.images.count == actualDocument.images.count {
-      return
-    }
-    try? actualString.write(
-      to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.actual.json"),
-      atomically: false, encoding: .utf8
-    )
-
-    try? expectedString.write(
-      to: hereUrl.deletingLastPathComponent().appendingPathComponent("../../../unmatched.expected.json"),
-      atomically: false, encoding: .utf8
-    )
+    writeDifferences(expectedDocument, actualDocument, actualString, hereUrl, expectedString)
   }
 }

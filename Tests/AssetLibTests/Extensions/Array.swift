@@ -8,10 +8,10 @@ extension Array where Element == Any {
   }
 
   mutating func stripNulls() {
-    let count = self.count
-    guard count > 0 else {
+    guard !isEmpty else {
       return
     }
+    let count = self.count
     for index in 0 ..< count {
       let translatedIndex = count - 1 - index
       if self[translatedIndex] is NSNull {

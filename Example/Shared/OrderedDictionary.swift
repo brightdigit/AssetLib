@@ -10,6 +10,6 @@ struct OrderedDictionary<Key: Hashable, Value> {
   }
 
   var count: Int {
-    return keys.count
+    keys.count
   }
 }
