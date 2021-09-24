@@ -87,7 +87,7 @@ class SortedDictionary: NSDictionary, Comparable {
     }
   }
 
-  @objc convenience init(_ dictionary: [String: Any]) {
+  convenience init(_ dictionary: [String: Any]) {
     self.init()
     dictionary.sorted {
       $0.0.compare($1.0, options: [.caseInsensitive, .forcedOrdering]) == .orderedAscending
