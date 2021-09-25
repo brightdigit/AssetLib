@@ -6,12 +6,8 @@
 [![Twitter](https://img.shields.io/badge/twitter-@brightdigit-blue.svg?style=flat)](http://twitter.com/brightdigit)
 [![GitHub](https://img.shields.io/github/license/brightdigit/AssetLib)](https://github.com/brightdigit/AssetLib/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/brightdigit/AssetLib)](https://img.shields.io/github/issues/brightdigit/AssetLib)
-[![Beerpay](https://img.shields.io/beerpay/brightdigit/AssetLib.svg)](https://beerpay.io/brightdigit/AssetLib)
 
-[![macOS](https://github.com/brightdigit/AssetLib/workflows/macOS/badge.svg)](https://github.com/brightdigit/AssetLib/actions?query=workflow%3AmacOS)
-[![ubuntu](https://github.com/brightdigit/AssetLib/workflows/ubuntu/badge.svg)](https://github.com/brightdigit/AssetLib/actions?query=workflow%3Aubuntu)
-[![arm](https://github.com/brightdigit/AssetLib/workflows/arm/badge.svg)](https://github.com/brightdigit/AssetLib/actions?query=workflow%3Aarm)
-[![Travis (.com)](https://img.shields.io/travis/com/brightdigit/AssetLib?logo=travis)](https://travis-ci.com/brightdigit/AssetLib)
+[![actions](https://github.com/brightdigit/AssetLib/actions/workflows/assetlib.yml/badge.svg)](https://github.com/brightdigit/AssetLib/actions/workflows/assetlib.yml)
 [![CircleCI](https://img.shields.io/circleci/build/github/brightdigit/AssetLib?label=xenial&logo=circleci&token=9a2a5fd57594c2138187c14307c4b84e5f696d4d)](https://circleci.com/gh/brightdigit/AssetLib)
 [![Bitrise](https://img.shields.io/bitrise/96bc7c2338f588b6?label=macOS&logo=bitrise&token=JQwTk_9aG8HJcafb-Sqwbw)](https://app.bitrise.io/app/96bc7c2338f588b6)
 
@@ -22,10 +18,6 @@
 [![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/brightdigit/AssetLib?label=debt)](https://codeclimate.com/github/brightdigit/AssetLib)
 [![Code Climate issues](https://img.shields.io/codeclimate/issues/brightdigit/AssetLib)](https://codeclimate.com/github/brightdigit/AssetLib)
 
-[![Version](https://img.shields.io/cocoapods/v/AssetLib.svg?style=flat)](https://cocoapods.org/pods/AssetLib)
-[![License](https://img.shields.io/cocoapods/l/AssetLib.svg?style=flat)](https://cocoapods.org/pods/AssetLib)
-[![Platform](https://img.shields.io/cocoapods/p/AssetLib.svg?style=flat)](https://cocoapods.org/pods/AssetLib)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 
