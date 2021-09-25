@@ -32,19 +32,12 @@ Included with this library is the ability:
 
 ## Reqirements
 
-- iOS 8.0+ / macOS 10.9+ / tvOS 9.0+ / watchOS 2.0+ / Linux 
-- Xcode 10.2+
-- Swift 5+
+- iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+ / Linux 
+- Xcode 11.4+
+- Swift 5.2+
 
 ## Installing 
 
-### CocoaPods
-
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate AssetLib into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-pod 'AssetLib', '~> 0.1.0'
-```
 
 ### Swift Package Manager
 
