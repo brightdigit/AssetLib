@@ -14,7 +14,7 @@ let package = Package(
     .executable(name: "assetlibrary", targets: ["assetlibrary"])
   ],
   dependencies: [
-    .package(url: "https://github.com/apple/swift-argument-parser", .upToNextMinor(from: "0.3.1")),
+    .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.1"),
     .package(url: "https://github.com/shibapm/Komondor", from: "1.0.6"), // dev
     .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.47.0"), // dev
     .package(url: "https://github.com/realm/SwiftLint", from: "0.43.0"), // dev
