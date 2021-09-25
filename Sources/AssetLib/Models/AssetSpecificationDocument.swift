@@ -33,7 +33,10 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
     let container = try decoder.container(keyedBy: CodingKeys.self)
     let info = try container.decode(AssetSpecificationMetadata.self, forKey: .info)
     let properties = try container.decodeIfPresent(AssetSpecificationProperties.self, forKey: .properties)
-    let images = try container.decodeIfPresent([AssetSpecification].self, forKey: CodingKeys.images) ?? [AssetSpecificationProtocol]()
+    let images = try container.decodeIfPresent(
+      [AssetSpecification].self,
+      forKey: CodingKeys.images
+    ) ?? [AssetSpecificationProtocol]()
     self.images = images
     self.properties = properties
     self.info = info
@@ -42,7 +45,7 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
-    if images.count > 0 {
+    if !images.isEmpty {
       try container.encode(images.map(AssetSpecification.init(specifications:)), forKey: .images)
     }
 

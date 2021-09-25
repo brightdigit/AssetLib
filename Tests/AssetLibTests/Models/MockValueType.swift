@@ -2,7 +2,7 @@ import AssetLib
 
 struct MockValueType: AppearanceValue {
   static var appearanceKey: String {
-    return "mock"
+    "mock"
   }
 
   let appearanceValue: String

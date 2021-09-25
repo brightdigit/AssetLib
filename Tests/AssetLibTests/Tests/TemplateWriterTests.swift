@@ -26,7 +26,6 @@ final class TemplateWriterTests: XCTestCase {
     let url = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(UUID().uuidString)
     do {
       try writer.saveTemplateResult(.failure(mockError), to: url)
-
     } catch {
       XCTAssertEqual(mockError.localizedDescription, error.localizedDescription)
       return
@@ -37,8 +36,8 @@ final class TemplateWriterTests: XCTestCase {
   func testSaveTemplateResult() {
     templateTest(.appicon(AppIconTemplate(devices:
       [.car, .ipad, .iphone, .mac, .tv, .watch],
-                                          specifyGamut: true,
-                                          prerendered: true)))
+      specifyGamut: true,
+      prerendered: true)))
     templateTest(.imageset(ImageSetTemplate(
       templateRenderingIntent: .template,
       devices: [.ipad, .iphone],

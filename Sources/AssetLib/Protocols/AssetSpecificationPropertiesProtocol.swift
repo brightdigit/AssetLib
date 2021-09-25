@@ -6,7 +6,8 @@ import Foundation
 public protocol AssetSpecificationPropertiesProtocol: Codable {
   /**
    Specifies if the image is a template for use with visual effects such as replacing colors.
-    For `nil` values, if the name of the image ends in "Template", use the image as a template, otherwise render it as the original image.
+    For `nil` values, if the name of the image ends in "Template",
+   use the image as a template, otherwise render it as the original image.
    */
   var templateRenderingIntent: RenderingIntent? { get }
   // swiftlint:disable line_length

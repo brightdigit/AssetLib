@@ -23,9 +23,11 @@ public struct IdiomScaleProvider: IdiomScaleProviderProtocol {
   ]
 
   /**
-   Creates a `IdiomScaleProvider` based on the optional`[ImageIdiom: [Float]]` dictionary passed.
+   Creates a `IdiomScaleProvider` based on
+   the optional`[ImageIdiom: [Float]]` dictionary passed.
 
-   - Parameter dictionary: The optional`[ImageIdiom: [Float]]` dictionary otherwise use `IdiomScaleProvider.defaultDictionary`
+   - Parameter dictionary: The optional`[ImageIdiom: [Float]]` dictionary
+   otherwise use `IdiomScaleProvider.defaultDictionary`
    */
   public init(dictionary: [ImageIdiom: [Float]]? = nil) {
     self.dictionary = dictionary ?? Self.defaultDictionary
@@ -37,6 +39,6 @@ public struct IdiomScaleProvider: IdiomScaleProviderProtocol {
    - Returns: The Set of `Float` scales
    */
   public func scales(forIdiom idiom: ImageIdiom) -> [Float] {
-    return dictionary[idiom] ?? [Float]()
+    dictionary[idiom] ?? [Float]()
   }
 }

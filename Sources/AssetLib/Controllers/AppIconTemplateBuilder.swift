@@ -31,7 +31,9 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
     appIconSpecifications: IdiomAppIconSpecProvider? = nil,
     map: AppIconDeviceIdiomMapProtocol? = nil
   ) {
-    self.supportsDisplayGamut = supportsDisplayGamut ?? ImageIdiomDisplayGamut(supportedImageIdioms: [.iphone, .ipad, .mac])
+    self.supportsDisplayGamut = supportsDisplayGamut ?? ImageIdiomDisplayGamut(
+      supportedImageIdioms: [.iphone, .ipad, .mac]
+    )
     self.appIconSpecifications = appIconSpecifications ?? IdiomAppIconSpecMap()
     idiomDeviceMap = map ?? AppIconDeviceIdiomMap()
   }
@@ -43,15 +45,17 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
     - Returns: The `AssetSpecificationDocumentProtocol`
    */
   public func document(fromTemplate template: AppIconTemplate) -> AssetSpecificationDocumentProtocol {
-    let specs = Set(template.devices.flatMap(idiomDeviceMap.idiom(forDevice:))).flatMap { (idiom) -> [AssetSpecificationProtocol] in
-      let specs = appIconSpecifications.appIcon(specificationFor: idiom)
+    let specs = Set(template.devices.flatMap(idiomDeviceMap.idiom(forDevice:)))
+      .flatMap {
+        idiom -> [AssetSpecificationProtocol] in
+        let specs = appIconSpecifications.appIcon(specificationFor: idiom)
 
-      guard template.specifyGamut, supportsDisplayGamut.supportsDisplayGamut(idiom) else {
-        return specs
+        guard template.specifyGamut, supportsDisplayGamut.supportsDisplayGamut(idiom) else {
+          return specs
+        }
+
+        return specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
       }
-
-      return specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
-    }
 
     return AssetSpecificationDocument(
       info: AssetSpecificationMetadata(),

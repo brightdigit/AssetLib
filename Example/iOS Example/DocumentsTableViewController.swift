@@ -21,7 +21,7 @@ class DocumentsTableViewController: UITableViewController {
   // MARK: - Table view data source
 
   override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-    return documentMap?.count ?? 0
+    documentMap?.count ?? 0
   }
 
   override func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

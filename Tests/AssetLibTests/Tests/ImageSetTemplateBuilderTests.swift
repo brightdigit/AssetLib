@@ -4,7 +4,8 @@ import XCTest
 final class ImageSetTemplateBuilderTests: XCTestCase {
   fileprivate func assertImageSet(_ imageSetName: String, _ template: ImageSetTemplate) {
     let builder = ImageSetTemplateBuilder()
-    guard let actualDocument = builder.document(fromTemplate: template) as? AssetSpecificationDocument else {
+    guard let actualDocument = builder.document(fromTemplate: template)
+      as? AssetSpecificationDocument else {
       XCTFail("Not Actual Document")
       return
     }
@@ -12,13 +13,17 @@ final class ImageSetTemplateBuilderTests: XCTestCase {
     AssetSpecificationDocument.assertApproximateEquals(actualDocument, imageSetName)
   }
 
+  // swiftlint:disable:next function_body_length
   func testTemplateBuilding() {
     assertImageSet("SingleImage.imageset", ImageSetTemplate(
       templateRenderingIntent: .template,
       compressionType: .gpuOptimizedBest,
       preservesVectorRepresentation: true,
       devices: Set([.universal]),
-      appearances: [ValuedAppearance(value: Luminosity.light).eraseToAny(), ValuedAppearance(value: Luminosity.dark).eraseToAny()],
+      appearances: [
+        ValuedAppearance(value: Luminosity.light).eraseToAny(),
+        ValuedAppearance(value: Luminosity.dark).eraseToAny()
+      ],
       scaling: .single,
       displayGamuts: true,
       languageDirections: [],

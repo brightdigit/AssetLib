@@ -29,6 +29,7 @@ public struct TemplateWriter: TemplateWriterProtocol {
     case let .appicon(template):
       let builder = AppIconTemplateBuilder()
       document = builder.document(fromTemplate: template)
+
     case let .imageset(template):
       let builder = ImageSetTemplateBuilder()
       document = builder.document(fromTemplate: template)
@@ -37,7 +38,13 @@ public struct TemplateWriter: TemplateWriterProtocol {
       throw error
     }
 
-    let data = try encoder.encode(AssetSpecificationDocument(info: document.info, images: document.images, properties: document.properties))
+    let data = try encoder.encode(
+      AssetSpecificationDocument(
+        info: document.info,
+        images: document.images,
+        properties: document.properties
+      )
+    )
     try data.write(to: url)
   }
 }

@@ -10,11 +10,13 @@ struct AssetLibraryCommand: ParsableCommand {
   @Argument(help: "JSON template file.")
   var templateFile: String
 
+  // swiftlint:disable line_length
   @Argument(help: """
   Output directory or file.
   If this path ends in either 'imageset' or 'appicon', then a directory will be created with a 'Contents.json' file inside.
   Otherwise, it will be the resulting file path.
   """)
+  // swiftlint:enable line_length
   var output: String
 
   func run() throws {

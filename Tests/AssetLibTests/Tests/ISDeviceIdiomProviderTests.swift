@@ -2,6 +2,7 @@ import AssetLib
 import XCTest
 
 final class ISDeviceIdiomProviderTests: XCTestCase {
+  // swiftlint:disable:next cyclomatic_complexity function_body_length
   func testValidDictionary() {
     var dictionary = [ImageSetDevice: (ImageIdiom, DeviceSubType?)]()
     for device in ImageSetDevice.allCases {
@@ -9,18 +10,25 @@ final class ISDeviceIdiomProviderTests: XCTestCase {
       switch device {
       case .universal:
         value = (ImageIdiom.universal, nil)
+
       case .iphone:
         value = (ImageIdiom.iphone, nil)
+
       case .ipad:
         value = (ImageIdiom.ipad, nil)
+
       case .mac:
         value = (ImageIdiom.mac, nil)
+
       case .tv:
         value = (ImageIdiom.tv, nil)
+
       case .watch:
         value = (ImageIdiom.watchMarketing, .size42)
+
       case .car:
         value = (ImageIdiom.car, nil)
+
       case .macCatalyst:
         value = (ImageIdiom.iphone, .macCatalyst)
       }

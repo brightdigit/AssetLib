@@ -35,53 +35,84 @@ public struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
   }
 
+  fileprivate func specification(
+    _ spec: AssetSpecificationProtocol,
+    forAppearance appearance: AnyAppearance
+  ) -> AssetSpecificationProtocol {
+    var newSpec = AssetSpecificationBuilder(specifications: spec)
+
+    newSpec.appearances.append(appearance)
+
+    return newSpec.assetSpec()
+  }
+
+  fileprivate func addAppearances(
+    _ appearances: [String: [AnyAppearance]],
+    toSpecs specs: inout [AssetSpecificationProtocol]
+  ) {
+    for (_, values) in appearances {
+      specs.append(contentsOf: specs.flatMap { spec in
+        values.map { appearance in
+          specification(spec, forAppearance: appearance)
+        }
+      })
+    }
+  }
+
   /**
    Creates `AssetSpecificationDocumentProtocol` based on the `ImageSetTemplate`.
 
     - Parameter template: The `ImageSetTemplate`.
     - Returns: The `AssetSpecificationDocumentProtocol`
    */
-  public func document(fromTemplate configuration: ImageSetTemplate) -> AssetSpecificationDocumentProtocol {
-    var specs: [AssetSpecificationProtocol] = specsBasedOn(devices: [ImageSetDevice](configuration.devices), andScaling: configuration.scaling)
+  // swiftlint:disable:next function_body_length
+  public func document(
+    fromTemplate configuration: ImageSetTemplate
+  ) -> AssetSpecificationDocumentProtocol {
+    var specs: [AssetSpecificationProtocol] = specsBasedOn(
+      devices: [ImageSetDevice](configuration.devices),
+      andScaling: configuration.scaling
+    )
 
     let appearances = configuration.appearances.group(by: \.appearance)
 
-    for (_, values) in appearances {
-      specs.append(contentsOf: specs.flatMap { spec in
-        values.map { appearance in
-          var newSpec = AssetSpecificationBuilder(specifications: spec)
+    addAppearances(appearances, toSpecs: &specs)
 
-          newSpec.appearances.append(appearance)
-
-          return newSpec.assetSpec()
-        }
-          })
-    }
     if configuration.displayGamuts {
       specs = specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
     }
 
-    if configuration.languageDirections.count > 0 {
+    if !configuration.languageDirections.isEmpty {
       specs = specs.multiply(by: [LanguageDirection](configuration.languageDirections), with: \.languageDirection)
     }
 
     if let heightClass = configuration.heightClass {
-      specs = specs.multiply(by: [heightClass], with: \.heightClass, where: { $0.idiom == .universal }, operation: .append)
+      specs = specs.multiply(
+        by: [heightClass],
+        with: \.heightClass,
+        where: { $0.idiom == .universal },
+        operation: .append
+      )
     }
 
     if let widthClass = configuration.widthClass {
-      specs = specs.multiply(by: [widthClass], with: \.widthClass, where: { $0.idiom == .universal }, operation: .append)
+      specs = specs.multiply(
+        by: [widthClass],
+        with: \.widthClass,
+        where: { $0.idiom == .universal },
+        operation: .append
+      )
     }
 
     let tempSpecs = specs
 
-    if configuration.memorySet.count > 0 {
+    if !configuration.memorySet.isEmpty {
       specs.append(contentsOf:
         tempSpecs.multiply(by: [Memory](configuration.memorySet), with: \.memory, where: { $0.idiom == .universal })
       )
     }
 
-    if configuration.graphicsFeatureSets.count > 0 {
+    if !configuration.graphicsFeatureSets.isEmpty {
       specs.append(
         contentsOf:
         tempSpecs.multiply(
@@ -92,7 +123,12 @@ public struct ImageSetTemplateBuilder: AssetTemplateBuilder {
     }
 
     if configuration.appleWatchScreens {
-      specs = specs.multiply(by: AppleWatchScreenWidth.allCases, with: \.screenWidth, where: { $0.idiom == .watch }, operation: .modify)
+      specs = specs.multiply(
+        by: AppleWatchScreenWidth.allCases,
+        with: \.screenWidth,
+        where: { $0.idiom == .watch },
+        operation: .modify
+      )
     }
 
     specs = specs.multiply(by: Array(configuration.locales), with: \.locale, operation: .append)
@@ -102,7 +138,7 @@ public struct ImageSetTemplateBuilder: AssetTemplateBuilder {
       autoScaling: configuration.autoScaling ? .automatic : nil,
       compressionType: configuration.compressionType,
       preservesVectorRepresentation: configuration.preservesVectorRepresentation,
-      localizable: configuration.locales.count > 0,
+      localizable: !configuration.locales.isEmpty,
       onDemandResourceTags: [String](configuration.onDemandResourceTags)
     )
 
