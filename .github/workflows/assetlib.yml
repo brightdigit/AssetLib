@@ -60,8 +60,6 @@ jobs:
             xcode: "/Applications/Xcode_11.5.app"
           - runs-on: macos-10.15
             xcode: "/Applications/Xcode_11.4.1.app"
-          - runs-on: macos-10.15
-            xcode: "/Applications/Xcode_11.3.1.app"
           - runs-on: macos-11
             xcode: "/Applications/Xcode_13.0.app"
           - runs-on: macos-11
