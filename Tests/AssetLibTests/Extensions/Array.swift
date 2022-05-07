@@ -11,7 +11,7 @@ extension Array where Element == Any {
     guard !isEmpty else {
       return
     }
-    let count = self.count
+    let count = count
     for index in 0 ..< count {
       let translatedIndex = count - 1 - index
       if self[translatedIndex] is NSNull {

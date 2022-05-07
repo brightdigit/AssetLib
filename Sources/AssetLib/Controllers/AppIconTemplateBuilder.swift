@@ -48,13 +48,13 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
     let specs = Set(template.devices.flatMap(idiomDeviceMap.idiom(forDevice:)))
       .flatMap {
         idiom -> [AssetSpecificationProtocol] in
-        let specs = appIconSpecifications.appIcon(specificationFor: idiom)
+          let specs = appIconSpecifications.appIcon(specificationFor: idiom)
 
-        guard template.specifyGamut, supportsDisplayGamut.supportsDisplayGamut(idiom) else {
-          return specs
-        }
+          guard template.specifyGamut, supportsDisplayGamut.supportsDisplayGamut(idiom) else {
+            return specs
+          }
 
-        return specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
+          return specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
       }
 
     return AssetSpecificationDocument(

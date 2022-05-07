@@ -49,7 +49,7 @@ public struct AssetSpecificationDocument: AssetSpecificationDocumentProtocol, Co
       try container.encode(images.map(AssetSpecification.init(specifications:)), forKey: .images)
     }
 
-    if let properties = self.properties {
+    if let properties = properties {
       try container.encode(AssetSpecificationProperties(properties: properties), forKey: .properties)
     }
     try container.encode(AssetSpecificationMetadata(info), forKey: .info)
