@@ -53,13 +53,11 @@ let package = Package(
   let config = PackageConfiguration([
     "rocket": [
       "steps": [
-        ["hide_dev_dependencies": ["package_path": "Package@swift-5.5.swift"]],
         "hide_dev_dependencies",
         "git_add",
         "commit",
         "tag",
         "unhide_dev_dependencies",
-        ["unhide_dev_dependencies": ["package_path": "Package@swift-5.5.swift"]],
         "git_add",
         ["commit": ["message": "Unhide dev dependencies"]]
       ]
