@@ -43,4 +43,6 @@ public protocol AssetSpecificationProtocol {
    Locale supported by the asset.
    */
   var locale: Locale? { get }
+
+  mutating func withFilename(_ filename: String) -> Self
 }

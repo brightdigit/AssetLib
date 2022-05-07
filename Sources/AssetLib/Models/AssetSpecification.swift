@@ -246,4 +246,10 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
       try container.encode(localeIdentifier, forKey: .locale)
     }
   }
+
+  public func withFilename(_ filename: String) -> AssetSpecification {
+    var builder = AssetSpecificationBuilder(specifications: self)
+    builder = builder.withFilename(filename)
+    return AssetSpecification(specifications: builder)
+  }
 }

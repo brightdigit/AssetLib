@@ -55,6 +55,12 @@ public struct AppIconTemplateBuilder: AssetTemplateBuilder {
           }
 
           return specs.multiply(by: DisplayGamut.allCases, with: \.displayGamut)
+      }.map { spec -> AssetSpecificationProtocol in
+        guard let fileName = template.sources.findSource(forSpec: spec) else {
+          return spec
+        }
+        var newSpec = spec
+        return newSpec.withFilename(fileName)
       }
 
     return AssetSpecificationDocument(

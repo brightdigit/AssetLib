@@ -1,0 +1,48 @@
+{
+  "devices" : ["watch", "iphone", "ipad", "mac", "tv"],
+  "sources" : {
+    "default" : "default.png",
+    "rules" : [
+      {
+        "name" : "filename.png",
+        "rules" : [
+          {
+            "type" : "equals",
+            "field" : "locale",
+            "value" : "en-us"
+          },
+          {
+            "type" : "or",
+            "rules" : [
+              {
+                "type" : "equals",
+                "field" : "idiom",
+                "value" : "ipad"
+              },
+              {
+                "type" : "equals",
+                "field" : "idiom",
+                "value" : "mac"
+              }
+            ]
+          },
+          {
+            "type" : "and",
+            "rules" : [
+              {
+                "type" : "equals",
+                "field" : "heightClass",
+                "value" : "regular"
+              },
+              {
+                "type" : "equals",
+                "field" : "widthClass",
+                "value" : "regular"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

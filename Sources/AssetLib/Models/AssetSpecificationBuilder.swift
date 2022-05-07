@@ -70,4 +70,9 @@ struct AssetSpecificationBuilder: AssetSpecificationProtocol {
   func assetSpec() -> AssetSpecificationProtocol {
     AssetSpecification(specifications: self)
   }
+
+  mutating func withFilename(_ filename: String) -> AssetSpecificationBuilder {
+    self.filename = filename
+    return self
+  }
 }
