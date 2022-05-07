@@ -242,7 +242,7 @@ public struct AssetSpecification: AssetSpecificationProtocol, Codable {
 
     try container.encodeIfPresent(graphicsFeatureSet, forKey: .graphicsFeatureSet)
 
-    if let localeIdentifier = locale.map({ $0.identifier }) {
+    if let localeIdentifier = locale.map(\.identifier) {
       try container.encode(localeIdentifier, forKey: .locale)
     }
   }

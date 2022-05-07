@@ -163,13 +163,3 @@ xcuserdata
 # End of https://www.gitignore.io/api/swiftpm,swiftpackagemanager,xcode,swift,macos
 Tests/AssetLibTests/Data/**/*.png
 Tests/AssetLibTests/Data/**/*.pdf
-
-*.xcworkspace
-Pods
-*.lcov
-Brewfile.lock.json
-
-Package.resolved
-Documentation/Reference/README.md
-Example/Templates/Assets.xcassets/*.imageset/Contents.json
-Example/Templates/Assets.xcassets/*.appiconset/Contents.json
