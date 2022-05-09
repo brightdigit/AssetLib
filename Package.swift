@@ -14,9 +14,9 @@ let package = Package(
     .executable(name: "assetlibrary", targets: ["assetlibrary"])
   ],
   dependencies: [
-    .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.1"),
+    .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
     .package(url: "https://github.com/shibapm/Komondor", from: "1.0.6"), // dev
-    .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.47.0"), // dev
+    .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.49.0"), // dev
     .package(url: "https://github.com/realm/SwiftLint", from: "0.43.0"), // dev
     .package(
       url: "https://github.com/shibapm/Rocket",
@@ -24,7 +24,7 @@ let package = Package(
     ), // dev
     .package(
       url: "https://github.com/brightdigit/swift-test-codecov",
-      from: "1.0.0"
+      from: "1.1.0"
     ) // dev
   ],
   targets: [

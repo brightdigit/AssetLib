@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
         "state": {
           "branch": null,
-          "revision": "7f4be006fe73211b0fd9666c73dc2f2303ffa756",
-          "version": "0.31.0"
+          "revision": "817dfa6f2e09b0476f3a6c9dbc035991f02f0241",
+          "version": "0.32.0"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/apple/swift-argument-parser",
         "state": {
           "branch": null,
-          "revision": "9564d61b08a5335ae0a36f789a7d71493eacadfc",
-          "version": "0.3.2"
+          "revision": "f3c9084a71ef4376f2fabbdf1d3d90a49f1fabdb",
+          "version": "1.1.2"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/brightdigit/swift-test-codecov",
         "state": {
           "branch": null,
-          "revision": "8ca50588a72d1869cc6edafdee5f1e7fa9783b7b",
-          "version": "1.0.0"
+          "revision": "b1085f527c83bf666978f4828ac5ceb541637f14",
+          "version": "1.1.0"
         }
       },
       {
@@ -84,11 +84,11 @@
       },
       {
         "package": "SwiftLint",
-        "repositoryURL": "https://github.com/realm/SwiftLint",
+        "repositoryURL": "https://github.com/Realm/SwiftLint.git",
         "state": {
           "branch": null,
-          "revision": "e820e750b08bd67bc9d98f4817868e9bc3d5d865",
-          "version": "0.44.0"
+          "revision": "e8ef21fef61f12536964c4e3cf6d5a6e3ad81e49",
+          "version": "0.46.5"
         }
       },
       {
@@ -114,8 +114,8 @@
         "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
         "state": {
           "branch": null,
-          "revision": "9183170d20857753d4f331b0ca63f73c60764bf3",
-          "version": "5.0.2"
+          "revision": "6469881a3f30417c5bb02404ea4b69207f297592",
+          "version": "6.0.0"
         }
       },
       {
