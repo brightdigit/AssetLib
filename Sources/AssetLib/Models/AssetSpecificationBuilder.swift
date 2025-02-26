@@ -1,6 +1,6 @@
 import Foundation
 
-struct AssetSpecificationBuilder: AssetSpecificationProtocol {
+public struct AssetSpecificationBuilder: AssetSpecificationProtocol {
   /**
    A different version of an image for each Apple Watch screen size.
    */
@@ -51,7 +51,8 @@ struct AssetSpecificationBuilder: AssetSpecificationProtocol {
 
   /// Specific appearances supported by the asset.
   public var appearances: [AnyAppearance]
-  init(specifications: AssetSpecificationProtocol) {
+  
+  public init(specifications: AssetSpecificationProtocol) {
     idiom = specifications.idiom
     scale = specifications.scale
     size = specifications.size
